@@ -34,7 +34,7 @@ public class IterSelettivoDAO {
 				int punteggioLogica = resultSet.getInt("punteggioLogica");
 				int punteggioPhp = resultSet.getInt("punteggioPhp");
 				int punteggioJava = resultSet.getInt("punteggioJava");
-				int punteggioHTML = resultSet.getInt("punteggioHtml");
+				int punteggioHTML = resultSet.getInt("punteggioHTML");
 				int punteggioInglese = resultSet.getInt("punteggioInglese");
 				String dataTestScritto = resultSet.getString("dataTestScritto");
 				int valutazioneOrale = resultSet.getInt("valutazioneOrale");
@@ -91,7 +91,7 @@ public class IterSelettivoDAO {
 				punteggioLogica = resultSet.getInt("punteggioLogica");
 				punteggioPhp = resultSet.getInt("punteggioPhp");
 				punteggioJava = resultSet.getInt("punteggioJava");
-				punteggioHTML = resultSet.getInt("punteggioHtml");
+				punteggioHTML = resultSet.getInt("punteggioHTML");
 				punteggioInglese = resultSet.getInt("punteggioInglese");
 				dataTestScritto = resultSet.getString("dataTestScritto");
 				valutazioneOrale = resultSet.getInt("valutazioneOrale");
