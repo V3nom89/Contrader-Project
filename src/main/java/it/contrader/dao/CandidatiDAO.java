@@ -14,9 +14,9 @@ import it.contrader.model.Candidati;
 public class CandidatiDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM Candidati";
-	private final String QUERY_CREATE = "INSERT INTO Candidati (idStaff, nome, cognome,email,provenienza,telefono,titoloStudio,titoloLaurea,dataCandidatura, rangeCandidatura,candidatiTramite,colloquioConoscitivo, idoneità,codiceFiscale) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO Candidati (idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,  idoneita, codiceFiscale, userType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM Candidati WHERE idCandidati=?";
-	private final String QUERY_UPDATE = "UPDATE Candidati SET idStaff = ?, nome = ?, cognome = ?,email = ?,provenienza = ?,telefono = ?,titoloStudio = ?,titoloLaurea = ?,dataCandidatura = ?, rangeCandidatura = ?,candidatiTramite = ?,colloquioConoscitivo = ?, idoneità = ?,codiceFiscale = ?  WHERE idCandidati=?";
+	private final String QUERY_UPDATE = "UPDATE Candidati SET idStaff = ?, nome = ?, cognome = ?, email = ?, luogoProvenienza = ?, numeroTelefono = ?, titoloStudio = ?, titoloLaurea = ?, dataCandidatura = ?, rangeCandidatura = ?, colloquioConoscitivo = ?, candidatiTramite = ?, idoneita = ?, codiceFiscale = ?, userType = ?  WHERE idCandidati=?";
 	private final String QUERY_DELETE = "DELETE FROM Candidati WHERE idCandidati=?";
 
 	public CandidatiDAO() {
@@ -36,20 +36,20 @@ public class CandidatiDAO {
 		    String nome = resultSet.getString("nome");
 		    String cognome = resultSet.getString("cognome");
 		    String email = resultSet.getString("email");
-		    String luogoProvenienza = resultSet.getString("provenienza");
-		    int numero_telefono = resultSet.getInt("telefono");
+		    String luogoProvenienza = resultSet.getString("luogoProvenienza");
+		    int numeroTelefono = resultSet.getInt("numeroTelefono");
 		    String titoloStudio = resultSet.getString("titoloStudio");
 		    String titoloLaurea = resultSet.getString("titoloLaurea");
 		    String dataCandidatura = resultSet.getString("dataCandidatura");
 		    String rangeCandidatura = resultSet.getString("rangeCandidatura");
 		    boolean colloquioConoscitivo = resultSet.getBoolean("colloquioConoscitivo");
 		    String candidatiTramite = resultSet.getString("candidatiTramite");
-		    boolean idoneita = resultSet.getBoolean("idoneità");
+		    boolean idoneita = resultSet.getBoolean("idoneita");
 		    String codiceFiscale = resultSet.getString("codiceFiscale");
-		    String usertype = resultSet.getString("usertype");
-		    candidati = new Candidati(idStaff, nome, cognome, email, luogoProvenienza, numero_telefono,
+		    String userType = resultSet.getString("userType");
+		    candidati = new Candidati(idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono,
 		      titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo,
-		      candidatiTramite, idoneita, codiceFiscale, usertype);
+		      candidatiTramite, idoneita, codiceFiscale, userType);
 		    candidati.setIdCandidati(id);
 		    candidatiList.add(candidati);
 		   }
@@ -66,18 +66,18 @@ public class CandidatiDAO {
 			preparedStatement.setInt(1, c.getIdStaff());
 			preparedStatement.setString(2, c.getNome());
 			preparedStatement.setString(3, c.getCognome());
-			preparedStatement.setInt(4, c.getIdStaff());
-			preparedStatement.setString(5, c.getEmail());
-			preparedStatement.setString(6, c.getLuogoProvenienza());
-			preparedStatement.setInt(7, c.getNumero_telefono());
-			preparedStatement.setString(8, c.getTitoloStudio());
-			preparedStatement.setString(9, c.getTitoloLaurea());
-			preparedStatement.setString(10, c.getDataCandidatura());
-			preparedStatement.setString(11, c.getRangeCandidatura());
+			preparedStatement.setString(4, c.getEmail());
+			preparedStatement.setString(5, c.getLuogoProvenienza());
+			preparedStatement.setInt(6, c.getNumeroTelefono());
+			preparedStatement.setString(7, c.getTitoloStudio());
+			preparedStatement.setString(8, c.getTitoloLaurea());
+			preparedStatement.setString(9, c.getDataCandidatura());
+			preparedStatement.setString(10, c.getRangeCandidatura());
+			preparedStatement.setBoolean(11, c.getColloquioConoscitivo());
 			preparedStatement.setString(12, c.getCandidatiTramite());
-			preparedStatement.setBoolean(13, c.getColloquioConoscitivo());
-			preparedStatement.setBoolean(14, c.getIdoneita());
-			preparedStatement.setString(12, c.getCodiceFiscale());
+			preparedStatement.setBoolean(13, c.getIdoneita());
+			preparedStatement.setString(14, c.getCodiceFiscale());
+			preparedStatement.setString(15, c.getUserType());
 
 			preparedStatement.execute();
 			return true;
@@ -101,22 +101,21 @@ public class CandidatiDAO {
 			String nome = resultSet.getString("nome");
 			String cognome = resultSet.getString("cognome");
 			String email = resultSet.getString("email");
-			String luogoProvenienza = resultSet.getString("provenienza");
-			int numero_telefono = resultSet.getInt("telefono");
+			String luogoProvenienza = resultSet.getString("luogoProvenienza");
+			int numeroTelefono = resultSet.getInt("numeroTelefono");
 			String titoloStudio = resultSet.getString("titoloStudio");
 			String titoloLaurea = resultSet.getString("titoloLaurea");
 			String dataCandidatura = resultSet.getString("dataCandidatura");
 			String rangeCandidatura = resultSet.getString("rangeCandidatura");
 			boolean colloquioConoscitivo = resultSet.getBoolean("colloquioConoscitivo");
 			String candidatiTramite = resultSet.getString("candidatiTramite");
-			boolean idoneita = resultSet.getBoolean("idoneità");
-			;
+			boolean idoneita = resultSet.getBoolean("idoneita");
 			String codiceFiscale = resultSet.getString("codiceFiscale");
-			String usertype = resultSet.getString("usertype");
+			String userType = resultSet.getString("userType");
 
-			Candidati candidati = new Candidati(idStaff, nome, cognome, email, luogoProvenienza, numero_telefono,
+			Candidati candidati = new Candidati(idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono,
 					titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo,
-					candidatiTramite, idoneita, codiceFiscale, usertype);
+					candidatiTramite, idoneita, codiceFiscale, userType);
 			candidati.setIdCandidati(idCandidati);
 
 			return candidati;
@@ -156,8 +155,8 @@ public class CandidatiDAO {
 					c.setLuogoProvenienza(candidatileggi.getLuogoProvenienza());
 				}
 
-				if (c.getNumero_telefono() == 0) {
-					c.setNumero_telefono(candidatileggi.getNumero_telefono());
+				if (c.getNumeroTelefono() == 0) {
+					c.setNumeroTelefono(candidatileggi.getNumeroTelefono());
 				}
 				if (c.getTitoloStudio() == null || c.getTitoloStudio().equals("")) {
 					c.setTitoloStudio(candidatileggi.getTitoloStudio());
@@ -188,6 +187,8 @@ public class CandidatiDAO {
 				if (c.getCodiceFiscale() == null || c.getCodiceFiscale().equals("")) {
 					c.setCodiceFiscale(candidatileggi.getCodiceFiscale());
 				}
+				
+				// qui manca userType
 
 				
 
@@ -198,7 +199,7 @@ public class CandidatiDAO {
 				preparedStatement.setString(3, c.getCognome());
 				preparedStatement.setString(4, c.getEmail());
 				preparedStatement.setString(5, c.getLuogoProvenienza());
-				preparedStatement.setInt(6, c.getNumero_telefono());
+				preparedStatement.setInt(6, c.getNumeroTelefono());
 				preparedStatement.setString(7, c.getTitoloStudio());
 				preparedStatement.setString(8, c.getTitoloLaurea());
 				preparedStatement.setString(9, c.getDataCandidatura());
@@ -207,6 +208,7 @@ public class CandidatiDAO {
 				preparedStatement.setBoolean(12, c.getColloquioConoscitivo());
 				preparedStatement.setBoolean(13, c.getIdoneita());
 				preparedStatement.setString(14, c.getCodiceFiscale());
+				//qui manca userType
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
