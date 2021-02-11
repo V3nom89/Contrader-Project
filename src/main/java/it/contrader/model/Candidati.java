@@ -8,7 +8,7 @@ public class Candidati {
 	private String cognome;
 	private String email;
 	private String luogoProvenienza;
-	private int numero_telefono;
+	private int numeroTelefono;
 	private String titoloStudio;
 	private String titoloLaurea;
 	private String dataCandidatura;
@@ -32,7 +32,7 @@ public class Candidati {
 		cognome=cog;
 		email=Email;
 		luogoProvenienza=luogo;
-		numero_telefono=numero;
+		numeroTelefono=numero;
 		titoloStudio=titolo_s;
 		titoloLaurea=titolo_l;
 		dataCandidatura=data;
@@ -44,12 +44,28 @@ public class Candidati {
 		userType = Type;
 		
 	}
-	public Candidati(int idStaff2, String nome2, String cognome2, String email2, String luogoProvenienza2,
-			int numero_telefono2, String titoloStudio2, String titoloLaurea2, String dataCandidatura2,
-			String rangeCandidatura2, boolean colloquioConoscitivo2, String candidatiTramite2, boolean idoneita2,
-			String codiceFiscale2, String usertype2) {
-		// TODO Auto-generated constructor stub
+	
+	public Candidati(int id_S,String name,String cog,String Email,String luogo,int numero,String titolo_s,String titolo_l,String data, 
+			String range,boolean collo_cono,String candidati,boolean idonei,String codice, String Type ) {
+		
+		idStaff=id_S;
+		nome=name;
+		cognome=cog;
+		email=Email;
+		luogoProvenienza=luogo;
+		numeroTelefono=numero;
+		titoloStudio=titolo_s;
+		titoloLaurea=titolo_l;
+		dataCandidatura=data;
+		rangeCandidatura= range;
+		colloquioConoscitivo= collo_cono;
+		candidatiTramite=candidati;
+		idoneita=idonei;
+		codiceFiscale=codice;
+		userType = Type;
+		
 	}
+	
 	public String getUserType() {
 		return userType;
 	}
@@ -105,12 +121,12 @@ public class Candidati {
 		this.luogoProvenienza = luogoProvenienza;
 	}
 
-	public int getNumero_telefono() {
-		return numero_telefono;
+	public int getNumeroTelefono() {
+		return numeroTelefono;
 	}
 
-	public void setNumero_telefono(int numero_telefono) {
-		this.numero_telefono = numero_telefono;
+	public void setNumeroTelefono(int numeroTelefono) {
+		this.numeroTelefono = numeroTelefono;
 	}
 
 	public String getTitoloStudio() {
@@ -188,7 +204,11 @@ public class Candidati {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -204,7 +224,7 @@ public class Candidati {
 		result = prime * result + (idoneita ? 1231 : 1237);
 		result = prime * result + ((luogoProvenienza == null) ? 0 : luogoProvenienza.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + numero_telefono;
+		result = prime * result + numeroTelefono;
 		result = prime * result + ((rangeCandidatura == null) ? 0 : rangeCandidatura.hashCode());
 		result = prime * result + ((titoloLaurea == null) ? 0 : titoloLaurea.hashCode());
 		result = prime * result + ((titoloStudio == null) ? 0 : titoloStudio.hashCode());
@@ -263,7 +283,7 @@ public class Candidati {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (numero_telefono != other.numero_telefono)
+		if (numeroTelefono != other.numeroTelefono)
 			return false;
 		if (rangeCandidatura == null) {
 			if (other.rangeCandidatura != null)
@@ -290,10 +310,12 @@ public class Candidati {
 	@Override
 	public String toString() {
 		return "Candidati [idCandidati=" + idCandidati + ", idStaff=" + idStaff + ", nome=" + nome + ", cognome="
-				+ cognome + ", email=" + email + ", luogoProvenienza=" + luogoProvenienza + ", numero_telefono="
-				+ numero_telefono + ", titoloStudio=" + titoloStudio + ", titoloLaurea=" + titoloLaurea
+				+ cognome + ", email=" + email + ", luogoProvenienza=" + luogoProvenienza + ", numeroTelefono="
+				+ numeroTelefono + ", titoloStudio=" + titoloStudio + ", titoloLaurea=" + titoloLaurea
 				+ ", dataCandidatura=" + dataCandidatura + ", rangeCandidatura=" + rangeCandidatura
 				+ ", colloquioConoscitivo=" + colloquioConoscitivo + ", candidatiTramite=" + candidatiTramite
 				+ ", idoneita=" + idoneita + ", codiceFiscale=" + codiceFiscale + ", userType=" + userType + "]";
 	}
+
 }
+	
