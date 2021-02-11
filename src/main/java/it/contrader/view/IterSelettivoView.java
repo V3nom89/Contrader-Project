@@ -24,15 +24,15 @@ public void showResults(Request request) {
 		System.out.println("----------------------------------------------------\n");
 		
 		@SuppressWarnings("unchecked")
-		List<IterSelettivoDTO> iterSelettivo = (List<IterSelettivoDTO>) request.get("iterSelettivo");
-		for (IterSelettivoDTO it: iterSelettivo)
+		List<IterSelettivoDTO> iterSelettivo1 = (List<IterSelettivoDTO>) request.get("iterSelettivo1");
+		for (IterSelettivoDTO it: iterSelettivo1)
 			System.out.println(it);
 		System.out.println();
 		}
 	}
 
  /* Chiede all'utente un input (lettera da tastiera) per la choice. 
-    Mette la modalit‡ GETCHOICE nella mode. */
+    Mette la modalit√† GETCHOICE nella mode. */
 	@Override
 public void showOptions() {
 	System.out.println("          Scegli l'operazione da effettuare:");
