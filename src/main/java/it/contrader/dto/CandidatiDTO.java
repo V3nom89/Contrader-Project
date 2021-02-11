@@ -8,7 +8,7 @@ public class CandidatiDTO{
 	private String cognome;
 	private String email;
 	private String luogoProvenienza;
-	private int numero_telefono;
+	private int numeroTelefono;
 	private String titoloStudio;
 	private String titoloLaurea;
 	private String dataCandidatura;
@@ -17,21 +17,21 @@ public class CandidatiDTO{
 	private String candidatiTramite;
 	private boolean idoneita;
 	private String codiceFiscale;
-	private String usertype;
+	private String userType;
 	
 	public CandidatiDTO() {
 		
 	}
 	public CandidatiDTO(int id_S,String name,String cog,String Email,String luogo,int numero,String titolo_s,String titolo_l,String data, 
-			String range,boolean collo_cono,String candidati,boolean idonei,String codice, String usertype ) {
+			String range,boolean collo_cono,String candidati,boolean idonei,String codice, String userType ) {
 		
-		this.usertype=usertype;
+		this.userType=userType;
 		idStaff=id_S;
 		nome=name;
 		cognome=cog;
 		email=Email;
 		luogoProvenienza=luogo;
-		numero_telefono=numero;
+		numeroTelefono=numero;
 		titoloStudio=titolo_s;
 		titoloLaurea=titolo_l;
 		dataCandidatura=data;
@@ -43,15 +43,15 @@ public class CandidatiDTO{
 		
 	}
 	public CandidatiDTO(int idCandidati,int id_S,String name,String cog,String Email,String luogo,int numero,String titolo_s,String titolo_l,String data, 
-			String range,boolean collo_cono,String candidati,boolean idonei,String codice, String usertype ) {
+			String range,boolean collo_cono,String candidati,boolean idonei,String codice, String userType ) {
 		this.idCandidati=idCandidati;
-		this.usertype=usertype;
+		this.userType=userType;
 		idStaff=id_S;
 		nome=name;
 		cognome=cog;
 		email=Email;
 		luogoProvenienza=luogo;
-		numero_telefono=numero;
+		numeroTelefono=numero;
 		titoloStudio=titolo_s;
 		titoloLaurea=titolo_l;
 		dataCandidatura=data;
@@ -64,12 +64,12 @@ public class CandidatiDTO{
 	}
 	
 	
-	public void setUsertype(String usertype) {
-		this.usertype=usertype;
+	public void setUsertype(String userType) {
+		this.userType=userType;
 	}
 	
-	public String getUsertype() {
-		return usertype;
+	public String getUserType() {
+		return userType;
 		
 	}
 	
@@ -126,12 +126,12 @@ public class CandidatiDTO{
 		this.luogoProvenienza = luogoProvenienza;
 	}
 
-	public int getNumero_telefono() {
-		return numero_telefono;
+	public int getNumeroTelefono() {
+		return numeroTelefono;
 	}
 
-	public void setNumero_telefono(int numero_telefono) {
-		this.numero_telefono = numero_telefono;
+	public void setNumeroTelefono(int numeroTelefono) {
+		this.numeroTelefono = numeroTelefono;
 	}
 
 	public String getTitoloStudio() {
@@ -158,6 +158,54 @@ public class CandidatiDTO{
 		this.dataCandidatura = dataCandidatura;
 	}
 
+	public String getRangeCandidatura() {
+		return rangeCandidatura;
+	}
+
+	public void setRangeCandidatura(String rangeCandidatura) {
+		this.rangeCandidatura = rangeCandidatura;
+	}
+
+	public boolean getColloquioConoscitivo() {
+		return colloquioConoscitivo;
+	}
+
+	public void setColloquioConoscitivo(boolean colloquioConoscitivo) {
+		this.colloquioConoscitivo = colloquioConoscitivo;
+	}
+
+	public String getCandidatiTramite() {
+		return candidatiTramite;
+	}
+
+	public void setCandidatiTramite(String candidatiTramite) {
+		this.candidatiTramite = candidatiTramite;
+	}
+
+	public boolean getIdoneita() {
+		return idoneita;
+	}
+
+	public void setIdoneita(boolean idoneita) {
+		this.idoneita = idoneita;
+	}
+
+	public String getCodiceFiscale() {
+		return codiceFiscale;
+	}
+
+	public void setCodiceFiscale(String codiceFiscale) {
+		this.codiceFiscale = codiceFiscale;
+	}
+	
+	
+	
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -173,11 +221,11 @@ public class CandidatiDTO{
 		result = prime * result + (idoneita ? 1231 : 1237);
 		result = prime * result + ((luogoProvenienza == null) ? 0 : luogoProvenienza.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + numero_telefono;
+		result = prime * result + numeroTelefono;
 		result = prime * result + ((rangeCandidatura == null) ? 0 : rangeCandidatura.hashCode());
 		result = prime * result + ((titoloLaurea == null) ? 0 : titoloLaurea.hashCode());
 		result = prime * result + ((titoloStudio == null) ? 0 : titoloStudio.hashCode());
-		result = prime * result + ((usertype == null) ? 0 : usertype.hashCode());
+		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
 		return result;
 	}
 	@Override
@@ -232,7 +280,7 @@ public class CandidatiDTO{
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (numero_telefono != other.numero_telefono)
+		if (numeroTelefono != other.numeroTelefono)
 			return false;
 		if (rangeCandidatura == null) {
 			if (other.rangeCandidatura != null)
@@ -249,57 +297,26 @@ public class CandidatiDTO{
 				return false;
 		} else if (!titoloStudio.equals(other.titoloStudio))
 			return false;
-		if (usertype == null) {
-			if (other.usertype != null)
+		if (userType == null) {
+			if (other.userType != null)
 				return false;
-		} else if (!usertype.equals(other.usertype))
+		} else if (!userType.equals(other.userType))
 			return false;
 		return true;
 	}
-	public String getRangeCandidatura() {
-		return rangeCandidatura;
-	}
-
-	public void setRangeCandidatura(String rangeCandidatura) {
-		this.rangeCandidatura = rangeCandidatura;
-	}
-
-	public boolean getColloquioConoscitivo() {
-		return colloquioConoscitivo;
-	}
-
-	public void setColloquioConoscitivo(boolean colloquioConoscitivo) {
-		this.colloquioConoscitivo = colloquioConoscitivo;
-	}
-
-	public String getCandidatiTramite() {
-		return candidatiTramite;
-	}
-
-	public void setCandidatiTramite(String candidatiTramite) {
-		this.candidatiTramite = candidatiTramite;
-	}
-
-	public boolean getIdoneita() {
-		return idoneita;
-	}
-
-	public void setIdoneita(boolean idoneita) {
-		this.idoneita = idoneita;
-	}
-
-	public String getCodiceFiscale() {
-		return codiceFiscale;
-	}
-
-	public void setCodiceFiscale(String codiceFiscale) {
-		this.codiceFiscale = codiceFiscale;
-	}
-
-	
-	
 	@Override
 	public String toString() {
-		return  idCandidati + "\t"  + idStaff +"\t\t" +   nome + "\t\t" + cognome + "\t\t" + email + "\t"  + luogoProvenienza +"\t\t" +   numero_telefono + "\t\t" + titoloStudio +"\t\t" +   titoloLaurea + "\t\t" + dataCandidatura + "\t\t" + rangeCandidatura + "\t"  + colloquioConoscitivo +"\t\t" +   candidatiTramite + "\t\t"  + idoneita +"\t\t" +   codiceFiscale + "\t\t" +   usertype + "\t\t";
+		return "CandidatiDTO [idCandidati=" + idCandidati + ", idStaff=" + idStaff + ", nome=" + nome + ", cognome="
+				+ cognome + ", email=" + email + ", luogoProvenienza=" + luogoProvenienza + ", numeroTelefono="
+				+ numeroTelefono + ", titoloStudio=" + titoloStudio + ", titoloLaurea=" + titoloLaurea
+				+ ", dataCandidatura=" + dataCandidatura + ", rangeCandidatura=" + rangeCandidatura
+				+ ", colloquioConoscitivo=" + colloquioConoscitivo + ", candidatiTramite=" + candidatiTramite
+				+ ", idoneita=" + idoneita + ", codiceFiscale=" + codiceFiscale + ", userType=" + userType + "]";
 	}
+	
+	
+
+	
+	
+	
 }
