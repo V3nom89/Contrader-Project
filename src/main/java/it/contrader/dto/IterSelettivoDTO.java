@@ -4,6 +4,7 @@ public class IterSelettivoDTO {
 	
 	private int idIterSelettivo;
 	private int idCandidato;
+	private int idStaff;
 	private int punteggioTotaleScritto;
 	private int punteggioLogica;
 	private int punteggioPhp;
@@ -19,11 +20,12 @@ public class IterSelettivoDTO {
 	}
 	
 	/* costruttore con attributo */
-	public IterSelettivoDTO(int idCandidato, int punteggioTotaleScritto,
+	public IterSelettivoDTO(int idCandidato, int idStaff, int punteggioTotaleScritto,
 			int punteggioLogica, int punteggioPhp, int punteggioJava, int punteggioHTML, 
 			int punteggioInglese, String dataTestScritto, String dataTestOrale, int vautazioneOrale) {
 		
 		this.setIdCandidato(idCandidato);
+		this.setIdStaff(idStaff);
 		this.setPunteggioTotaleScritto(punteggioTotaleScritto);
 		this.setPunteggioLogica(punteggioLogica);
 		this.setPunteggioPhp(punteggioPhp);
@@ -35,10 +37,22 @@ public class IterSelettivoDTO {
 		this.setValutazioneOrale(vautazioneOrale);
 	}
 
-	public IterSelettivoDTO(int idCandidato2, int idStaff, int punteggioTotaleScritto2, int punteggioLogica2,
-			int punteggioPhp2, int punteggioJava2, int punteggioHTML2, int punteggioInglese2, String dataTestScritto2,
-			String dataTestOrale2, int valutazioneOrale2) {
-		// TODO Auto-generated constructor stub
+	public IterSelettivoDTO(int idIterSelettivo, int idCandidato, int idStaff, int punteggioTotaleScritto,
+			int punteggioLogica, int punteggioPhp, int punteggioJava, int punteggioHTML, 
+			int punteggioInglese, String dataTestScritto, String dataTestOrale, int vautazioneOrale) {
+		
+		this.setIdIterSelettivo(idIterSelettivo);
+		this.setIdCandidato(idCandidato);
+		this.setIdStaff(idStaff);
+		this.setPunteggioTotaleScritto(punteggioTotaleScritto);
+		this.setPunteggioLogica(punteggioLogica);
+		this.setPunteggioPhp(punteggioPhp);
+		this.setPunteggioJava(punteggioJava);
+		this.setPunteggioHTML(punteggioHTML);
+		this.setPunteggioInglese(punteggioInglese);
+		this.setDataTestScritto(dataTestScritto);
+		this.setDataTestOrale(dataTestOrale);
+		this.setValutazioneOrale(vautazioneOrale);
 	}
 
 	public int getIdIterSelettivo() {
@@ -55,6 +69,14 @@ public class IterSelettivoDTO {
 
 	public void setIdCandidato(int idCandidato) {
 		this.idCandidato = idCandidato;
+	}
+	
+	public int getIdStaff() {
+		return idStaff;
+	}
+
+	public void setIdStaff(int idStaff) {
+		this.idStaff = idStaff;
 	}
 
 	public int getPunteggioTotaleScritto() {
@@ -129,11 +151,16 @@ public class IterSelettivoDTO {
 		this.valutazioneOrale = valutazioneOrale;
 	}
 
-	public int getIdStaff() {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override
+	public String toString() {
+		return "IterSelettivoDTO [idIterSelettivo=" + idIterSelettivo + ", idCandidato=" + idCandidato + ", idStaff="
+				+ idStaff + ", punteggioTotaleScritto=" + punteggioTotaleScritto + ", punteggioLogica="
+				+ punteggioLogica + ", punteggioPhp=" + punteggioPhp + ", punteggioJava=" + punteggioJava
+				+ ", punteggioHTML=" + punteggioHTML + ", punteggioInglese=" + punteggioInglese + ", dataTestScritto="
+				+ dataTestScritto + ", dataTestOrale=" + dataTestOrale + ", valutazioneOrale=" + valutazioneOrale + "]";
 	}
+
 	
-	
+
 
 }
