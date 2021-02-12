@@ -188,7 +188,9 @@ public class CandidatiDAO {
 					c.setCodiceFiscale(candidatileggi.getCodiceFiscale());
 				}
 				
-				// qui manca userType
+				if (c.getUserType() == null || c.getUsertype().equals("")) {
+					c.setUserType(candidatileggi.getUserType());
+				}
 
 				
 
@@ -208,7 +210,7 @@ public class CandidatiDAO {
 				preparedStatement.setBoolean(12, c.getColloquioConoscitivo());
 				preparedStatement.setBoolean(13, c.getIdoneita());
 				preparedStatement.setString(14, c.getCodiceFiscale());
-				//qui manca userType
+				preparedStatement.setString(15, c.getUserType());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
