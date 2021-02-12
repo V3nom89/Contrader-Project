@@ -3,7 +3,19 @@ package it.contrader.model;
 
 public class Staff {
 	
-	
+	public static interface CONST {
+		String ID_STAFF = "idStaff";
+		String NOME = "nome";
+		String COGNOME = "cognome";
+		String EMAIL = "email";
+		String POSIZIONE = "posizione";
+		String TELEFONO = "telefono";
+		String DATA_ASSUNZIONE = "data_assunzione";
+		String SEDE = "sede";
+		String ORE_SETTIMANALI = "ore";
+		String CODICE_FISCALE = "cf";
+	}
+
 	private int idStaff;
 	private String nome;
 	private String cognome;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.contrader.dto.StaffDTO;
 import it.contrader.main.MainDispatcher;
+import it.contrader.model.Staff;
 import it.contrader.service.StaffService;
 
 /**
@@ -31,10 +32,10 @@ public class StaffController implements Controller {
 	
 	/**
 	 * Metodo dell'interfaccia Controller. Estrae dalla request la mode
-	 * (che riceve dalle view specifiche e può essere la richesta di una 
+	 * (che riceve dalle view specifiche e puï¿½ essere la richesta di una 
 	 * scelta da parte dell'utente "GETCHOICE") e la scelta dell'utente.
 	 * 
-	 * Se la modalità corrisponde ad una CRUD il controller chiama i service,
+	 * Se la modalitï¿½ corrisponde ad una CRUD il controller chiama i service,
 	 * altrimenti rimanda alla View della CRUD per richiedere i parametri
 	 */
 	@Override
@@ -69,25 +70,29 @@ public class StaffController implements Controller {
 		
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
-			
-			nome= request.get("nome").toString();
-			cognome= request.get("cognome").toString();
-			email = request.get("email").toString();
-			posizione = request.get("posizione").toString();
-            data_assunzione=request.get("data_assunzione").toString();
-			numero_telefono= Integer.parseInt(request.get("numero_telefono").toString());
-			sede= request.get("sede").toString();
-			ore_settimanali= Integer.parseInt(request.get("ore_settimanali").toString());
-			codiceFiscale = request.get("codiceFiscale").toString();
-			
-			//costruisce l'oggetto user da inserire
-			StaffDTO stafftoinsert = new StaffDTO(idStaff, nome,cognome,email,posizione,data_assunzione,numero_telefono,sede,ore_settimanali,codiceFiscale);
-			//invoca il service
-			staffService.insert(stafftoinsert);
-			request = new Request();
-			request.put("mode", "mode");
-			//Rimanda alla view con la risposta
-			MainDispatcher.getInstance().callView(sub_package + "StaffInsert", request);
+			try {
+				nome= request.get(Staff.CONST.NOME).toString();
+				cognome= request.get(Staff.CONST.COGNOME).toString();
+				email = request.get(Staff.CONST.EMAIL).toString();
+				posizione = request.get(Staff.CONST.POSIZIONE).toString();
+	            data_assunzione=request.get(Staff.CONST.DATA_ASSUNZIONE).toString();
+				numero_telefono= Integer.parseInt(request.get(Staff.CONST.TELEFONO).toString());
+				sede= request.get(Staff.CONST.SEDE).toString();
+				ore_settimanali= Integer.parseInt(request.get(Staff.CONST.ORE_SETTIMANALI).toString());
+				codiceFiscale = request.get(Staff.CONST.CODICE_FISCALE).toString();
+				
+				//costruisce l'oggetto user da inserire
+				StaffDTO stafftoinsert = new StaffDTO(idStaff, nome,cognome,email,posizione,data_assunzione,numero_telefono,sede,ore_settimanali,codiceFiscale);
+				//invoca il service
+				staffService.insert(stafftoinsert);
+				request = new Request();
+				request.put("mode", "mode");
+				//Rimanda alla view con la risposta
+				MainDispatcher.getInstance().callView(sub_package + "StaffInsert", request);
+			} catch (Exception e) {
+				System.err.println("Errore nell'inserimento di un componente dello staff");
+				e.printStackTrace();
+			}
 			break;
 		
 		// Arriva qui dalla UserDeleteView. Estrae l'id dell'utente da cancellare e lo passa al Service

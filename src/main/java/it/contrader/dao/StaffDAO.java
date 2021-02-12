@@ -13,11 +13,11 @@ import it.contrader.model.Staff;
  */
 public class StaffDAO {
 
-	private final String QUERY_ALL = "SELECT * FROM Staff";
-	private final String QUERY_CREATE = "INSERT INTO Staff (idStaff, nome,cognome,email,posizione,numeroTelefono,dataAssunzione,sede,oreSettimanali) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM Staff WHERE id=?";
-	private final String QUERY_UPDATE = "UPDATE Staff SET idStaff=?,nome=?,cognome=?, email=?, posizione=?,numeroTelefono=?,dataAssunzione=?,sede=?,oreSettimanali=?,codiceFiscale=? WHERE id=?";
-	private final String QUERY_DELETE = "DELETE FROM Staff WHERE id=?";
+	private final String QUERY_ALL = "SELECT * FROM staff";
+	private final String QUERY_CREATE = "INSERT INTO staff (idStaff, nome,cognome,email,posizione,numeroTelefono,dataAssunzione,sede,oreSettimanali, codiceFiscale) VALUES (?,?,?,?,?,?,str_to_date(?, '%d/%m/%Y'),?,?,?)";
+	private final String QUERY_READ = "SELECT * FROM staff WHERE id=?";
+	private final String QUERY_UPDATE = "UPDATE staff SET idStaff=?,nome=?,cognome=?, email=?, posizione=?,numeroTelefono=?,dataAssunzione=?,sede=?,oreSettimanali=?,codiceFiscale=? WHERE id=?";
+	private final String QUERY_DELETE = "DELETE FROM staff WHERE id=?";
 
 	public StaffDAO() {
 
@@ -72,6 +72,7 @@ public class StaffDAO {
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 
