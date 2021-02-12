@@ -4,9 +4,9 @@ package it.contrader.controller;
 
 import java.util.List;
 
+import it.contrader.dao.CandidatiDAO;
 import it.contrader.dto.CandidatiDTO;
 import it.contrader.main.MainDispatcher;
-import it.contrader.model.Candidati;
 import it.contrader.service.CandidatiService;
 
 public class CandidatiController implements Controller {
@@ -60,7 +60,7 @@ public class CandidatiController implements Controller {
 		// alla UserReadView uno user da mostrare
 		case "READ":
 			try {
-				idCandidati = Integer.parseInt(request.get("idCandidati").toString());
+				idCandidati = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_CANDIDATI).toString());
 				CandidatiDTO candidatiDTO = candidatiService.read(idCandidati);
 				request.put("candidati", candidatiDTO);
 				MainDispatcher.getInstance().callView(sub_package + "CandidatiRead", request);
@@ -74,22 +74,22 @@ public class CandidatiController implements Controller {
 		// service per inserire uno user con questi parametri
 		case "INSERT":
 			try {
-				idStaff = Integer.parseInt(request.get(Candidati.CONST.ID_STAFF).toString());
-				nome = request.get(Candidati.CONST.NOME).toString();
-				cognome = request.get(Candidati.CONST.COGNOME).toString();
-				email = request.get(Candidati.CONST.EMAIL).toString();
-				luogoProvenienza = request.get(Candidati.CONST.PROVENIENZA).toString();
-				numero_telefono = Integer.parseInt(request.get(Candidati.CONST.TELEFONO).toString());
-				titoloStudio = request.get(Candidati.CONST.TITOLO_STUDIO).toString();
-				titoloLaurea = request.get(Candidati.CONST.TITOLO_LAUREA).toString();
+				idStaff = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_STAFF).toString());
+				nome = request.get(CandidatiDAO.CONST.NOME).toString();
+				cognome = request.get(CandidatiDAO.CONST.COGNOME).toString();
+				email = request.get(CandidatiDAO.CONST.EMAIL).toString();
+				luogoProvenienza = request.get(CandidatiDAO.CONST.PROVENIENZA).toString();
+				numero_telefono = Integer.parseInt(request.get(CandidatiDAO.CONST.TELEFONO).toString());
+				titoloStudio = request.get(CandidatiDAO.CONST.TITOLO_STUDIO).toString();
+				titoloLaurea = request.get(CandidatiDAO.CONST.TITOLO_LAUREA).toString();
 	
-				dataCandidatura = request.get(Candidati.CONST.DATA_CANDIDATURA).toString();
-				rangeCandidatura = request.get(Candidati.CONST.RANGE_CANDIDATURA).toString();
-				colloquioConoscitivo = Boolean.parseBoolean(request.get(Candidati.CONST.COLLOQUIO_CONOSCITIVO).toString());
-				candidatiTramite = request.get(Candidati.CONST.CANDIDATI_TRAMITE).toString();
-				codiceFiscale = request.get(Candidati.CONST.CODICE_FISCALE).toString();
-				usertype = request.get(Candidati.CONST.USER_TYPE).toString();
-				idoneita = Boolean.parseBoolean(request.get(Candidati.CONST.USER_TYPE).toString());
+				dataCandidatura = request.get(CandidatiDAO.CONST.DATA_CANDIDATURA).toString();
+				rangeCandidatura = request.get(CandidatiDAO.CONST.RANGE_CANDIDATURA).toString();
+				colloquioConoscitivo = Boolean.parseBoolean(request.get(CandidatiDAO.CONST.COLLOQUIO_CONOSCITIVO).toString());
+				candidatiTramite = request.get(CandidatiDAO.CONST.CANDIDATI_TRAMITE).toString();
+				codiceFiscale = request.get(CandidatiDAO.CONST.CODICE_FISCALE).toString();
+				usertype = request.get(CandidatiDAO.CONST.USER_TYPE).toString();
+				idoneita = Boolean.parseBoolean(request.get(CandidatiDAO.CONST.USER_TYPE).toString());
 	
 				// costruisce l'oggetto user da inserire
 				CandidatiDTO candidatitoinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
@@ -111,7 +111,7 @@ public class CandidatiController implements Controller {
 		// passa al Service
 		case "DELETE":
 			try {
-				idCandidati = Integer.parseInt(request.get("idCandidati").toString());
+				idCandidati = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_CANDIDATI).toString());
 				// Qui chiama il service
 				candidatiService.delete(idCandidati);
 				request = new Request();
@@ -126,22 +126,22 @@ public class CandidatiController implements Controller {
 		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
 			try {
-				idCandidati = Integer.parseInt(request.get("idCandidati").toString());
-				idStaff = Integer.parseInt(request.get("idStaff").toString());
-				nome = request.get("nome").toString();
-				cognome = request.get("cognome").toString();
-				email = request.get("email").toString();
-				luogoProvenienza = request.get("provenienza").toString();
-				numero_telefono = Integer.parseInt(request.get("telefono").toString());
-				titoloStudio = request.get("titoloStudio").toString();
-				titoloLaurea = request.get("titoloLaurea").toString();
-				dataCandidatura = request.get("dataCandidatura").toString();
-				rangeCandidatura = request.get("rangeCandidatura").toString();
-				colloquioConoscitivo = Boolean.parseBoolean(request.get("colloquioConoscitivo").toString());
-				candidatiTramite = request.get("candidatiTramite").toString();
-				idoneita = Boolean.parseBoolean(request.get("idoneit�").toString());
-				codiceFiscale = request.get("codiceFiscale").toString();
-				usertype = request.get("usertype").toString();
+				idCandidati = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_CANDIDATI).toString());
+				idStaff = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_STAFF).toString());
+				nome = request.get(CandidatiDAO.CONST.NOME).toString();
+				cognome = request.get(CandidatiDAO.CONST.COGNOME).toString();
+				email = request.get(CandidatiDAO.CONST.EMAIL).toString();
+				luogoProvenienza = request.get(CandidatiDAO.CONST.PROVENIENZA).toString();
+				numero_telefono = Integer.parseInt(request.get(CandidatiDAO.CONST.TELEFONO).toString());
+				titoloStudio = request.get(CandidatiDAO.CONST.TITOLO_STUDIO).toString();
+				titoloLaurea = request.get(CandidatiDAO.CONST.TITOLO_LAUREA).toString();
+				dataCandidatura = request.get(CandidatiDAO.CONST.DATA_CANDIDATURA).toString();
+				rangeCandidatura = request.get(CandidatiDAO.CONST.TITOLO_LAUREA).toString();
+				colloquioConoscitivo = Boolean.parseBoolean(request.get(CandidatiDAO.CONST.COLLOQUIO_CONOSCITIVO).toString());
+				candidatiTramite = request.get(CandidatiDAO.CONST.CANDIDATI_TRAMITE).toString();
+				idoneita = Boolean.parseBoolean(request.get(CandidatiDAO.CONST.IDONEITA).toString());
+				codiceFiscale = request.get(CandidatiDAO.CONST.CODICE_FISCALE).toString();
+				usertype = request.get(CandidatiDAO.CONST.USER_TYPE).toString();
 				CandidatiDTO candidatiinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
 						numero_telefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
 						colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, usertype);

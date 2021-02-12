@@ -3,6 +3,7 @@ package it.contrader.view.candidati;
 import it.contrader.dto.CandidatiDTO;
 
 import it.contrader.controller.Request;
+import it.contrader.dao.CandidatiDAO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
@@ -34,7 +35,7 @@ public class CandidatiReadView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idCandidati", idCandidati);
+		request.put(CandidatiDAO.CONST.ID_CANDIDATI, idCandidati);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("candidati", "doControl", request);
 	}

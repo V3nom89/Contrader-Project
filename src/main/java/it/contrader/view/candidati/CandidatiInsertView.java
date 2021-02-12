@@ -3,10 +3,9 @@ package it.contrader.view.candidati;
 
 
 import it.contrader.controller.Request;
+import it.contrader.dao.CandidatiDAO;
 import it.contrader.main.MainDispatcher;
-import it.contrader.model.Candidati;
 import it.contrader.view.AbstractView;
-import java.lang.String;
 public class CandidatiInsertView extends AbstractView {
 
 	private Request request;
@@ -81,22 +80,22 @@ public class CandidatiInsertView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put(Candidati.CONST.ID_CANDIDATI, idCandidati);
-		request.put(Candidati.CONST.ID_STAFF, idStaff);
-		request.put(Candidati.CONST.NOME, nome);
-		request.put(Candidati.CONST.COGNOME, cognome);
-		request.put(Candidati.CONST.EMAIL, email);
-		request.put(Candidati.CONST.PROVENIENZA, luogoProvenienza);
-		request.put(Candidati.CONST.TELEFONO, numeroTelefono);
-		request.put(Candidati.CONST.TITOLO_STUDIO, titoloStudio);
-		request.put(Candidati.CONST.TITOLO_LAUREA, titoloLaurea);
-		request.put(Candidati.CONST.DATA_CANDIDATURA, dataCandidatura);
-		request.put(Candidati.CONST.RANGE_CANDIDATURA, rangeCandidatura);
-		request.put(Candidati.CONST.COLLOQUIO_CONOSCITIVO, colloquioConoscitivo);
-		request.put(Candidati.CONST.CANDIDATI_TRAMITE, candidatiTramite);
-		request.put(Candidati.CONST.IDONEITA, idoneita);
-		request.put(Candidati.CONST.CODICE_FISCALE, codiceFiscale);
-		request.put(Candidati.CONST.USER_TYPE, userType);
+		request.put(CandidatiDAO.CONST.ID_CANDIDATI, idCandidati);
+		request.put(CandidatiDAO.CONST.ID_STAFF, idStaff);
+		request.put(CandidatiDAO.CONST.NOME, nome);
+		request.put(CandidatiDAO.CONST.COGNOME, cognome);
+		request.put(CandidatiDAO.CONST.EMAIL, email);
+		request.put(CandidatiDAO.CONST.PROVENIENZA, luogoProvenienza);
+		request.put(CandidatiDAO.CONST.TELEFONO, numeroTelefono);
+		request.put(CandidatiDAO.CONST.TITOLO_STUDIO, titoloStudio);
+		request.put(CandidatiDAO.CONST.TITOLO_LAUREA, titoloLaurea);
+		request.put(CandidatiDAO.CONST.DATA_CANDIDATURA, dataCandidatura);
+		request.put(CandidatiDAO.CONST.RANGE_CANDIDATURA, rangeCandidatura);
+		request.put(CandidatiDAO.CONST.COLLOQUIO_CONOSCITIVO, colloquioConoscitivo);
+		request.put(CandidatiDAO.CONST.CANDIDATI_TRAMITE, candidatiTramite);
+		request.put(CandidatiDAO.CONST.IDONEITA, idoneita);
+		request.put(CandidatiDAO.CONST.CODICE_FISCALE, codiceFiscale);
+		request.put(CandidatiDAO.CONST.USER_TYPE, userType);
 
 		request.put("mode", mode);
 		

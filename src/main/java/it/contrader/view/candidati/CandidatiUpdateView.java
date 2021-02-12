@@ -1,6 +1,7 @@
 package it.contrader.view.candidati;
 
 import it.contrader.controller.Request;
+import it.contrader.dao.CandidatiDAO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
@@ -64,16 +65,16 @@ public class CandidatiUpdateView  extends AbstractView {
 			dataCandidatura = getInput();
 			System.out.println("Inserisci rangeCandidatura dell'utente:");
 			rangeCandidatura = getInput();
-			System.out.println("Ha già fatto il colloquio conoscitivo ?");
+			System.out.println("Ha gia' fatto il colloquio conoscitivo ?");
 			colloquioConoscitivo = getBoolean();
-			System.out.println("Inserisci la modalità di candidatura dell'utente:");
+			System.out.println("Inserisci la modalita' di candidatura dell'utente:");
 			candidatiTramite = getInput();
-			System.out.println("Inserisci se l'utente è idoneo:");
+			System.out.println("Inserisci se l'utente e' idoneo:");
 			idoneita = getBoolean();
 			System.out.println("Inserisci codice fiscale dell'utente:");
 			codiceFiscale = getInput();
 			System.out.println("Inserisci usertype dell'utente:");
-			rangeCandidatura = getInput();
+			userType = getInput();
 		
 		} catch (Exception e) {
 
@@ -87,25 +88,22 @@ public class CandidatiUpdateView  extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idCandidati", idCandidati);
-		request.put("idStaff", idStaff);
-		request.put("nome", nome);
-		request.put("cognome", cognome);
-		request.put("email", email);
-		request.put("luogoProvenienza", luogoProvenienza);
-		request.put("numero_telefono", numero_telefono);
-		request.put("titoloStudio", titoloStudio);
-		request.put("titoloLaurea", titoloLaurea);
-		request.put("dataCandidatura", dataCandidatura);
-		request.put("rangeCandidatura", rangeCandidatura);
-		request.put("colloquioConoscitivo", colloquioConoscitivo);
-		request.put("candidatiTramite", candidatiTramite);
-		request.put("idoneita", idoneita);
-		request.put("codiceFiscale", codiceFiscale);
-		request.put("usertype", userType);
-
-		request.put("mode", mode);
-		
+		request.put(CandidatiDAO.CONST.ID_CANDIDATI, idCandidati);
+		request.put(CandidatiDAO.CONST.ID_STAFF, idStaff);
+		request.put(CandidatiDAO.CONST.NOME, nome);
+		request.put(CandidatiDAO.CONST.COGNOME, cognome);
+		request.put(CandidatiDAO.CONST.EMAIL, email);
+		request.put(CandidatiDAO.CONST.PROVENIENZA, luogoProvenienza);
+		request.put(CandidatiDAO.CONST.TELEFONO, numero_telefono);
+		request.put(CandidatiDAO.CONST.TITOLO_STUDIO, titoloStudio);
+		request.put(CandidatiDAO.CONST.TITOLO_LAUREA, titoloLaurea);
+		request.put(CandidatiDAO.CONST.DATA_CANDIDATURA, dataCandidatura);
+		request.put(CandidatiDAO.CONST.RANGE_CANDIDATURA, rangeCandidatura);
+		request.put(CandidatiDAO.CONST.COLLOQUIO_CONOSCITIVO, colloquioConoscitivo);
+		request.put(CandidatiDAO.CONST.CANDIDATI_TRAMITE, candidatiTramite);
+		request.put(CandidatiDAO.CONST.IDONEITA, idoneita);
+		request.put(CandidatiDAO.CONST.CODICE_FISCALE, codiceFiscale);
+		request.put(CandidatiDAO.CONST.USER_TYPE, userType);
 
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Candidati", "doControl", request);
