@@ -1,7 +1,7 @@
 package it.contrader.dto;
 
 public class StaffDTO {
-	
+
 	private int idStaff;
 	private String nome;
 	private String cognome;
@@ -112,5 +112,14 @@ public class StaffDTO {
 		ore_settimanali=ore_sett;
 		codice_fiscale=codice;
 		
+	}
+	
+	@Override
+	public String toString() {
+		// "IdStaff\tnome\tcognome\temail\tposizione\tdata_assunzione\tnumero_telefono\tsede\tore_settimanali\tcodiceFIscal"
+		return idStaff + "\t" + nome + "\t" + cognome + "\t" + email
+				+ "\t" + posizione + "\t" + data_assunzione + "\t"
+				+ numero_telefono + "\t" + sede + "\t" + ore_settimanali + "\t"
+				+ codice_fiscale;
 	}
 }

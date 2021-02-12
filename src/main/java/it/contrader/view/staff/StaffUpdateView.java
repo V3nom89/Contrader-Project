@@ -1,6 +1,7 @@
 package it.contrader.view.staff;
 
 import it.contrader.controller.Request;
+import it.contrader.dao.StaffDAO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
@@ -25,7 +26,7 @@ public class StaffUpdateView extends AbstractView{
 	}
 
 	/**
-	 * Se la request non è nulla (ovvero se si arriva dalla mode UPDATE del controller) mostra
+	 * Se la request non ï¿½ nulla (ovvero se si arriva dalla mode UPDATE del controller) mostra
 	 * l'esito dell'operazione
 	 */
 	@Override
@@ -64,7 +65,7 @@ public class StaffUpdateView extends AbstractView{
 			codiceFiscale = getInput();
 			
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -75,16 +76,16 @@ public class StaffUpdateView extends AbstractView{
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idStaff", idStaff);
-		request.put("nome", nome);
-		request.put("cognome", cognome);
-		request.put("email", email);
-		request.put("posizione", posizione);
-		request.put("numero_Telefono", numeroTelefono);
-		request.put("data_Assunzione", dataAssunzione);
-		request.put("sede", sede);
-		request.put("oreSettimanali", oreSettimanali);
-		request.put("codiceFiscal", codiceFiscale);
+		request.put(StaffDAO.CONST.ID_STAFF, idStaff);
+		request.put(StaffDAO.CONST.NOME, nome);
+		request.put(StaffDAO.CONST.COGNOME, cognome);
+		request.put(StaffDAO.CONST.EMAIL, email);
+		request.put(StaffDAO.CONST.POSIZIONE, posizione);
+		request.put(StaffDAO.CONST.TELEFONO, numeroTelefono);
+		request.put(StaffDAO.CONST.DATA_ASSUNZIONE, dataAssunzione);
+		request.put(StaffDAO.CONST.SEDE, sede);
+		request.put(StaffDAO.CONST.ORE_SETTIMANALI, oreSettimanali);
+		request.put(StaffDAO.CONST.CODICE_FISCALE, codiceFiscale);
 
 
 		request.put("mode", mode);

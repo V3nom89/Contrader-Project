@@ -2,9 +2,9 @@ package it.contrader.controller;
 
 import java.util.List;
 
+import it.contrader.dao.StaffDAO;
 import it.contrader.dto.StaffDTO;
 import it.contrader.main.MainDispatcher;
-import it.contrader.model.Staff;
 import it.contrader.service.StaffService;
 
 /**
@@ -62,24 +62,29 @@ public class StaffController implements Controller {
 		
 		// Arriva qui dalla UserReadView. Invoca il Service con il parametro id e invia alla UserReadView uno user da mostrare 
 		case "READ":
-			idStaff = Integer.parseInt(request.get("idstaff").toString());
-			StaffDTO staffDto = staffService.read(idStaff);
-			request.put("staff", staffDto);
-			MainDispatcher.getInstance().callView(sub_package + "StaffRead", request);
+			try {
+				idStaff = Integer.parseInt(request.get(StaffDAO.CONST.ID_STAFF).toString());
+				StaffDTO staffDto = staffService.read(idStaff);
+				request.put("staff", staffDto);
+				MainDispatcher.getInstance().callView(sub_package + "StaffRead", request);
+			} catch (Exception e) {
+				System.err.println("Errore nella lettura del membro dello Staff con id <" + idStaff + ">");
+				e.printStackTrace();
+			}
 			break;
 		
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
 			try {
-				nome= request.get(Staff.CONST.NOME).toString();
-				cognome= request.get(Staff.CONST.COGNOME).toString();
-				email = request.get(Staff.CONST.EMAIL).toString();
-				posizione = request.get(Staff.CONST.POSIZIONE).toString();
-	            data_assunzione=request.get(Staff.CONST.DATA_ASSUNZIONE).toString();
-				numero_telefono= Integer.parseInt(request.get(Staff.CONST.TELEFONO).toString());
-				sede= request.get(Staff.CONST.SEDE).toString();
-				ore_settimanali= Integer.parseInt(request.get(Staff.CONST.ORE_SETTIMANALI).toString());
-				codiceFiscale = request.get(Staff.CONST.CODICE_FISCALE).toString();
+				nome= request.get(StaffDAO.CONST.NOME).toString();
+				cognome= request.get(StaffDAO.CONST.COGNOME).toString();
+				email = request.get(StaffDAO.CONST.EMAIL).toString();
+				posizione = request.get(StaffDAO.CONST.POSIZIONE).toString();
+	            data_assunzione=request.get(StaffDAO.CONST.DATA_ASSUNZIONE).toString();
+				numero_telefono= Integer.parseInt(request.get(StaffDAO.CONST.TELEFONO).toString());
+				sede= request.get(StaffDAO.CONST.SEDE).toString();
+				ore_settimanali= Integer.parseInt(request.get(StaffDAO.CONST.ORE_SETTIMANALI).toString());
+				codiceFiscale = request.get(StaffDAO.CONST.CODICE_FISCALE).toString();
 				
 				//costruisce l'oggetto user da inserire
 				StaffDTO stafftoinsert = new StaffDTO(idStaff, nome,cognome,email,posizione,data_assunzione,numero_telefono,sede,ore_settimanali,codiceFiscale);
@@ -107,20 +112,21 @@ public class StaffController implements Controller {
 		
 		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
-			idStaff = Integer.parseInt(request.get("idStaff").toString());
-			nome= request.get("nome").toString();
-			cognome= request.get("cognome").toString();
-			email = request.get("email").toString();
-			posizione = request.get("posizione").toString();
-			numero_telefono= Integer.parseInt(request.get("numero_telefono").toString());
-			sede= request.get("sede").toString();
-			ore_settimanali= Integer.parseInt(request.get("ore_settimanali").toString());
-			codiceFiscale = request.get("codiceFiscale").toString();
+			idStaff = Integer.parseInt(request.get(StaffDAO.CONST.ID_STAFF).toString());
+			nome = request.get(StaffDAO.CONST.NOME).toString();
+			cognome= request.get(StaffDAO.CONST.COGNOME).toString();
+			email = request.get(StaffDAO.CONST.EMAIL).toString();
+			posizione = request.get(StaffDAO.CONST.POSIZIONE).toString();
+			numero_telefono = Integer.parseInt(request.get(StaffDAO.CONST.TELEFONO).toString());
+			sede = request.get(StaffDAO.CONST.SEDE).toString();
+			ore_settimanali = Integer.parseInt(request.get(StaffDAO.CONST.ORE_SETTIMANALI).toString());
+			data_assunzione = request.get(StaffDAO.CONST.DATA_ASSUNZIONE).toString();
+			codiceFiscale = request.get(StaffDAO.CONST.CODICE_FISCALE).toString();
 			
 			//costruisce l'oggetto user da inserire
 			StaffDTO stafftoupdate = new StaffDTO(idStaff, nome,cognome,email,posizione,data_assunzione,numero_telefono,sede,ore_settimanali,codiceFiscale);
 			//invoca il service
-			staffService.insert(stafftoupdate);
+			staffService.update(stafftoupdate);
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "StaffUpdate", request);
@@ -128,10 +134,15 @@ public class StaffController implements Controller {
 			
 		//Arriva qui dalla UserView Invoca il Service e invia alla UserView il risultato da mostrare 
 		case "STAFFLIST":
-			List<StaffDTO> staff1 = staffService.getAll();
-			//Impacchetta la request con la lista degli user
-			request.put("staff", staff1);
-			MainDispatcher.getInstance().callView("Staff", request);
+			try {
+				List<StaffDTO> staff1 = staffService.getAll();
+				//Impacchetta la request con la lista degli user
+				request.put("staff", staff1);
+				MainDispatcher.getInstance().callView("Staff", request);
+			} catch (Exception e) {
+				System.err.println("Errore nella lettura della lista di membri dello Staff");
+				e.printStackTrace();
+			}
 			break;
 			
 		//Esegue uno switch sulla base del comando inserito dall'utente e reindirizza tramite il Dispatcher alla View specifica per ogni operazione

@@ -20,22 +20,21 @@ public class StaffView extends AbstractView {
 	@Override
 	public void showResults(Request request) {
 		if (request != null) {
-			System.out.println("\n------------------- Gestione utenti ----------------\n");
+			System.out.println("\n------------------- Gestione utenti ----------------");
 			System.out.println("IdStaff\tnome\tcognome\temail\tposizione\tdata_assunzione\tnumero_telefono\tsede\tore_settimanali\tcodiceFIscal");
-			System.out.println("----------------------------------------------------\n");
+			System.out.println("----------------------------------------------------");
 			
 			@SuppressWarnings("unchecked")
 			List<StaffDTO> staff = (List<StaffDTO>) request.get("staff");
 			for (StaffDTO u: staff)
 				System.out.println(u);
 			System.out.println();
-			System.out.println(request);
 		}
 	}
 
 	/**
 	 * Chiede all'utente un input (lettera da tastiera) per la choice (vedi UserController). 
-	 * Mette la modalità GETCHOICE nella mode.
+	 * Mette la modalitï¿½ GETCHOICE nella mode.
 	 */
 	@Override
 	public void showOptions() {

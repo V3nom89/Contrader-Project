@@ -2,6 +2,7 @@
 package it.contrader.view.staff;
 
 import it.contrader.controller.Request;
+import it.contrader.dao.StaffDAO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
@@ -15,7 +16,7 @@ public class StaffDeleteView extends AbstractView {
 	}
 
 	/**
-	 * Se la request non è nulla (ovvero se si arriva dalla mode DELETE del controller) mostra
+	 * Se la request non ï¿½ nulla (ovvero se si arriva dalla mode DELETE del controller) mostra
 	 * l'esito dell'operazione
 	 */
 	@Override
@@ -42,7 +43,7 @@ public class StaffDeleteView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idStaff", idStaff);
+		request.put(StaffDAO.CONST.ID_STAFF, idStaff);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Staff", "doControl", request);
 	}
