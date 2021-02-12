@@ -64,8 +64,8 @@ public class Staff {
 	public int getNumeroTelefono() {
 		return numeroTelefono;
 	}
-	public void setNumeroTelefono(int numero_telefono) {
-		this.numeroTelefono = numero_telefono;
+	public void setNumeroTelefono(int numeroTelefono) {
+		this.numeroTelefono = numeroTelefono;
 	}
 	public String getDataAssunzione() {
 		return dataAssunzione;
