@@ -6,6 +6,7 @@ import java.util.List;
 
 import it.contrader.dto.CandidatiDTO;
 import it.contrader.main.MainDispatcher;
+import it.contrader.model.Candidati;
 import it.contrader.service.CandidatiService;
 
 public class CandidatiController implements Controller {
@@ -21,10 +22,10 @@ public class CandidatiController implements Controller {
 
 	/**
 	 * Metodo dell'interfaccia Controller. Estrae dalla request la mode (che riceve
-	 * dalle view specifiche e può essere la richesta di una scelta da parte
+	 * dalle view specifiche e puï¿½ essere la richesta di una scelta da parte
 	 * dell'utente "GETCHOICE") e la scelta dell'utente.
 	 * 
-	 * Se la modalità corrisponde ad una CRUD il controller chiama i service,
+	 * Se la modalitï¿½ corrisponde ad una CRUD il controller chiama i service,
 	 * altrimenti rimanda alla View della CRUD per richiedere i parametri
 	 */
 	@Override
@@ -58,92 +59,115 @@ public class CandidatiController implements Controller {
 		// Arriva qui dalla UserReadView. Invoca il Service con il parametro id e invia
 		// alla UserReadView uno user da mostrare
 		case "READ":
-			idCandidati = Integer.parseInt(request.get("idCandidati").toString());
-			CandidatiDTO candidatiDTO = candidatiService.read(idCandidati);
-			request.put("candidati", candidatiDTO);
-			MainDispatcher.getInstance().callView(sub_package + "CandidatiRead", request);
+			try {
+				idCandidati = Integer.parseInt(request.get("idCandidati").toString());
+				CandidatiDTO candidatiDTO = candidatiService.read(idCandidati);
+				request.put("candidati", candidatiDTO);
+				MainDispatcher.getInstance().callView(sub_package + "CandidatiRead", request);
+			} catch (Exception e) {
+				System.err.println("Errore durante la lettura dei candicati");
+				e.printStackTrace();
+			}
 			break;
 
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il
 		// service per inserire uno user con questi parametri
 		case "INSERT":
-
-			
-			idStaff = Integer.parseInt(request.get("idStaff").toString());
-			nome = request.get("nome").toString();
-			cognome = request.get("cognome").toString();
-			email = request.get("email").toString();
-			luogoProvenienza = request.get("provenienza").toString();
-			numero_telefono = Integer.parseInt(request.get("telefono").toString());
-			titoloStudio = request.get("titoloStudio").toString();
-			titoloLaurea = request.get("titoloLaurea").toString();
-
-			dataCandidatura = request.get("dataCandidatura").toString();
-			rangeCandidatura = request.get("rangeCandidatura").toString();
-			colloquioConoscitivo = Boolean.parseBoolean(request.get("colloquioConoscitivo").toString());
-			candidatiTramite = request.get("candidatiTramite").toString();
-			codiceFiscale = request.get("codiceFiscale").toString();
-			usertype = request.get("usertype").toString();
-			idoneita = Boolean.parseBoolean(request.get("idoneità").toString());
-
-			// costruisce l'oggetto user da inserire
-			CandidatiDTO candidatitoinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
-					numero_telefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
-					colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, usertype);
-			// invoca il service
-			candidatiService.insert(candidatitoinsert);
-			request = new Request();
-			request.put("mode", "mode");
-			// Rimanda alla view con la risposta
-			MainDispatcher.getInstance().callView(sub_package + "CandidatiInsert", request);
+			try {
+				idStaff = Integer.parseInt(request.get(Candidati.CONST.ID_STAFF).toString());
+				nome = request.get(Candidati.CONST.NOME).toString();
+				cognome = request.get(Candidati.CONST.COGNOME).toString();
+				email = request.get(Candidati.CONST.EMAIL).toString();
+				luogoProvenienza = request.get(Candidati.CONST.PROVENIENZA).toString();
+				numero_telefono = Integer.parseInt(request.get(Candidati.CONST.TELEFONO).toString());
+				titoloStudio = request.get(Candidati.CONST.TITOLO_STUDIO).toString();
+				titoloLaurea = request.get(Candidati.CONST.TITOLO_LAUREA).toString();
+	
+				dataCandidatura = request.get(Candidati.CONST.DATA_CANDIDATURA).toString();
+				rangeCandidatura = request.get(Candidati.CONST.RANGE_CANDIDATURA).toString();
+				colloquioConoscitivo = Boolean.parseBoolean(request.get(Candidati.CONST.COLLOQUIO_CONOSCITIVO).toString());
+				candidatiTramite = request.get(Candidati.CONST.CANDIDATI_TRAMITE).toString();
+				codiceFiscale = request.get(Candidati.CONST.CODICE_FISCALE).toString();
+				usertype = request.get(Candidati.CONST.USER_TYPE).toString();
+				idoneita = Boolean.parseBoolean(request.get(Candidati.CONST.USER_TYPE).toString());
+	
+				// costruisce l'oggetto user da inserire
+				CandidatiDTO candidatitoinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
+						numero_telefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
+						colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, usertype);
+				// invoca il service
+				candidatiService.insert(candidatitoinsert);
+				request = new Request();
+				request.put("mode", "mode");
+				// Rimanda alla view con la risposta
+				MainDispatcher.getInstance().callView(sub_package + "CandidatiInsert", request);
+			} catch (Exception e) {
+				System.err.println("Errore nell'inserimento del candidato");
+				e.printStackTrace();
+			}
 			break;
 
 		// Arriva qui dalla UserDeleteView. Estrae l'id dell'utente da cancellare e lo
 		// passa al Service
 		case "DELETE":
-			idCandidati = Integer.parseInt(request.get("idCandidati").toString());
-			// Qui chiama il service
-			candidatiService.delete(idCandidati);
-			request = new Request();
-			request.put("mode", "mode");
-			MainDispatcher.getInstance().callView(sub_package + "CandidatiDelete", request);
+			try {
+				idCandidati = Integer.parseInt(request.get("idCandidati").toString());
+				// Qui chiama il service
+				candidatiService.delete(idCandidati);
+				request = new Request();
+				request.put("mode", "mode");
+				MainDispatcher.getInstance().callView(sub_package + "CandidatiDelete", request);
+			} catch (Exception e) {
+				System.err.println("Errore nell'eliminazione del candidato");
+				e.printStackTrace();
+			}
 			break;
 
 		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
-			idCandidati = Integer.parseInt(request.get("idCandidati").toString());
-			idStaff = Integer.parseInt(request.get("idStaff").toString());
-			nome = request.get("nome").toString();
-			cognome = request.get("cognome").toString();
-			email = request.get("email").toString();
-			luogoProvenienza = request.get("provenienza").toString();
-			numero_telefono = Integer.parseInt(request.get("telefono").toString());
-			titoloStudio = request.get("titoloStudio").toString();
-			titoloLaurea = request.get("titoloLaurea").toString();
-			dataCandidatura = request.get("dataCandidatura").toString();
-			rangeCandidatura = request.get("rangeCandidatura").toString();
-			colloquioConoscitivo = Boolean.parseBoolean(request.get("colloquioConoscitivo").toString());
-			candidatiTramite = request.get("candidatiTramite").toString();
-			idoneita = Boolean.parseBoolean(request.get("idoneità").toString());
-			codiceFiscale = request.get("codiceFiscale").toString();
-			usertype = request.get("usertype").toString();
-			CandidatiDTO candidatiinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
-					numero_telefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
-					colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, usertype);
-			candidatiinsert.setIdCandidati(idCandidati);
-			candidatiService.update(candidatiinsert);
-			request = new Request();
-			request.put("mode", "mode");
-			MainDispatcher.getInstance().callView(sub_package + "CandidatiUpdate", request);
+			try {
+				idCandidati = Integer.parseInt(request.get("idCandidati").toString());
+				idStaff = Integer.parseInt(request.get("idStaff").toString());
+				nome = request.get("nome").toString();
+				cognome = request.get("cognome").toString();
+				email = request.get("email").toString();
+				luogoProvenienza = request.get("provenienza").toString();
+				numero_telefono = Integer.parseInt(request.get("telefono").toString());
+				titoloStudio = request.get("titoloStudio").toString();
+				titoloLaurea = request.get("titoloLaurea").toString();
+				dataCandidatura = request.get("dataCandidatura").toString();
+				rangeCandidatura = request.get("rangeCandidatura").toString();
+				colloquioConoscitivo = Boolean.parseBoolean(request.get("colloquioConoscitivo").toString());
+				candidatiTramite = request.get("candidatiTramite").toString();
+				idoneita = Boolean.parseBoolean(request.get("idoneitï¿½").toString());
+				codiceFiscale = request.get("codiceFiscale").toString();
+				usertype = request.get("usertype").toString();
+				CandidatiDTO candidatiinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
+						numero_telefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
+						colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, usertype);
+				candidatiinsert.setIdCandidati(idCandidati);
+				candidatiService.update(candidatiinsert);
+				request = new Request();
+				request.put("mode", "mode");
+				MainDispatcher.getInstance().callView(sub_package + "CandidatiUpdate", request);
+			} catch (Exception e) {
+				System.err.println("Errore nell'aggiornamento del candidato");
+				e.printStackTrace();
+			}
 			break;
 
 		// Arriva qui dalla UserView Invoca il Service e invia alla UserView il
 		// risultato da mostrare
 		case "CANDIDATILIST":
-			List<CandidatiDTO> candidatiListDTO = candidatiService.getAll();
-			// Impacchetta la request con la lista degli user
-			request.put("candidati", candidatiListDTO);
-			MainDispatcher.getInstance().callView("Candidati", request);
+			try {
+				List<CandidatiDTO> candidatiListDTO = candidatiService.getAll();
+				// Impacchetta la request con la lista degli user
+				request.put("candidati", candidatiListDTO);
+				MainDispatcher.getInstance().callView("Candidati", request);
+			} catch(Exception e) {
+				System.err.println("Errore nel recupero della lista di candidati");
+				e.printStackTrace();
+			}
 			break;
 
 		// Esegue uno switch sulla base del comando inserito dall'utente e reindirizza

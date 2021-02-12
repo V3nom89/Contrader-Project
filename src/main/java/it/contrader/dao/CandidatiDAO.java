@@ -13,51 +13,51 @@ import it.contrader.model.Candidati;
 
 public class CandidatiDAO {
 
-	private final String QUERY_ALL = "SELECT * FROM Candidati";
-	private final String QUERY_CREATE = "INSERT INTO Candidati (idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,  idoneita, codiceFiscale, userType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM Candidati WHERE idCandidati=?";
-	private final String QUERY_UPDATE = "UPDATE Candidati SET idStaff = ?, nome = ?, cognome = ?, email = ?, luogoProvenienza = ?, numeroTelefono = ?, titoloStudio = ?, titoloLaurea = ?, dataCandidatura = ?, rangeCandidatura = ?, colloquioConoscitivo = ?, candidatiTramite = ?, idoneita = ?, codiceFiscale = ?, userType = ?  WHERE idCandidati=?";
-	private final String QUERY_DELETE = "DELETE FROM Candidati WHERE idCandidati=?";
+	private final String QUERY_ALL = "SELECT * FROM candidati";
+	private final String QUERY_CREATE = "INSERT INTO candidati (idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,  idoneita, codiceFiscale, userType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final String QUERY_READ = "SELECT * FROM candidati WHERE idCandidati=?";
+	private final String QUERY_UPDATE = "UPDATE candidati SET idStaff = ?, nome = ?, cognome = ?, email = ?, luogoProvenienza = ?, numeroTelefono = ?, titoloStudio = ?, titoloLaurea = ?, dataCandidatura = ?, rangeCandidatura = ?, colloquioConoscitivo = ?, candidatiTramite = ?, idoneita = ?, codiceFiscale = ?, userType = ?  WHERE idCandidati=?";
+	private final String QUERY_DELETE = "DELETE FROM candidati WHERE idCandidati=?";
 
 	public CandidatiDAO() {
 
 	}
-	
+
 	public List<Candidati> getAll() {
-		  List<Candidati> candidatiList = new ArrayList<>();
-		  Connection connection = ConnectionSingleton.getInstance();
-		  try {
-		   Statement statement = connection.createStatement();
-		   ResultSet resultSet = statement.executeQuery(QUERY_ALL);
-		   Candidati candidati;
-		   while (resultSet.next()) {
-		    int id = resultSet.getInt("idCandidati");
-		    int idStaff = resultSet.getInt("idStaff");
-		    String nome = resultSet.getString("nome");
-		    String cognome = resultSet.getString("cognome");
-		    String email = resultSet.getString("email");
-		    String luogoProvenienza = resultSet.getString("luogoProvenienza");
-		    int numeroTelefono = resultSet.getInt("numeroTelefono");
-		    String titoloStudio = resultSet.getString("titoloStudio");
-		    String titoloLaurea = resultSet.getString("titoloLaurea");
-		    String dataCandidatura = resultSet.getString("dataCandidatura");
-		    String rangeCandidatura = resultSet.getString("rangeCandidatura");
-		    boolean colloquioConoscitivo = resultSet.getBoolean("colloquioConoscitivo");
-		    String candidatiTramite = resultSet.getString("candidatiTramite");
-		    boolean idoneita = resultSet.getBoolean("idoneita");
-		    String codiceFiscale = resultSet.getString("codiceFiscale");
-		    String userType = resultSet.getString("userType");
-		    candidati = new Candidati(idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono,
-		      titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo,
-		      candidatiTramite, idoneita, codiceFiscale, userType);
-		    candidati.setIdCandidati(id);
-		    candidatiList.add(candidati);
-		   }
-		  } catch (SQLException e) {
-		   e.printStackTrace();
-		  }
-		  return candidatiList;
-		 }
+		List<Candidati> candidatiList = new ArrayList<>();
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
+			Candidati candidati;
+			while (resultSet.next()) {
+				int id = resultSet.getInt("idCandidati");
+				int idStaff = resultSet.getInt("idStaff");
+				String nome = resultSet.getString("nome");
+				String cognome = resultSet.getString("cognome");
+				String email = resultSet.getString("email");
+				String luogoProvenienza = resultSet.getString("luogoProvenienza");
+				int numeroTelefono = resultSet.getInt("numeroTelefono");
+				String titoloStudio = resultSet.getString("titoloStudio");
+				String titoloLaurea = resultSet.getString("titoloLaurea");
+				String dataCandidatura = resultSet.getString("dataCandidatura");
+				String rangeCandidatura = resultSet.getString("rangeCandidatura");
+				boolean colloquioConoscitivo = resultSet.getBoolean("colloquioConoscitivo");
+				String candidatiTramite = resultSet.getString("candidatiTramite");
+				boolean idoneita = resultSet.getBoolean("idoneita");
+				String codiceFiscale = resultSet.getString("codiceFiscale");
+				String userType = resultSet.getString("userType");
+				candidati = new Candidati(idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio,
+						titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,
+						idoneita, codiceFiscale, userType);
+				candidati.setIdCandidati(id);
+				candidatiList.add(candidati);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return candidatiList;
+	}
 
 	public boolean insert(Candidati c) {
 		Connection connection = ConnectionSingleton.getInstance();
@@ -82,6 +82,7 @@ public class CandidatiDAO {
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 
@@ -120,6 +121,7 @@ public class CandidatiDAO {
 
 			return candidati;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
 		}
 
@@ -180,19 +182,17 @@ public class CandidatiDAO {
 				if (c.getColloquioConoscitivo() == false) {
 					c.setColloquioConoscitivo(candidatileggi.getColloquioConoscitivo());
 				}
-				if (c.getIdoneita()== false) {
+				if (c.getIdoneita() == false) {
 					c.setIdoneita(candidatileggi.getIdoneita());
 				}
 
 				if (c.getCodiceFiscale() == null || c.getCodiceFiscale().equals("")) {
 					c.setCodiceFiscale(candidatileggi.getCodiceFiscale());
 				}
-				
+
 				if (c.getUserType() == null || c.getUsertype().equals("")) {
 					c.setUserType(candidatileggi.getUserType());
 				}
-
-				
 
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
@@ -218,6 +218,7 @@ public class CandidatiDAO {
 					return false;
 
 			} catch (SQLException e) {
+				e.printStackTrace();
 				return false;
 			}
 		}
@@ -236,6 +237,7 @@ public class CandidatiDAO {
 				return true;
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}

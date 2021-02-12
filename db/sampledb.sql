@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `candidati`;
   `nome` VARCHAR(45) NOT NULL,
   `cognome` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `luogoProveninza` VARCHAR(45) NOT NULL,
+  `luogoProvenienza` VARCHAR(45) NOT NULL,
   `numeroTelefono` INT(10) NOT NULL,
   `titoloStudio` VARCHAR(45) NOT NULL,
   `titoloLaurea` VARCHAR(45) NULL,

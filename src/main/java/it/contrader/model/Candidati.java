@@ -1,6 +1,25 @@
 package it.contrader.model;
 
 public class Candidati {
+	
+	public static interface CONST {
+		String ID_CANDIDATI = "idCandidati";
+		String ID_STAFF = "idStaff";
+		String NOME = "nome";
+		String COGNOME = "cognome";
+		String EMAIL = "email";
+		String PROVENIENZA = "luogoProvenienza";
+		String TELEFONO = "numeroTelefono";
+		String TITOLO_STUDIO = "titoloStudio";
+		String TITOLO_LAUREA = "titoloLaurea";
+		String DATA_CANDIDATURA = "dataCandidatura";
+		String RANGE_CANDIDATURA = "rangeCandidatura";
+		String COLLOQUIO_CONOSCITIVO = "colloquioConoscitivo";
+		String CANDIDATI_TRAMITE = "candidatiTramite";
+		String IDONEITA = "idoneita";
+		String CODICE_FISCALE = "codiceFiscale";
+		String USER_TYPE = "userType";
+	}
 
 	private int idCandidati;
 	private int idStaff;

@@ -4,6 +4,7 @@ package it.contrader.view.candidati;
 
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
+import it.contrader.model.Candidati;
 import it.contrader.view.AbstractView;
 import java.lang.String;
 public class CandidatiInsertView extends AbstractView {
@@ -15,7 +16,7 @@ public class CandidatiInsertView extends AbstractView {
 	private String cognome;
 	private String email;
 	private String luogoProvenienza;
-	private int numero_telefono;
+	private int numeroTelefono;
 	private String titoloStudio;
 	private String titoloLaurea;
 	private String dataCandidatura;
@@ -56,7 +57,7 @@ public class CandidatiInsertView extends AbstractView {
 		System.out.println("Inserisci luogo provenienza dell'utente:");
 		luogoProvenienza = getInput();
 		System.out.println("Inserisci numero di telefono dell'utente:");
-		numero_telefono = getInt();
+		numeroTelefono = getInt();
 		System.out.println("Inserisci titoloStudio dell'utente:");
 		titoloStudio = getInput();
 		System.out.println("Inserisci titoloLaurea dell'utente:");
@@ -65,37 +66,37 @@ public class CandidatiInsertView extends AbstractView {
 		dataCandidatura = getInput();
 		System.out.println("Inserisci rangeCandidatura dell'utente:");
 		rangeCandidatura = getInput();
-		System.out.println("Ha già fatto il colloquio conoscitivo ?");
+		System.out.println("Ha gia' fatto il colloquio conoscitivo ?");
 		colloquioConoscitivo = getBoolean();
-		System.out.println("Inserisci la modalità di candidatura dell'utente:");
+		System.out.println("Inserisci la modalita' di candidatura dell'utente:");
 		candidatiTramite = getInput();
-		System.out.println("Inserisci se l'utente è idoneo:");
+		System.out.println("Inserisci se l'utente e' idoneo:");
 		idoneita = getBoolean();
 		System.out.println("Inserisci codice fiscale dell'utente:");
 		codiceFiscale = getInput();
 		System.out.println("Inserisci usertype dell'utente:");
-		rangeCandidatura = getInput();
+		userType = getInput();
 		
 	}
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idCandidati", idCandidati);
-		request.put("idStaff", idStaff);
-		request.put("nome", nome);
-		request.put("cognome", cognome);
-		request.put("email", email);
-		request.put("provenienza", luogoProvenienza);
-		request.put("numeroTelefono", numero_telefono);
-		request.put("titoloStudio", titoloStudio);
-		request.put("titoloLaurea", titoloLaurea);
-		request.put("dataCandidatura", dataCandidatura);
-		request.put("rangeCandidatura", rangeCandidatura);
-		request.put("colloquioConoscitivo", colloquioConoscitivo);
-		request.put("candidatiTramite", candidatiTramite);
-		request.put("idoneita", idoneita);
-		request.put("codiceFiscale", codiceFiscale);
-		request.put("usertype", userType);
+		request.put(Candidati.CONST.ID_CANDIDATI, idCandidati);
+		request.put(Candidati.CONST.ID_STAFF, idStaff);
+		request.put(Candidati.CONST.NOME, nome);
+		request.put(Candidati.CONST.COGNOME, cognome);
+		request.put(Candidati.CONST.EMAIL, email);
+		request.put(Candidati.CONST.PROVENIENZA, luogoProvenienza);
+		request.put(Candidati.CONST.TELEFONO, numeroTelefono);
+		request.put(Candidati.CONST.TITOLO_STUDIO, titoloStudio);
+		request.put(Candidati.CONST.TITOLO_LAUREA, titoloLaurea);
+		request.put(Candidati.CONST.DATA_CANDIDATURA, dataCandidatura);
+		request.put(Candidati.CONST.RANGE_CANDIDATURA, rangeCandidatura);
+		request.put(Candidati.CONST.COLLOQUIO_CONOSCITIVO, colloquioConoscitivo);
+		request.put(Candidati.CONST.CANDIDATI_TRAMITE, candidatiTramite);
+		request.put(Candidati.CONST.IDONEITA, idoneita);
+		request.put(Candidati.CONST.CODICE_FISCALE, codiceFiscale);
+		request.put(Candidati.CONST.USER_TYPE, userType);
 
 		request.put("mode", mode);
 		
