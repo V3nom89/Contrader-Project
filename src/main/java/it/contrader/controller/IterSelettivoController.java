@@ -4,7 +4,7 @@ import it.contrader.service.IterSelettivoService;
 
 import java.util.List;
 
-
+import it.contrader.dao.IterSelettivoDAO;
 import it.contrader.dto.IterSelettivoDTO;
 import it.contrader.main.MainDispatcher;
 
@@ -21,10 +21,10 @@ public class IterSelettivoController implements Controller{
 	
 	/*
 	 * Metodo dell'interfaccia Controller. Estrae dalla request la mode
-	 * (che riceve dalle view specifiche e puÚ essere la richesta di una 
+	 * (che riceve dalle view specifiche e pu√≤ essere la richesta di una 
 	 * scelta da parte dell'utente "GETCHOICE") e la scelta dell'utente.
 	 * 
-	 * Se la modalit‡ corrisponde ad una CRUD il controller chiama i service,
+	 * Se la modalit√† corrisponde ad una CRUD il controller chiama i service,
 	 * altrimenti rimanda alla View della CRUD per richiedere i parametri
 	 */
 	@Override
@@ -36,7 +36,7 @@ public class IterSelettivoController implements Controller{
 		String choice = (String) request.get("choice");
 
 		//Definisce i campi della classe (serviranno sempre, tanto vale definirli una sola volta)
-		int idIterSelettivo;
+		int idIterSelettivo = 0;
 		int idCandidato;
 		int idStaff;
 		int punteggioTotaleScritto;
@@ -53,25 +53,31 @@ public class IterSelettivoController implements Controller{
 		
 		// Arriva qui dalla UserReadView. Invoca il Service con il parametro id e invia alla UserReadView uno user da mostrare 
 		case "READ":
-			idIterSelettivo = Integer.parseInt(request.get("idIterSelettivo").toString());
-			IterSelettivoDTO iterSelettivoDTO = iterSelettivoService.read(idIterSelettivo);
-			request.put("iterSelettivo", iterSelettivoDTO);
-			MainDispatcher.getInstance().callView(sub_package + "IterSelettivoRead", request);
+			try {
+				idIterSelettivo = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_ITER_SELETTIVO).toString());
+				IterSelettivoDTO iterSelettivoDTO = iterSelettivoService.read(idIterSelettivo);
+				request.put("iterSelettivo", iterSelettivoDTO);
+				MainDispatcher.getInstance().callView(sub_package + "IterSelettivoRead", request);
+			} catch (Exception e) {
+				System.err.println("Errore nella lettura del'iterSelettivo con id <" + idIterSelettivo + ">");
+				e.printStackTrace();
+			}
 			break;
 		
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
-			idCandidato = Integer.parseInt(request.get("idCandidato").toString());
-			idStaff = Integer.parseInt(request.get("idStaff").toString());
-			punteggioTotaleScritto = Integer.parseInt(request.get("punteggioTotaleScritto").toString());
-			punteggioLogica = Integer.parseInt(request.get("punteggioLogica").toString());
-			punteggioPhp = Integer.parseInt(request.get("punteggioPhp").toString());
-			punteggioJava = Integer.parseInt(request.get("punteggioJava").toString());
-			punteggioHTML = Integer.parseInt(request.get("punteggioHTML").toString());
-			punteggioInglese = Integer.parseInt(request.get("punteggioInglese").toString());
-			dataTestScritto = request.get("dataTestScritto").toString(); 
-			dataTestOrale = request.get("dataTestOrale").toString();
-			valutazioneOrale = Integer.parseInt(request.get("valutazioneOrale").toString());
+			try {
+			idCandidato = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_CANDIDATO).toString());
+			idStaff = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_STAFF).toString());
+			punteggioTotaleScritto = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_TOTALE_SCRITTO).toString());
+			punteggioLogica = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_LOGICA).toString());
+			punteggioPhp = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_PHP).toString());
+			punteggioJava = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_JAVA).toString());
+			punteggioHTML = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_HTML).toString());
+			punteggioInglese = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_INGLESE).toString());
+			dataTestScritto = request.get(IterSelettivoDAO.CONST.DATA_TEST_SCRITTO).toString(); 
+			dataTestOrale = request.get(IterSelettivoDAO.CONST.DATA_TEST_ORALE).toString();
+			valutazioneOrale = Integer.parseInt(request.get(IterSelettivoDAO.CONST.VALUTAZIONE_ORALE).toString());
 			
 						
 			//costruisce l'oggetto user da inserire
@@ -82,6 +88,10 @@ public class IterSelettivoController implements Controller{
 			request.put("mode", "mode");
 			//Rimanda alla view con la risposta
 			MainDispatcher.getInstance().callView(sub_package + "IterSelettivoInsert", request);
+			} catch (Exception e) {
+				System.err.println("Errore nell'inserimento dell'iter selettivo");
+				e.printStackTrace();
+			}
 			break;
 			
 		// Arriva qui dalla UserDeleteView. Estrae l'id dell'utente da cancellare e lo passa al Service
@@ -96,21 +106,22 @@ public class IterSelettivoController implements Controller{
 			
 		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
-			idIterSelettivo = Integer.parseInt(request.get("idIterSelettivo").toString());
-			idCandidato = Integer.parseInt(request.get("idCandidato").toString());
-			idStaff = Integer.parseInt(request.get("idStaff").toString());
-			punteggioTotaleScritto = Integer.parseInt(request.get("punteggioTotaleScritto").toString());
-			punteggioLogica = Integer.parseInt(request.get("punteggioLogica").toString());
-			punteggioPhp = Integer.parseInt(request.get("punteggioPhp").toString());
-			punteggioJava = Integer.parseInt(request.get("punteggioJava").toString());
-			punteggioHTML = Integer.parseInt(request.get("punteggioHTML").toString());
-			punteggioInglese = Integer.parseInt(request.get("punteggioInglese").toString());
-			dataTestScritto = request.get("dataTestScritto").toString(); 
-			dataTestOrale = request.get("dataTestOrale").toString(); 
-			valutazioneOrale = Integer.parseInt(request.get("valutazioneOrale").toString());
-							
+			idIterSelettivo = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_ITER_SELETTIVO).toString());
+			idCandidato = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_CANDIDATO).toString());
+			idStaff = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_STAFF).toString());
+			punteggioTotaleScritto = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_TOTALE_SCRITTO).toString());
+			punteggioLogica = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_LOGICA).toString());
+			punteggioPhp = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_PHP).toString());
+			punteggioJava = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_JAVA).toString());
+			punteggioHTML = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_HTML).toString());
+			punteggioInglese = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_INGLESE).toString());
+			dataTestScritto = request.get(IterSelettivoDAO.CONST.DATA_TEST_SCRITTO).toString(); 
+			dataTestOrale = request.get(IterSelettivoDAO.CONST.DATA_TEST_ORALE).toString(); 
+			valutazioneOrale = Integer.parseInt(request.get(IterSelettivoDAO.CONST.VALUTAZIONE_ORALE).toString());
+			//costruisce l'oggetto iterselettivo da inserire				
 			IterSelettivoDTO iterSelettivotoupdate = new IterSelettivoDTO(idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, dataTestOrale, valutazioneOrale);
 			iterSelettivotoupdate.setIdIterSelettivo(idIterSelettivo);
+			//invoca il service
 			iterSelettivoService.update(iterSelettivotoupdate);
 			request = new Request();
 			request.put("mode", "mode");
@@ -119,10 +130,15 @@ public class IterSelettivoController implements Controller{
 			
 		//Arriva qui dalla UserView Invoca il Service e invia alla UserView il risultato da mostrare 
 		case "ITERSELETTIVOLIST":
-			List<IterSelettivoDTO> iterSelettivo1DTO = iterSelettivoService.getAll();
+			try {
+			List<IterSelettivoDTO> iterSelettivoListDTO = iterSelettivoService.getAll();
 			//Impacchetta la request con la lista degli user
-			request.put("iterSelettivo", iterSelettivo1DTO);
-			MainDispatcher.getInstance().callView("iterselettivo", request);
+			request.put("iterSelettivo", iterSelettivoListDTO);
+			MainDispatcher.getInstance().callView("IterSelettivo", request);
+			} catch(Exception e) {
+				System.err.println("Errore nel recupero della lista di candidati");
+				e.printStackTrace();
+			}
 			break;
 		
 		//Esegue uno switch sulla base del comando inserito dall'utente e reindirizza tramite il Dispatcher alla View specifica per ogni operazione
@@ -155,7 +171,8 @@ public class IterSelettivoController implements Controller{
 			case "B":
 				MainDispatcher.getInstance().callView("HomeAdmin", null);
 				break;
-					
+
+		//volendo si pu√≤ modificre facendolo andare in homeadminview
 			default:
 				MainDispatcher.getInstance().callView("Login", null);
 			}
