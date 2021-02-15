@@ -3,6 +3,7 @@ package it.contrader.view.iterSelettivo;
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
+import it.contrader.dao.IterSelettivoDAO;
 
 public class IterSelettivoUpdateView extends AbstractView {
 	
@@ -27,7 +28,7 @@ public class IterSelettivoUpdateView extends AbstractView {
 	}
 	
 	/*
-	 * Se la request non è nulla (ovvero se si arriva dalla mode UPDATE del controller) mostra l'esito dell'operazione
+	 * Se la request non Ã¨ nulla (ovvero se si arriva dalla mode UPDATE del controller) mostra l'esito dell'operazione
 	 */
 	@Override
 	public void showResults(Request request) {
@@ -44,30 +45,31 @@ public class IterSelettivoUpdateView extends AbstractView {
 	public void showOptions() {
 		try {
 			System.out.println("Inserisci id dell'iter selettivo:");
-			idIterSelettivo = Integer.parseInt(getInput());
+			idIterSelettivo = getInt();
 			System.out.println("Inserisci id del candidato:");
-			idCandidato = Integer.parseInt(getInput());
+			idCandidato = getInt();
 			System.out.println("Inserisci id del membro dello staff che segue l'iter selettivo:");
-			idStaff = Integer.parseInt(getInput());
+			idStaff = getInt();
 			System.out.println("Inserisci il punteggio totale della prova scritta del candidato:");
-			punteggioTotaleScritto = Integer.parseInt(getInput());
+			punteggioTotaleScritto = getInt();
 			System.out.println("Inserisci il punteggio della parte di logica nella prova scritta del candidato:");
-			punteggioLogica = Integer.parseInt(getInput());
+			punteggioLogica = getInt();
 			System.out.println("Inserisci il punteggio della parte di Php nella prova scritta del candidato:");
-			punteggioPhp = Integer.parseInt(getInput());
+			punteggioPhp = getInt();
 			System.out.println("Inserisci il punteggio della parte di Java nella prova scritta del candidato:");
-			punteggioJava = Integer.parseInt(getInput());
+			punteggioJava = getInt();
 			System.out.println("Inserisci il punteggio della parte di HTML nella prova scritta del candidato:");
-			punteggioLogica = Integer.parseInt(getInput());
+			punteggioHTML = getInt();
 			System.out.println("Inserisci il punteggio della parte di inglese nella prova scritta del candidato:");
-			punteggioLogica = Integer.parseInt(getInput());
+			punteggioInglese = getInt();
 			System.out.println("Inserisci la data del test scritto:");
 			dataTestScritto = getInput();
 			System.out.println("Inserisci la data del colloquio orale:");
 			dataTestOrale = getInput();
 			System.out.println("Inserisci il punteggio della valutazione del colloquio orale del candidato:");
-			punteggioLogica = Integer.parseInt(getInput());
+			punteggioLogica = getInt();
 		} catch (Exception e) {
+			e.printStackTrace();
 
 		}
 	}
@@ -78,18 +80,18 @@ public class IterSelettivoUpdateView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idIterSelettivo", idIterSelettivo);
-		request.put("idCandidato", idCandidato);
-		request.put("idStaff", idStaff);
-		request.put("punteggioTotaleScritto", punteggioTotaleScritto);
-		request.put("punteggioLogica", punteggioLogica);
-		request.put("punteggioPhp", punteggioPhp);
-		request.put("punteggioJava", punteggioJava);
-		request.put("punteggioHTML", punteggioHTML);
-		request.put("punteggioInglese", punteggioInglese);
-		request.put("dataTestScritto", dataTestScritto);
-		request.put("dataTestOrale", dataTestOrale);
-		request.put("valutazioneOrale", valutazioneOrale);
+		request.put(IterSelettivoDAO.CONST.ID_ITER_SELETTIVO, idIterSelettivo);
+		request.put(IterSelettivoDAO.CONST.ID_CANDIDATO, idCandidato);
+		request.put(IterSelettivoDAO.CONST.ID_STAFF, idStaff);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_TOTALE_SCRITTO, punteggioTotaleScritto);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_LOGICA, punteggioLogica);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_PHP, punteggioPhp);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_JAVA, punteggioJava);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_HTML, punteggioHTML);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_INGLESE, punteggioInglese);
+		request.put(IterSelettivoDAO.CONST.DATA_TEST_SCRITTO, dataTestScritto);
+		request.put(IterSelettivoDAO.CONST.DATA_TEST_ORALE, dataTestOrale);
+		request.put(IterSelettivoDAO.CONST.VALUTAZIONE_ORALE, valutazioneOrale);
 		
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("IterSelettivo", "doControl", request);
