@@ -7,11 +7,26 @@ import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.Corso;
 
 public class CorsoDAO {
-	private final String QUERY_ALL = "SELECT * FROM Corso";
-	private final String QUERY_CREATE = "INSERT INTO Corso (idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM Corso WHERE idCorso=?";
+	public static interface CONST {
+		String ID_CORSO = "idCorso";
+		String ID_CANDIDATO = "idCandidato";
+		String ID_ITERSELETTIVO = "idIterSelettivo";
+		String ARGOMENTO_CORSO = "argomentoCorso";
+		String VALUTAZIONE_COMUNICAZIONI = "valutazioneComunicazioni";
+		String VALUTAZIONE_INTUITIVITA= "valutazioneIntuitivita";
+		String VALUTAZIONE_ATTITUDINE = "valutazioneAttitudine";
+		String VALUTAZIONE_TEAMWORK = "valutazioneTeamWork";
+		String ORETOTALI = "oreTotali";
+		String ID_STAFF = "idStaff";
+		String DATA_INIZIO = "dataInizio";
+	}
+	
+	
+	private final String QUERY_ALL = "SELECT * FROM corso";
+	private final String QUERY_CREATE = "INSERT INTO corso (idCorso, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private final String QUERY_READ = "SELECT * FROM corso WHERE idCorso=?";
 	private final String QUERY_UPDATE = "UPDATE Corso SET idCandidato=?, idIterSelettivo=?, argomentoCorso=?, valutazioneComunicazioni=?, valutazioneIntuitivita=?, valutazioneAttitudine=?, valutazioneTeamWork=?, oreTotali=?, idStaff=?, dataInizio=? WHERE idCorso=?";
-	private final String QUERY_DELETE = "DELETE FROM Corso WHERE idCorso=?";
+	private final String QUERY_DELETE = "DELETE FROM corso WHERE idCorso=?";
 	
 	public CorsoDAO() {
 
@@ -41,6 +56,7 @@ public class CorsoDAO {
 				corsoList.add(corso);
 			}
 		} catch (SQLException e) {
+			System.out.println(e);
 			e.printStackTrace();
 		}
 		return corsoList;
@@ -49,6 +65,7 @@ public class CorsoDAO {
 	public boolean insert(Corso corsoToInsert) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
+
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
 			preparedStatement.setInt(1, corsoToInsert.getIdCorso());
 			preparedStatement.setInt(2, corsoToInsert.getIdCandidato());
@@ -66,7 +83,9 @@ public class CorsoDAO {
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
+			System.out.println(e);
 			return false;
+			
 		}
 
 	}
@@ -97,7 +116,7 @@ public class CorsoDAO {
 						
 			Corso corso = new Corso(idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 			corso.setIdCorso(resultSet.getInt("idCorso"));
-
+			
 			return corso;
 		} catch (SQLException e) {
 			return null;
