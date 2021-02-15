@@ -2,6 +2,7 @@ package it.contrader.controller;
 
 import java.util.List;
 
+import it.contrader.dao.CorsoDAO;
 import it.contrader.dto.CorsoDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.service.CorsoService;
@@ -27,10 +28,10 @@ public class CorsoController implements Controller{
 	
 	/**
 	 * Metodo dell'interfaccia Controller. Estrae dalla request la mode
-	 * (che riceve dalle view specifiche e puÚ essere la richesta di una 
+	 * (che riceve dalle view specifiche e pu√≤ essere la richesta di una 
 	 * scelta da parte dell'utente "GETCHOICE") e la scelta dell'utente.
 	 * 
-	 * Se la modalit‡ corrisponde ad una CRUD il controller chiama i service,
+	 * Se la modalit√† corrisponde ad una CRUD il controller chiama i service,
 	 * altrimenti rimanda alla View della CRUD per richiedere i parametri
 	 */
 	@Override
@@ -57,21 +58,22 @@ public class CorsoController implements Controller{
 		
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
-			idCorso = Integer.parseInt(request.get("idCorso").toString());
-			idIterSelettivo = Integer.parseInt(request.get("idIterSelettivo").toString());
-			argomentoCorso = request.get("argomentoCorso").toString();
-			valutazioneComunicazioni = Integer.parseInt(request.get("valutazioneComunicazioni").toString());
-			valutazioneIntuitivita = Integer.parseInt(request.get("valutazioneIntuitivita").toString());
-			valutazioneAttitudine = Integer.parseInt(request.get("valutazioneAttitudine").toString());
-			valutazioneTeamWork  = Integer.parseInt(request.get("valutazioneTeamWork").toString());
-			oreTotali = Integer.parseInt(request.get("oreTotali").toString());
-			idCandidato = Integer.parseInt(request.get("idCandidato").toString());
-			idStaff = Integer.parseInt(request.get("idStaff").toString());
-			dataInizio = request.get("dataInizio").toString();
+			idCorso = Integer.parseInt(request.get(CorsoDAO.CONST.ID_CORSO).toString());
+			idCandidato = Integer.parseInt(request.get(CorsoDAO.CONST.ID_CANDIDATO).toString());
+			idIterSelettivo = Integer.parseInt(request.get(CorsoDAO.CONST.ID_ITERSELETTIVO).toString());
+			argomentoCorso = request.get(CorsoDAO.CONST.ARGOMENTO_CORSO).toString();
+			valutazioneComunicazioni = Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_COMUNICAZIONI).toString());
+			valutazioneIntuitivita = Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_INTUITIVITA).toString());
+			valutazioneAttitudine = Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_ATTITUDINE).toString());
+			valutazioneTeamWork  = Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());
+			oreTotali = Integer.parseInt(request.get(CorsoDAO.CONST.ORETOTALI).toString());
+			
+			idStaff = Integer.parseInt(request.get(CorsoDAO.CONST.ID_STAFF).toString());
+			dataInizio = request.get(CorsoDAO.CONST.DATA_INIZIO).toString();
 
 		
 			//costruisce l'oggetto user da inserire
-			CorsoDTO corsotoinsert = new CorsoDTO(idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
+			CorsoDTO corsotoinsert = new CorsoDTO(idCorso, idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 			//invoca il service
 			corsoService.insert(corsotoinsert);
 			request = new Request();
@@ -105,7 +107,7 @@ public class CorsoController implements Controller{
 			dataInizio = request.get("dataInizio").toString();
 
 			
-			CorsoDTO corsotoupdate = new CorsoDTO(idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
+			CorsoDTO corsotoupdate = new CorsoDTO(idCorso,idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 			corsotoupdate.setIdCorso(idCorso);
 			corsoService.update(corsotoupdate);
 			request = new Request();
