@@ -13,7 +13,7 @@ public class IterSelettivoConverter {
 	 * Notare l'uso del metodo get() per ottenere il valore dell'attributo-
 	 */
 	public IterSelettivoDTO toDTO(IterSelettivo iterSelettivo) {
-		IterSelettivoDTO iterSelettivoDTO = new IterSelettivoDTO(iterSelettivo.getIdCandidato(), iterSelettivo.getIdStaff(), iterSelettivo.getPunteggioTotaleScritto(), iterSelettivo.getPunteggioLogica(), iterSelettivo.getPunteggioPhp(), iterSelettivo.getPunteggioJava(), iterSelettivo.getPunteggioHTML(), iterSelettivo.getPunteggioInglese(), iterSelettivo.getDataTestScritto(), iterSelettivo.getDataTestOrale(), iterSelettivo.getValutazioneOrale());
+		IterSelettivoDTO iterSelettivoDTO = new IterSelettivoDTO(iterSelettivo.getIdIterSelettivo(),iterSelettivo.getIdCandidato(), iterSelettivo.getIdStaff(), iterSelettivo.getPunteggioTotaleScritto(), iterSelettivo.getPunteggioLogica(), iterSelettivo.getPunteggioPhp(), iterSelettivo.getPunteggioJava(), iterSelettivo.getPunteggioHTML(), iterSelettivo.getPunteggioInglese(), iterSelettivo.getDataTestScritto(), iterSelettivo.getDataTestOrale(), iterSelettivo.getValutazioneOrale());
 		return iterSelettivoDTO;
 	}
 	
