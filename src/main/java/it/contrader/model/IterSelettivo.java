@@ -193,13 +193,12 @@ public class IterSelettivo {
 
 	@Override
 	public String toString() {
-		return "IterSelettivo [idIterSelettivo=" + idIterSelettivo + ", idCandidato=" + idCandidato + ", idStaff="
-				+ idStaff + ", punteggioTotaleScritto=" + punteggioTotaleScritto + ", punteggioLogica="
-				+ punteggioLogica + ", punteggioPhp=" + punteggioPhp + ", punteggioJava=" + punteggioJava
-				+ ", punteggioHTML=" + punteggioHTML + ", punteggioInglese=" + punteggioInglese + ", dataTestScritto="
-				+ dataTestScritto + ", dataTestOrale=" + dataTestOrale + ", valutazioneOrale=" + valutazioneOrale + "]";
-	}	
+		return  idIterSelettivo + "\t" + idCandidato + "\t"
+				+ idStaff + "\t" + punteggioTotaleScritto + "\t"
+				+ punteggioLogica + "\t" + punteggioPhp + "\t" + punteggioJava
+				+ "\t" + punteggioHTML + "\t" + punteggioInglese + "\t"
+				+ dataTestScritto + "\t" + dataTestOrale + "\t" + valutazioneOrale;
+	}
 	
 
 }
-
