@@ -8,11 +8,28 @@ import it.contrader.model.IterSelettivo;
 
 
 public class IterSelettivoDAO {
-	private final String QUERY_ALL = "SELECT * FROM IterSelettivo";
-	private final String QUERY_CREATE = "INSERT INTO IterSelettivo (idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHtml, punteggioInglese, dataTestScritto, valutazioneOrale, dataTestOrale) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM IterSelettivo WHERE idIterSelettivo=?";
-	private final String QUERY_UPDATE = "UPDATE IterSelettivo SET idCandidato = ?, idStaff = ?, punteggioTotaleScritto = ?, punteggioLogica = ?, punteggioPhp = ?, punteggioJava = ?, punteggioHtml = ?, punteggioInglese = ?, dataTestScritto = ?, valutazioneOrale = ?, dataTestOrale = ? WHERE idIterSelettivo = ?";
-	private final String QUERY_DELETE = "DELETE * FROM IterSelettivo WHERE idIterSelettivo = ?";
+	
+	public static interface CONST {
+		String ID_ITER_SELETTIVO = "idIterSelettivo";
+		String ID_CANDIDATO = "idCandidato";
+		String ID_STAFF = "idStaff";
+		String PUNTEGGIO_TOTALE_SCRITTO = "punteggioTotaleScritto";
+		String PUNTEGGIO_LOGICA = "punteggioLogica";
+		String PUNTEGGIO_PHP = "punteggioPhp";
+		String PUNTEGGIO_JAVA = "punteggioJava";
+		String PUNTEGGIO_HTML = "punteggioHTML";
+		String PUNTEGGIO_INGLESE = "punteggioInglese";
+		String DATA_TEST_SCRITTO = "dataTestScritto";
+		String DATA_TEST_ORALE = "dataTestOrale";
+		String VALUTAZIONE_ORALE = "valutazioneOrale";
+	}
+
+	
+	private final String QUERY_ALL = "SELECT * FROM iterselettivo";
+	private final String QUERY_CREATE = "INSERT INTO iterselettivo (idIterSelettivo, idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHtml, punteggioInglese, dataTestScritto,dataTestOrale, valutazioneOrale) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final String QUERY_READ = "SELECT * FROM iterselettivo WHERE idIterSelettivo=?";
+	private final String QUERY_UPDATE = "UPDATE iterselettivo SET idCandidato = ?, idStaff = ?, punteggioTotaleScritto = ?, punteggioLogica = ?, punteggioPhp = ?, punteggioJava = ?, punteggioHtml = ?, punteggioInglese = ?, dataTestScritto = ?, dataTestOrale = ?, valutazioneOrale = ? WHERE idIterSelettivo = ?";
+	private final String QUERY_DELETE = "DELETE FROM iterselettivo WHERE idIterSelettivo = ?";
 	
 	public IterSelettivoDAO() {
 		
@@ -20,33 +37,33 @@ public class IterSelettivoDAO {
 	
 	//get all
 	public List<IterSelettivo> getAll (){
-		List<IterSelettivo> iterSelettivoList = new ArrayList<>();
+		List<IterSelettivo> usersList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			IterSelettivo iterSelettivo;
 			while (resultSet.next()) {
-				int idIterSelettivo = resultSet.getInt("idIterSelettivo");
-				int idCandidato = resultSet.getInt("idCandidato");
-				int idStaff = resultSet.getInt("idStaff");
-				int punteggioTotaleScritto = resultSet.getInt("punteggioTotaleScritto");
-				int punteggioLogica = resultSet.getInt("punteggioLogica");
-				int punteggioPhp = resultSet.getInt("punteggioPhp");
-				int punteggioJava = resultSet.getInt("punteggioJava");
-				int punteggioHTML = resultSet.getInt("punteggioHTML");
-				int punteggioInglese = resultSet.getInt("punteggioInglese");
-				String dataTestScritto = resultSet.getString("dataTestScritto");
-				int valutazioneOrale = resultSet.getInt("valutazioneOrale");
-				String dataTestOrale = resultSet.getString("dataTestOrale");
-				iterSelettivo = new IterSelettivo(idIterSelettivo, idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, valutazioneOrale, dataTestOrale);
+				int idIterSelettivo = resultSet.getInt(CONST.ID_ITER_SELETTIVO);
+				int idCandidato = resultSet.getInt(CONST.ID_CANDIDATO);
+				int idStaff = resultSet.getInt(CONST.ID_STAFF);
+				int punteggioTotaleScritto = resultSet.getInt(CONST.PUNTEGGIO_TOTALE_SCRITTO);
+				int punteggioLogica = resultSet.getInt(CONST.PUNTEGGIO_LOGICA);
+				int punteggioPhp = resultSet.getInt(CONST.PUNTEGGIO_PHP);
+				int punteggioJava = resultSet.getInt(CONST.PUNTEGGIO_JAVA);
+				int punteggioHTML = resultSet.getInt(CONST.PUNTEGGIO_HTML);
+				int punteggioInglese = resultSet.getInt(CONST.PUNTEGGIO_INGLESE);
+				String dataTestScritto = resultSet.getString(CONST.DATA_TEST_SCRITTO);
+				String dataTestOrale = resultSet.getString(CONST.DATA_TEST_ORALE);
+				int valutazioneOrale = resultSet.getInt(CONST.VALUTAZIONE_ORALE);
+				iterSelettivo = new IterSelettivo(idIterSelettivo, idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, dataTestOrale, valutazioneOrale);
 				iterSelettivo.setIdIterSelettivo(idIterSelettivo);
-				iterSelettivoList.add(iterSelettivo);
+				usersList.add(iterSelettivo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return iterSelettivoList;
+		return usersList;
 	}
 	
 	//insert
@@ -54,54 +71,58 @@ public class IterSelettivoDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {	
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
-			preparedStatement.setInt(1, iterSelettivoToInsert.getIdCandidato());
-			preparedStatement.setInt(2, iterSelettivoToInsert.getIdStaff());
-			preparedStatement.setInt(3, iterSelettivoToInsert.getPunteggioTotaleScritto());
-			preparedStatement.setInt(4, iterSelettivoToInsert.getPunteggioLogica());
-			preparedStatement.setInt(5, iterSelettivoToInsert.getPunteggioPhp());
-			preparedStatement.setInt(6, iterSelettivoToInsert.getPunteggioJava());
-			preparedStatement.setInt(7, iterSelettivoToInsert.getPunteggioHTML());
-			preparedStatement.setInt(8, iterSelettivoToInsert.getPunteggioInglese());
-			preparedStatement.setString(9, iterSelettivoToInsert.getDataTestScritto());
-			preparedStatement.setInt(10, iterSelettivoToInsert.getValutazioneOrale());
+			preparedStatement.setInt(1, iterSelettivoToInsert.getIdIterSelettivo());
+			preparedStatement.setInt(2, iterSelettivoToInsert.getIdCandidato());
+			preparedStatement.setInt(3, iterSelettivoToInsert.getIdStaff());
+			preparedStatement.setInt(4, iterSelettivoToInsert.getPunteggioTotaleScritto());
+			preparedStatement.setInt(5, iterSelettivoToInsert.getPunteggioLogica());
+			preparedStatement.setInt(6, iterSelettivoToInsert.getPunteggioPhp());
+			preparedStatement.setInt(7, iterSelettivoToInsert.getPunteggioJava());
+			preparedStatement.setInt(8, iterSelettivoToInsert.getPunteggioHTML());
+			preparedStatement.setInt(9, iterSelettivoToInsert.getPunteggioInglese());
+			preparedStatement.setString(10, iterSelettivoToInsert.getDataTestScritto());
 			preparedStatement.setString(11, iterSelettivoToInsert.getDataTestOrale());
+			preparedStatement.setInt(12, iterSelettivoToInsert.getValutazioneOrale());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
 		
 		// read
-	public IterSelettivo read(int idIterSelettivo) {
+	public IterSelettivo read(int iditerSelettivo) {
 			Connection connection = ConnectionSingleton.getInstance();
 			try {
 
 
 				PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-				preparedStatement.setInt(1, idIterSelettivo);
+				preparedStatement.setInt(1, iditerSelettivo);
 				ResultSet resultSet = preparedStatement.executeQuery();
 				resultSet.next();
-				int idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, valutazioneOrale;
-				String dataTestScritto, dataTestOrale;
+				//int idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, valutazioneOrale;
+				//String dataTestScritto, dataTestOrale;
 				
-				idCandidato = resultSet.getInt("idCandidato");
-				idStaff = resultSet.getInt("idStaff");
-				punteggioTotaleScritto = resultSet.getInt("punteggioTotaleScritto");
-				punteggioLogica = resultSet.getInt("punteggioLogica");
-				punteggioPhp = resultSet.getInt("punteggioPhp");
-				punteggioJava = resultSet.getInt("punteggioJava");
-				punteggioHTML = resultSet.getInt("punteggioHTML");
-				punteggioInglese = resultSet.getInt("punteggioInglese");
-				dataTestScritto = resultSet.getString("dataTestScritto");
-				valutazioneOrale = resultSet.getInt("valutazioneOrale");
-				dataTestOrale = resultSet.getString("dataTestOrale");
-				
-				IterSelettivo iterSelettivo = new IterSelettivo(idIterSelettivo, idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, valutazioneOrale, dataTestOrale);
-				iterSelettivo.setIdIterSelettivo(resultSet.getInt("idIterSelettivo"));
+				int idIterSelettivo = resultSet.getInt(CONST.ID_ITER_SELETTIVO);
+				int idCandidato = resultSet.getInt(CONST.ID_CANDIDATO);
+				int idStaff = resultSet.getInt(CONST.ID_STAFF);
+				int punteggioTotaleScritto = resultSet.getInt(CONST.PUNTEGGIO_TOTALE_SCRITTO);
+				int punteggioLogica = resultSet.getInt(CONST.PUNTEGGIO_LOGICA);
+				int punteggioPhp = resultSet.getInt(CONST.PUNTEGGIO_PHP);
+				int punteggioJava = resultSet.getInt(CONST.PUNTEGGIO_JAVA);
+				int punteggioHTML = resultSet.getInt(CONST.PUNTEGGIO_HTML);
+				int punteggioInglese = resultSet.getInt(CONST.PUNTEGGIO_INGLESE);
+				String dataTestScritto = resultSet.getString(CONST.DATA_TEST_SCRITTO);
+				String dataTestOrale = resultSet.getString(CONST.DATA_TEST_ORALE);
+				int valutazioneOrale = resultSet.getInt(CONST.VALUTAZIONE_ORALE);
+								
+				IterSelettivo iterSelettivo = new IterSelettivo(idIterSelettivo, idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, dataTestOrale, valutazioneOrale);
+				iterSelettivo.setIdIterSelettivo(idIterSelettivo);
 
 				return iterSelettivo;
 			} catch (SQLException e) {
+				e.printStackTrace();
 				return null;
 			}
 
@@ -134,23 +155,27 @@ public class IterSelettivoDAO {
 				if (iterSelettivoToUpdate.getPunteggioPhp() == 0) {
 					iterSelettivoToUpdate.setPunteggioPhp(iterSelettivoRead.getPunteggioPhp());
 				}
+				if (iterSelettivoToUpdate.getPunteggioJava() == 0) {
+					iterSelettivoToUpdate.setPunteggioJava(iterSelettivoRead.getPunteggioJava());
+				}
 				if (iterSelettivoToUpdate.getPunteggioHTML() == 0) {
 					iterSelettivoToUpdate.setPunteggioHTML(iterSelettivoRead.getPunteggioHTML());
 				}
 				if (iterSelettivoToUpdate.getPunteggioInglese() == 0) {
 					iterSelettivoToUpdate.setPunteggioInglese(iterSelettivoRead.getPunteggioInglese());
-				}
-				if (iterSelettivoToUpdate.getValutazioneOrale() == 0) {
-					iterSelettivoToUpdate.setValutazioneOrale(iterSelettivoRead.getValutazioneOrale());
-				}
+				}		
 				if (iterSelettivoToUpdate.getDataTestScritto() == null || iterSelettivoToUpdate.getDataTestScritto().equals("")) {
 					iterSelettivoToUpdate.setDataTestScritto(iterSelettivoRead.getDataTestScritto());
 				} // le date vengono considerate come stringhe
 				if (iterSelettivoToUpdate.getDataTestOrale() == null || iterSelettivoToUpdate.getDataTestOrale().equals("")) {
 					iterSelettivoToUpdate.setDataTestOrale(iterSelettivoRead.getDataTestOrale());
 				}
+				if (iterSelettivoToUpdate.getValutazioneOrale() == 0) {
+					iterSelettivoToUpdate.setValutazioneOrale(iterSelettivoRead.getValutazioneOrale());
+				}
 		
 				// Update iter selettivo
+				// dubbio se inserire o no idIterSelettivo
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setInt(1, iterSelettivoToUpdate.getIdCandidato());
 				preparedStatement.setInt(2, iterSelettivoToUpdate.getIdStaff());
@@ -161,8 +186,9 @@ public class IterSelettivoDAO {
 				preparedStatement.setInt(7, iterSelettivoToUpdate.getPunteggioHTML());
 				preparedStatement.setInt(8, iterSelettivoToUpdate.getPunteggioInglese());
 				preparedStatement.setString(9, iterSelettivoToUpdate.getDataTestScritto());
-				preparedStatement.setInt(10, iterSelettivoToUpdate.getValutazioneOrale());
-				preparedStatement.setString(11, iterSelettivoToUpdate.getDataTestOrale());
+				preparedStatement.setString(10, iterSelettivoToUpdate.getDataTestOrale());
+				preparedStatement.setInt(11, iterSelettivoToUpdate.getValutazioneOrale());
+				
 
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
@@ -171,6 +197,7 @@ public class IterSelettivoDAO {
 					return false;
 
 			} catch (SQLException e) {
+				e.printStackTrace();
 				return false;
 			}
 		}
@@ -190,6 +217,7 @@ public class IterSelettivoDAO {
 				return true;
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
