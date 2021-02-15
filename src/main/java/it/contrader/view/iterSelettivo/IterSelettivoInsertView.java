@@ -1,6 +1,6 @@
 package it.contrader.view.iterSelettivo;
 
-
+import it.contrader.dao.IterSelettivoDAO;
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
@@ -27,7 +27,7 @@ public class IterSelettivoInsertView extends AbstractView{
 	}
 	
 	/*
-	 * Se la request non è nulla (ovvero se si arriva dalla mode INSERT del controller) mostra
+	 * Se la request non Ã¨ nulla (ovvero se si arriva dalla mode INSERT del controller) mostra
 	 * l'esito dell'operazione
 	 */
 	@Override
@@ -64,7 +64,7 @@ public class IterSelettivoInsertView extends AbstractView{
 			System.out.println("Inserisci la data del colloquio orale dell'utente:");
 			dataTestOrale = getInput();
 			System.out.println("Inserisci il punteggio rispettivo al colloquio orale dell'utente:");
-			punteggioLogica = getInt();
+			valutazioneOrale = getInt();
 			
 	}
 	
@@ -74,17 +74,17 @@ public class IterSelettivoInsertView extends AbstractView{
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idCandidato", idCandidato);
-		request.put("idStaff", idStaff);
-		request.put("punteggioTotaleScritto", punteggioTotaleScritto);
-		request.put("punteggioLogica", punteggioLogica);
-		request.put("punteggioPhp", punteggioPhp);
-		request.put("punteggioJava", punteggioJava);
-		request.put("punteggioHTML", punteggioHTML);
-		request.put("punteggioInglese", punteggioInglese);
-		request.put("dataTestScritto", dataTestScritto);
-		request.put("dataTestOrale", dataTestOrale);
-		request.put("valutazioneOrale", valutazioneOrale);
+		request.put(IterSelettivoDAO.CONST.ID_CANDIDATO, idCandidato);
+		request.put(IterSelettivoDAO.CONST.ID_STAFF, idStaff);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_TOTALE_SCRITTO, punteggioTotaleScritto);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_LOGICA, punteggioLogica);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_PHP, punteggioPhp);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_JAVA, punteggioJava);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_HTML, punteggioHTML);
+		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_INGLESE, punteggioInglese);
+		request.put(IterSelettivoDAO.CONST.DATA_TEST_SCRITTO, dataTestScritto);
+		request.put(IterSelettivoDAO.CONST.DATA_TEST_ORALE, dataTestOrale);
+		request.put(IterSelettivoDAO.CONST.VALUTAZIONE_ORALE, valutazioneOrale);
 		
 		request.put("mode", mode);
 		
