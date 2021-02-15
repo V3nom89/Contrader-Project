@@ -3,6 +3,7 @@ package it.contrader.view.iterSelettivo;
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
+import it.contrader.dao.IterSelettivoDAO;
 
 public class IterSelettivoDeleteView extends AbstractView {
 	
@@ -16,7 +17,7 @@ public class IterSelettivoDeleteView extends AbstractView {
 	}
 	
 	/*
-	 * Se la request non è nulla (ovvero se si arriva dalla mode DELETE del controller) mostra
+	 * Se la request non Ã¨ nulla (ovvero se si arriva dalla mode DELETE del controller) mostra
 	 * l'esito dell'operazione
 	 */
 	@Override
@@ -40,7 +41,7 @@ public class IterSelettivoDeleteView extends AbstractView {
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idIterSelettivo", idIterSelettivo);
+		request.put(IterSelettivoDAO.CONST.ID_ITER_SELETTIVO, idIterSelettivo);
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("IterSelettivo", "doControl", request);
 	}
