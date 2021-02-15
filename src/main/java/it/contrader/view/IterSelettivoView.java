@@ -19,20 +19,20 @@ public class IterSelettivoView extends AbstractView{
 	@Override
 public void showResults(Request request) {
 	if (request != null) {
-		System.out.println("\n------------------- Iter Selettivo ----------------\n");
+		System.out.println("\n------------------- Iter Selettivo ----------------");
 		System.out.println("Id Iter Selettivo\tId Candidato\tId Staff\tPunteggio Totale Scritto\tPunteggio Logica\tPunteggio Php\tPunteggio Java\tPunteggio HTML\tPunteggio Inglese\tData Test Scritto\tData Test Orale\tValutazione Orale\n");
-		System.out.println("----------------------------------------------------\n");
+		System.out.println("----------------------------------------------------");
 		
 		@SuppressWarnings("unchecked")
-		List<IterSelettivoDTO> iterSelettivo1 = (List<IterSelettivoDTO>) request.get("iterSelettivo1");
-		for (IterSelettivoDTO it: iterSelettivo1)
+		List<IterSelettivoDTO> iterSelettivo = (List<IterSelettivoDTO>) request.get("iterSelettivo");
+		for (IterSelettivoDTO it: iterSelettivo)
 			System.out.println(it);
 		System.out.println();
 		}
 	}
 
  /* Chiede all'utente un input (lettera da tastiera) per la choice. 
-    Mette la modalità GETCHOICE nella mode. */
+    Mette la modalitÃ  GETCHOICE nella mode. */
 	@Override
 public void showOptions() {
 	System.out.println("          Scegli l'operazione da effettuare:");
