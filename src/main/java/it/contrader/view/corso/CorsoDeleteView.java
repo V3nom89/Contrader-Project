@@ -15,7 +15,7 @@ public class CorsoDeleteView extends AbstractView{
 	}
 
 	/**
-	 * Se la request non è nulla (ovvero se si arriva dalla mode DELETE del controller) mostra
+	 * Se la request non Ã¨ nulla (ovvero se si arriva dalla mode DELETE del controller) mostra
 	 * l'esito dell'operazione
 	 */
 	@Override
@@ -46,5 +46,4 @@ public class CorsoDeleteView extends AbstractView{
 		request.put("mode", mode);
 		MainDispatcher.getInstance().callAction("Corso", "doControl", request);
 	}
-
 }
