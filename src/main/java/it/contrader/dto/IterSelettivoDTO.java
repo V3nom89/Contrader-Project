@@ -19,11 +19,13 @@ public class IterSelettivoDTO {
 		
 	}
 	
-	/* costruttore con attributo */
-	public IterSelettivoDTO(int idCandidato, int idStaff, int punteggioTotaleScritto,
+
+
+	public IterSelettivoDTO(int idIterSelettivo, int idCandidato, int idStaff, int punteggioTotaleScritto,
 			int punteggioLogica, int punteggioPhp, int punteggioJava, int punteggioHTML, 
 			int punteggioInglese, String dataTestScritto, String dataTestOrale, int vautazioneOrale) {
 		
+		this.setIdIterSelettivo(idIterSelettivo);
 		this.setIdCandidato(idCandidato);
 		this.setIdStaff(idStaff);
 		this.setPunteggioTotaleScritto(punteggioTotaleScritto);
@@ -36,12 +38,11 @@ public class IterSelettivoDTO {
 		this.setDataTestOrale(dataTestOrale);
 		this.setValutazioneOrale(vautazioneOrale);
 	}
-
-	public IterSelettivoDTO(int idIterSelettivo, int idCandidato, int idStaff, int punteggioTotaleScritto,
+	
+	public IterSelettivoDTO(int idCandidato, int idStaff, int punteggioTotaleScritto,
 			int punteggioLogica, int punteggioPhp, int punteggioJava, int punteggioHTML, 
 			int punteggioInglese, String dataTestScritto, String dataTestOrale, int vautazioneOrale) {
 		
-		this.setIdIterSelettivo(idIterSelettivo);
 		this.setIdCandidato(idCandidato);
 		this.setIdStaff(idStaff);
 		this.setPunteggioTotaleScritto(punteggioTotaleScritto);
