@@ -8,6 +8,7 @@ import it.contrader.view.AbstractView;
 public class IterSelettivoInsertView extends AbstractView{
 	private Request request;
 	
+	private int idIterSelettivo;
 	private int idCandidato;
 	private int idStaff;
 	private int punteggioTotaleScritto;
@@ -43,6 +44,8 @@ public class IterSelettivoInsertView extends AbstractView{
 	 */
 	@Override
 	public void showOptions() {
+			System.out.println("Inserisci l'ID dell'IterSelettivo:");
+			idIterSelettivo = getInt();
 			System.out.println("Inserisci l'ID del candidato:");
 			idCandidato = getInt();
 			System.out.println("Inserisci l'ID del membro dello staff che ha seguito l'iter selettivo:");
@@ -74,6 +77,7 @@ public class IterSelettivoInsertView extends AbstractView{
 	@Override
 	public void submit() {
 		request = new Request();
+		request.put(IterSelettivoDAO.CONST.ID_ITER_SELETTIVO, idIterSelettivo);
 		request.put(IterSelettivoDAO.CONST.ID_CANDIDATO, idCandidato);
 		request.put(IterSelettivoDAO.CONST.ID_STAFF, idStaff);
 		request.put(IterSelettivoDAO.CONST.PUNTEGGIO_TOTALE_SCRITTO, punteggioTotaleScritto);
