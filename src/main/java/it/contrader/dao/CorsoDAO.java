@@ -7,7 +7,6 @@ import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.Corso;
 
 public class CorsoDAO {
-	//ho aggiunto questo interface
 	public static interface CONST {
 		String ID_CORSO = "idCorso";
 		String ID_CANDIDATO = "idCandidato";
