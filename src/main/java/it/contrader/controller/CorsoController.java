@@ -74,20 +74,24 @@ public class CorsoController implements Controller {
 			}
 			break;
 		
-		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri 
-	        //aggiornato la Insert
+		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
 			try {
-				
 				idCandidato= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CANDIDATO).toString());
+				
 				idIterSelettivo= Integer.parseInt(request.get(CorsoDAO.CONST.ID_ITERSELETTIVO).toString());
+				
 				argomentoCorso= request.get(CorsoDAO.CONST.ARGOMENTO_CORSO).toString();
+				
 				valutazioneComunicazioni= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_COMUNICAZIONI).toString());
 				valutazioneIntuitivita= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_INTUITIVITA).toString());
 				valutazioneAttitudine= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_ATTITUDINE).toString());
-			        valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());
+			    valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());
+				
 				oreTotali= Integer.parseInt(request.get(CorsoDAO.CONST.ORETOTALI).toString());
+				
 				idStaff= Integer.parseInt(request.get(CorsoDAO.CONST.ID_STAFF).toString());
+				
 				dataInizio= request.get(CorsoDAO.CONST.DATA_INIZIO).toString();
 				
 				//costruisce l'oggetto user da inserire
@@ -114,18 +118,24 @@ public class CorsoController implements Controller {
 			MainDispatcher.getInstance().callView(sub_package + "CorsoDelete", request);
 			break;
 		
-		//Aggiornato la update
+		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
 			idCorso= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CORSO).toString());
+			
 			idCandidato= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CANDIDATO).toString());
+			
 			idIterSelettivo= Integer.parseInt(request.get(CorsoDAO.CONST.ID_ITERSELETTIVO).toString());
 			argomentoCorso= request.get(CorsoDAO.CONST.ARGOMENTO_CORSO).toString();
+			
 			valutazioneComunicazioni= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_COMUNICAZIONI).toString());
 			valutazioneIntuitivita= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_INTUITIVITA).toString());
 			valutazioneAttitudine= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_ATTITUDINE).toString());
-		        valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());
+		    valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());
+			
 			oreTotali= Integer.parseInt(request.get(CorsoDAO.CONST.ORETOTALI).toString());
+			
 			idStaff= Integer.parseInt(request.get(CorsoDAO.CONST.ID_STAFF).toString());
+			
 			dataInizio= request.get(CorsoDAO.CONST.DATA_INIZIO).toString();
 			
 			//costruisce l'oggetto user da inserire
@@ -194,3 +204,4 @@ public class CorsoController implements Controller {
 		}
 	}
 }
+
