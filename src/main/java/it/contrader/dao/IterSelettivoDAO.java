@@ -140,6 +140,9 @@ public class IterSelettivoDAO {
 		if (!iterSelettivoRead.equals(iterSelettivoToUpdate)) {
 			try {
 				// Fill the userToUpdate object
+				if (iterSelettivoToUpdate.getIdIterSelettivo() == 0) {
+					iterSelettivoToUpdate.setIdIterSelettivo(iterSelettivoRead.getIdIterSelettivo());
+				}
 				if (iterSelettivoToUpdate.getIdCandidato() == 0) {
 					iterSelettivoToUpdate.setIdCandidato(iterSelettivoRead.getIdCandidato());
 				}
@@ -166,7 +169,7 @@ public class IterSelettivoDAO {
 				}		
 				if (iterSelettivoToUpdate.getDataTestScritto() == null || iterSelettivoToUpdate.getDataTestScritto().equals("")) {
 					iterSelettivoToUpdate.setDataTestScritto(iterSelettivoRead.getDataTestScritto());
-				} // le date vengono considerate come stringhe
+				} 
 				if (iterSelettivoToUpdate.getDataTestOrale() == null || iterSelettivoToUpdate.getDataTestOrale().equals("")) {
 					iterSelettivoToUpdate.setDataTestOrale(iterSelettivoRead.getDataTestOrale());
 				}
@@ -188,6 +191,7 @@ public class IterSelettivoDAO {
 				preparedStatement.setString(9, iterSelettivoToUpdate.getDataTestScritto());
 				preparedStatement.setString(10, iterSelettivoToUpdate.getDataTestOrale());
 				preparedStatement.setInt(11, iterSelettivoToUpdate.getValutazioneOrale());
+				preparedStatement.setInt(12, iterSelettivoToUpdate.getIdIterSelettivo());
 				
 
 				int a = preparedStatement.executeUpdate();
