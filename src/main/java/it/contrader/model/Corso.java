@@ -16,25 +16,8 @@ public class Corso {
 		private String dataInizio;
 		
 		
-		public Corso() {
-			
-		}
 		
-		public Corso(int idCandidato, int idIterSelettivo, String argomentoCorso,int valutazioneComunicazioni,int valutazioneIntuitivita, int valutazioneAttitudine, int valutazioneTeamWork, int oreTotali, int idStaff, String dataInizio) {
-			this.setIdCandidato(idCandidato);
-			this.setidIterSelettivo(idIterSelettivo);
-			this.setArgomentoCorso(argomentoCorso);
-			this.setValutazioneComunicazioni(valutazioneComunicazioni);
-			this.setValutazioneIntuitivita(valutazioneIntuitivita);
-			this.setValutazioneAttitudine(valutazioneAttitudine);
-			this.setValutazioneTeamWork(valutazioneTeamWork);
-			this.setOreTotali(oreTotali);
-			this.setIdStaff(idStaff);
-			this.setDataInizio(dataInizio);
-			
-		}
-		
-		public Corso(int idCorso, int idCandidato, int idIterSelettivo, String argomentoCorso,int valutazioneComunicazioni,int valutazioneIntuitivita, int valutazioneAttitudine, int valutazioneTeamWork, int oreTotali, int idStaff, String dataInizio) {
+		public Corso(int idCorso, int idCandidato, int idIterSelettivo,String argomentoCorso,int valutazioneComunicazioni,int valutazioneIntuitivita, int valutazioneAttitudine, int valutazioneTeamWork, int oreTotali, int idStaff, String dataInizio) {
 			this.setIdCorso(idCorso);
 			this.setIdCandidato(idCandidato);
 			this.setidIterSelettivo(idIterSelettivo);
@@ -129,8 +112,7 @@ public class Corso {
 		public void setOreTotali(int oreTotali) {
 			this.oreTotali = oreTotali;
 		}
-
-	
+		
 
 		
 
@@ -177,6 +159,7 @@ public class Corso {
 				return false;
 			if (idIterSelettivo != other.idIterSelettivo)
 				return false;
+			
 			if (idStaff != other.idStaff)
 				return false;
 			if (oreTotali != other.oreTotali)
@@ -194,11 +177,12 @@ public class Corso {
 
 			@Override
 		public String toString() {
-			return "Corso [idCorso=" + idCorso + ", idCandidato=" + idCandidato + ", idInsegnante="
-					+ ", idIterSelettivo=" + idIterSelettivo + ", argomentoCorso=" + argomentoCorso
+			return "Corso [idCorso=" + idCorso + ", idCandidato=" + idCandidato + ", idIterSelettivo=" + idIterSelettivo + ", argomentoCorso=" + argomentoCorso
 					+ ", valutazioneComunicazioni=" + valutazioneComunicazioni + ", valutazioneIntuitivita="
 					+ valutazioneIntuitivita + ", valutazioneAttitudine=" + valutazioneAttitudine + ", valutazioneTeamWork="
 					+ valutazioneTeamWork + ", oreTotali=" + oreTotali + ", idStaff=" + idStaff + "]";
 		}
+
+			
 }
 
