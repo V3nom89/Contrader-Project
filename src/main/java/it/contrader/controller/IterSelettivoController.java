@@ -59,7 +59,7 @@ public class IterSelettivoController implements Controller{
 				request.put("iterSelettivo", iterSelettivoDTO);
 				MainDispatcher.getInstance().callView(sub_package + "IterSelettivoRead", request);
 			} catch (Exception e) {
-				System.err.println("Errore nella lettura del'iterSelettivo con id <" + idIterSelettivo + ">");
+				System.err.println("Errore nella lettura del'Iter Selettivo con id <" + idIterSelettivo + ">");
 				e.printStackTrace();
 			}
 			break;
@@ -81,7 +81,7 @@ public class IterSelettivoController implements Controller{
 			
 						
 			//costruisce l'oggetto user da inserire
-			IterSelettivoDTO iterSelettivotoinsert = new IterSelettivoDTO(idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, dataTestOrale, valutazioneOrale);
+			IterSelettivoDTO iterSelettivotoinsert = new IterSelettivoDTO(idIterSelettivo, idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, dataTestOrale, valutazioneOrale);
 			//invoca il service
 			iterSelettivoService.insert(iterSelettivotoinsert);
 			request = new Request();
@@ -119,10 +119,10 @@ public class IterSelettivoController implements Controller{
 			dataTestOrale = request.get(IterSelettivoDAO.CONST.DATA_TEST_ORALE).toString(); 
 			valutazioneOrale = Integer.parseInt(request.get(IterSelettivoDAO.CONST.VALUTAZIONE_ORALE).toString());
 			//costruisce l'oggetto iterselettivo da inserire				
-			IterSelettivoDTO iterSelettivotoupdate = new IterSelettivoDTO(idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, dataTestOrale, valutazioneOrale);
-			iterSelettivotoupdate.setIdIterSelettivo(idIterSelettivo);
+			IterSelettivoDTO iterSelettivoToUpdate = new IterSelettivoDTO(idCandidato, idStaff, punteggioTotaleScritto, punteggioLogica, punteggioPhp, punteggioJava, punteggioHTML, punteggioInglese, dataTestScritto, dataTestOrale, valutazioneOrale);
+			iterSelettivoToUpdate.setIdIterSelettivo(idIterSelettivo);
 			//invoca il service
-			iterSelettivoService.update(iterSelettivotoupdate);
+			iterSelettivoService.update(iterSelettivoToUpdate);
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "IterSelettivoUpdate", request);
