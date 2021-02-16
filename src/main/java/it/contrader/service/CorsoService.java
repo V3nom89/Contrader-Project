@@ -1,12 +1,22 @@
 package it.contrader.service;
 
 import java.util.List;
-//import converter.CorsoConverter;
+
+
+import it.contrader.converter.CorsoConverter;
 import it.contrader.dao.CorsoDAO;
 import it.contrader.dto.CorsoDTO;
-import it.contrader.converter.CorsoConverter;
 
+/**
+ * 
+ * @author Vittorio, De Santis
+ *
+ *Grazie all'ereditarietÃ  mi basta specificare i tipi di questa classe per
+ *ereditare i metodi della clase AbstractService. Pertanto la classe risulta meno complicata
+ *da scrivere, facendoci risparmiare tempo e fatica!
+ */
 public class CorsoService {
+	
 	private CorsoDAO corsoDAO;
 	private CorsoConverter corsoConverter;
 	
@@ -18,31 +28,33 @@ public class CorsoService {
 	
 
 	public List<CorsoDTO> getAll() {
-		// Ottiene una lista di entit� e le restituisce convertendole in DTO
+		// Ottiene una lista di entitÃ  e le restituisce convertendole in DTO
 		return corsoConverter.toDTOList(corsoDAO.getAll());
 	}
 
 
-	public CorsoDTO read(int idCorso) {
-		// Ottiene un'entit� e la restituisce convertendola in DTO
-		return corsoConverter.toDTO(corsoDAO.read(idCorso));
+	public CorsoDTO read(int idcorso) {
+		// Ottiene un'entitÃ  e la restituisce convertendola in DTO
+		return corsoConverter.toDTO(corsoDAO.read(idcorso));
 	}
 
 
 	public boolean insert(CorsoDTO dto) {
-		// Converte un DTO in entit� e lo passa al DAO per l'inserimento
-		return corsoDAO.insert(corsoConverter.toEntity(dto));  //controllare dto tra parentesi
+		// Converte un DTO in entitÃ  e lo passa al DAO per l'inserimento
+		return corsoDAO.insert(corsoConverter.toEntity(dto));
 	}
 
 
 	public boolean update(CorsoDTO dto) {
-		// Converte un userDTO in entit� e lo passa allo userDAO per la modifica
-		return corsoDAO.update(corsoConverter.toEntity(dto));	//controllare dto tra parentesi
+		// Converte un userDTO in entitÃ  e lo passa allo userDAO per la modifica
+		return corsoDAO.update(corsoConverter.toEntity(dto));
 	}
 
 
-	public boolean delete(int idCorso) {
+	public boolean delete(int id) {
 		// Questo mtodo chiama direttamente il DAO
-		return corsoDAO.delete(idCorso);
+		return corsoDAO.delete(id);
 	}
+	
+
 }
