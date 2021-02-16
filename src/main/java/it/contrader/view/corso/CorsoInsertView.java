@@ -94,4 +94,3 @@ public class CorsoInsertView extends AbstractView{
 	}
 
 }
-
