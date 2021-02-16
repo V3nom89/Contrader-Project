@@ -44,8 +44,6 @@ public class IterSelettivoUpdateView extends AbstractView {
 	@Override
 	public void showOptions() {
 		try {
-			System.out.println("Inserisci id dell'iter selettivo:");
-			idIterSelettivo = getInt();
 			System.out.println("Inserisci id del candidato:");
 			idCandidato = getInt();
 			System.out.println("Inserisci id del membro dello staff che segue l'iter selettivo:");
@@ -67,7 +65,9 @@ public class IterSelettivoUpdateView extends AbstractView {
 			System.out.println("Inserisci la data del colloquio orale:");
 			dataTestOrale = getInput();
 			System.out.println("Inserisci il punteggio della valutazione del colloquio orale del candidato:");
-			punteggioLogica = getInt();
+			valutazioneOrale = getInt();
+			System.out.println("Inserisci id dell'iter selettivo da modificare:");
+			idIterSelettivo = getInt();
 		} catch (Exception e) {
 			e.printStackTrace();
 
