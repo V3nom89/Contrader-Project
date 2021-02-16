@@ -1,6 +1,7 @@
 package it.contrader.view.corso;
 
 import it.contrader.controller.Request;
+import it.contrader.dao.CorsoDAO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
@@ -10,7 +11,6 @@ public class CorsoInsertView extends AbstractView{
 	
 	private int idCorso;
 	private int idCandidato;
-	private int idInsegnante;
 	private int idIterSelettivo;
 	private String argomentoCorso;
 	private int valutazioneComunicazioni;
@@ -27,7 +27,7 @@ public class CorsoInsertView extends AbstractView{
 	}
 	
 	/**
-	 * Se la request non è nulla (ovvero se si arriva dalla mode INSERT del controller) mostra
+	 * Se la request non Ã¨ nulla (ovvero se si arriva dalla mode INSERT del controller) mostra
 	 * l'esito dell'operazione
 	 */
 	@Override
@@ -47,8 +47,6 @@ public class CorsoInsertView extends AbstractView{
 			idCorso = getInt();
 			System.out.println("Inserisci l'id del Candidato:");
 			idCandidato = getInt();
-			System.out.println("Inserisci l'id dell'Insegnante:");
-			idInsegnante = getInt();
 			System.out.println("Inserisci l'id dell'Iter Selettivo:");
 			idIterSelettivo = getInt();
 			System.out.println("Inserisci l'argomentoCorso del corso:");
@@ -66,7 +64,7 @@ public class CorsoInsertView extends AbstractView{
 			System.out.println("Inserisci l'id dello Staff che segue il corso:");
 			idStaff = getInt();
 			System.out.println("Inserisci la data dell'Inizio del corso:");
-			argomentoCorso = getInput();
+			dataInizio= getInput();
 	}
 
 	/**
@@ -75,18 +73,19 @@ public class CorsoInsertView extends AbstractView{
 	@Override
 	public void submit() {
 		request = new Request();
-		request.put("idCorso", idCorso);
-		request.put("idCandidato", idCandidato);
-		request.put("idInsegnante", idInsegnante);
-		request.put("idIterSelettivo", idIterSelettivo);
-		request.put("argomentoCorso", argomentoCorso);
-		request.put("valutazioneComunicazioni", valutazioneComunicazioni);
-		request.put("valutazioneIntuitivita", valutazioneIntuitivita);
-		request.put("valutazioneAttitudine", valutazioneAttitudine);
-		request.put("valutazioneTeamWork", valutazioneTeamWork);
-		request.put("oreTotali", oreTotali);
-		request.put("idStaff", idStaff);
-		request.put("dataInizio", dataInizio);
+		
+		
+		request.put(CorsoDAO.CONST.ID_STAFF, idCorso);
+		request.put(CorsoDAO.CONST.ID_CANDIDATO, idCandidato);
+		request.put(CorsoDAO.CONST.ID_ITERSELETTIVO, idIterSelettivo);
+		request.put(CorsoDAO.CONST.ARGOMENTO_CORSO, argomentoCorso);
+		request.put(CorsoDAO.CONST.VALUTAZIONE_COMUNICAZIONI, valutazioneComunicazioni);
+		request.put(CorsoDAO.CONST.VALUTAZIONE_INTUITIVITA, valutazioneIntuitivita);
+		request.put(CorsoDAO.CONST.VALUTAZIONE_ATTITUDINE, valutazioneAttitudine);
+		request.put(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK, valutazioneTeamWork);
+		request.put(CorsoDAO.CONST.ORETOTALI, oreTotali);
+		request.put(CorsoDAO.CONST.ID_STAFF, idStaff);
+		request.put(CorsoDAO.CONST.DATA_INIZIO, dataInizio);
 
 
 		request.put("mode", mode);
@@ -95,3 +94,4 @@ public class CorsoInsertView extends AbstractView{
 	}
 
 }
+
