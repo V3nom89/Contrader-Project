@@ -15,20 +15,6 @@ public class CorsoDTO {
 	private String dataInizio;
 	
 
-       //ho tolto il costruttore inutile
-	public CorsoDTO(int idCoros,int idCandidato, int idIterSelettivo,String argomentoCorso,int valutazioneComunicazioni,int valutazioneIntuitivita, int valutazioneAttitudine, int valutazioneTeamWork, int oreTotali, int idStaff, String dataInizio) {
-		this.setIdCorso(idCoros);
-		this.setIdCandidato(idCandidato);
-		this.setIdIterSelettivo(idIterSelettivo);
-		this.setArgomentoCorso(argomentoCorso);
-		this.setValutazioneComunicazioni(valutazioneComunicazioni);
-		this.setValutazioneIntuitivita(valutazioneIntuitivita);
-		this.setValutazioneAttitudine(valutazioneAttitudine);
-		this.setValutazioneTeamWork(valutazioneTeamWork);
-		this.setOreTotali(oreTotali);
-		this.setIdStaff(idStaff);
-		this.setDataInizio(dataInizio);
-	}
 	
 	
 	private void setDataInizio(String dataInizio) {
@@ -121,6 +107,27 @@ public class CorsoDTO {
 		this.oreTotali = oreTotali;
 	}
 
-
+	public CorsoDTO(int idCorso,int idCandidato, int idIterSelettivo, String argomentoCorso,int valutazioneComunicazioni,int valutazioneIntuitivita, int valutazioneAttitudine, int valutazioneTeamWork, int oreTotali, int idStaff, String dataInizio) {
+		this.setIdCorso(idCorso);
+		this.setIdCandidato(idCandidato);
+		this.setIdIterSelettivo(idIterSelettivo);
+		this.setArgomentoCorso(argomentoCorso);
+		this.setValutazioneComunicazioni(valutazioneComunicazioni);
+		this.setValutazioneIntuitivita(valutazioneIntuitivita);
+		this.setValutazioneAttitudine(valutazioneAttitudine);
+		this.setValutazioneTeamWork(valutazioneTeamWork);
+		this.setOreTotali(oreTotali);
+		this.setIdStaff(idStaff);
+		this.setDataInizio(dataInizio);
+	}
+	
+	@Override
+	public String toString() {
+		// "IdStaff\tnome\tcognome\temail\tposizione\tdata_assunzione\tnumero_telefono\tsede\tore_settimanali\tcodiceFIscal"
+		return idCorso + "\t" + idStaff + "\t" + idCandidato + "\t" + idIterSelettivo
+				+ "\t" + argomentoCorso + "\t" + valutazioneComunicazioni + "\t"
+				+ valutazioneIntuitivita + "\t" + valutazioneAttitudine + "\t" + valutazioneTeamWork + "\t"
+				+ oreTotali +"\t"+ dataInizio;
+	}
 	
 }
