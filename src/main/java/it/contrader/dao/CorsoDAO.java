@@ -7,6 +7,7 @@ import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.Corso;
 
 public class CorsoDAO {
+	//ho aggiunto questo interface
 	public static interface CONST {
 		String ID_CORSO = "idCorso";
 		String ID_CANDIDATO = "idCandidato";
@@ -99,9 +100,10 @@ public class CorsoDAO {
 			preparedStatement.setInt(1, idCorso);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			int  idCandidato, idIterSelettivo, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff;
+			int idCorso1, idCandidato, idIterSelettivo, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff;
 			String argomentoCorso, dataInizio = null;
 
+			idCorso1 = resultSet.getInt("idCorso1");
 			idCandidato = resultSet.getInt("idCandidato");
 			idIterSelettivo = resultSet.getInt("idIterSelettivo");
 			valutazioneComunicazioni = resultSet.getInt("valutazioneComunicazioni");
@@ -114,7 +116,7 @@ public class CorsoDAO {
 			argomentoCorso = resultSet.getString("dataInizio");
 
 						
-			Corso corso = new Corso(idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
+			Corso corso = new Corso(idCorso1,idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
 			corso.setIdCorso(resultSet.getInt("idCorso"));
 			
 			return corso;
@@ -135,6 +137,10 @@ public class CorsoDAO {
 		if (!corsoRead.equals(corsoToUpdate)) {
 			try {
 				// Fill the userToUpdate object
+				if (corsoToUpdate.getIdCorso() == 0) {
+					corsoToUpdate.setIdCorso(corsoRead.getIdCorso());
+				}
+			
 				if (corsoToUpdate.getIdCandidato() == 0) {
 					corsoToUpdate.setIdCandidato(corsoRead.getIdCandidato());
 				}
@@ -178,16 +184,17 @@ public class CorsoDAO {
 				
 				// Update the corso
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setInt(1, corsoToUpdate.getIdCandidato());
-				preparedStatement.setInt(2, corsoToUpdate.getIdIterSelettivo());
-				preparedStatement.setString(3, corsoToUpdate.getArgomentoCorso());
-				preparedStatement.setInt(4, corsoToUpdate.getValutazioneComunicazioni());
-				preparedStatement.setInt(5, corsoToUpdate.getValutazioneIntuitivita());
-				preparedStatement.setInt(6, corsoToUpdate.getValutazioneAttitudine());
-				preparedStatement.setInt(7, corsoToUpdate.getValutazioneTeamWork());
-				preparedStatement.setInt(8, corsoToUpdate.getOreTotali());
-				preparedStatement.setInt(9, corsoToUpdate.getIdStaff());
-				preparedStatement.setString(10, corsoToUpdate.getDataInizio());
+				preparedStatement.setInt(1, corsoToUpdate.getIdCorso());
+				preparedStatement.setInt(2, corsoToUpdate.getIdCandidato());
+				preparedStatement.setInt(3, corsoToUpdate.getIdIterSelettivo());
+				preparedStatement.setString(4, corsoToUpdate.getArgomentoCorso());
+				preparedStatement.setInt(5, corsoToUpdate.getValutazioneComunicazioni());
+				preparedStatement.setInt(6, corsoToUpdate.getValutazioneIntuitivita());
+				preparedStatement.setInt(7, corsoToUpdate.getValutazioneAttitudine());
+				preparedStatement.setInt(8, corsoToUpdate.getValutazioneTeamWork());
+				preparedStatement.setInt(9, corsoToUpdate.getOreTotali());
+				preparedStatement.setInt(10, corsoToUpdate.getIdStaff());
+				preparedStatement.setString(11, corsoToUpdate.getDataInizio());
 
 			
 				
