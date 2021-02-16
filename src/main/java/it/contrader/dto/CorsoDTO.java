@@ -15,11 +15,9 @@ public class CorsoDTO {
 	private String dataInizio;
 	
 
-	public CorsoDTO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public CorsoDTO(int idCandidato, int idIterSelettivo, String argomentoCorso,int valutazioneComunicazioni,int valutazioneIntuitivita, int valutazioneAttitudine, int valutazioneTeamWork, int oreTotali, int idStaff, String dataInizio) {
+       //ho tolto il costruttore inutile
+	public CorsoDTO(int idCoros,int idCandidato, int idIterSelettivo,String argomentoCorso,int valutazioneComunicazioni,int valutazioneIntuitivita, int valutazioneAttitudine, int valutazioneTeamWork, int oreTotali, int idStaff, String dataInizio) {
+		this.setIdCorso(idCoros);
 		this.setIdCandidato(idCandidato);
 		this.setIdIterSelettivo(idIterSelettivo);
 		this.setArgomentoCorso(argomentoCorso);
@@ -33,8 +31,8 @@ public class CorsoDTO {
 	}
 	
 	
-	private void setDataInizio(String dataInizio2) {
-		// TODO Auto-generated method stub
+	private void setDataInizio(String dataInizio) {
+		this.dataInizio=dataInizio;
 		
 	}
 	
@@ -47,7 +45,7 @@ public class CorsoDTO {
 	}
 
 	private void setIdStaff(int idStaff) {
-		// TODO Auto-generated method stub
+		this.idStaff=idStaff;
 		
 	}
 
@@ -122,4 +120,7 @@ public class CorsoDTO {
 	public void setOreTotali(int oreTotali) {
 		this.oreTotali = oreTotali;
 	}
+
+
+	
 }
