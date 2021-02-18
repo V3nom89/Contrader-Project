@@ -45,25 +45,25 @@ public class CorsoInsertView extends AbstractView{
 	public void showOptions() {
 			System.out.println("Inserisci l'id del Corso:");
 			idCorso = getInt();
-			System.out.println("Inserisci l'id del Candidato:");
+			System.out.println("Inserisci l'id del Candidato che segue il corso:");
 			idCandidato = getInt();
-			System.out.println("Inserisci l'id dell'Iter Selettivo:");
+			System.out.println("Inserisci l'id dell'Iter Selettivo precedente al corso:");
 			idIterSelettivo = getInt();
-			System.out.println("Inserisci l'argomentoCorso del corso:");
+			System.out.println("Inserisci l'argomento del corso:");
 			argomentoCorso = getInput();
-			System.out.println("Inserisci la valutazione delle Comunicazioni dell'utente:");
+			System.out.println("Inserisci la valutazione delle Comunicazioni del candidato:");
 			valutazioneComunicazioni = getInt();
-			System.out.println("Inserisci la valutazione dell'Intuitivita dell'utente:");
+			System.out.println("Inserisci la valutazione dell'Intuitivita del candidato:");
 			valutazioneIntuitivita = getInt();
-			System.out.println("Inserisci la valutazione dell'Attitudine dell'utente:");
+			System.out.println("Inserisci la valutazione dell'Attitudine del candidato:");
 			valutazioneAttitudine = getInt();
-			System.out.println("Inserisci la valutazione del TeamWork dell'utente:");
+			System.out.println("Inserisci la valutazione del TeamWork del candidato:");
 			valutazioneTeamWork = getInt();
 			System.out.println("Inserisci le ore Totali del corso:");
 			oreTotali = getInt();
-			System.out.println("Inserisci l'id dello Staff che segue il corso:");
+			System.out.println("Inserisci l'id del membro dello Staff che segue il corso:");
 			idStaff = getInt();
-			System.out.println("Inserisci la data dell'Inizio del corso:");
+			System.out.println("Inserisci la data di Inizio del corso:");
 			dataInizio= getInput();
 	}
 
@@ -74,8 +74,7 @@ public class CorsoInsertView extends AbstractView{
 	public void submit() {
 		request = new Request();
 		
-		
-		request.put(CorsoDAO.CONST.ID_STAFF, idCorso);
+		request.put(CorsoDAO.CONST.ID_CORSO, idCorso);
 		request.put(CorsoDAO.CONST.ID_CANDIDATO, idCandidato);
 		request.put(CorsoDAO.CONST.ID_ITERSELETTIVO, idIterSelettivo);
 		request.put(CorsoDAO.CONST.ARGOMENTO_CORSO, argomentoCorso);

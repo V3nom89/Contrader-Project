@@ -46,7 +46,7 @@ public class IterSelettivoInsertView extends AbstractView{
 	public void showOptions() {
 			System.out.println("Inserisci l'ID dell'IterSelettivo:");
 			idIterSelettivo = getInt();
-			System.out.println("Inserisci l'ID del candidato:");
+			System.out.println("Inserisci l'ID del Candidato:");
 			idCandidato = getInt();
 			System.out.println("Inserisci l'ID del membro dello staff che ha seguito l'iter selettivo:");
 			idStaff = getInt();

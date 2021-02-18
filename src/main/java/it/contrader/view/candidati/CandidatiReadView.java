@@ -8,9 +8,9 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
 
 public class CandidatiReadView extends AbstractView {
-	private Request request;
-
+	
 	private int idCandidati;
+	private Request request;
 	private final String mode = "READ";
 	
 	public CandidatiReadView() {
@@ -20,12 +20,12 @@ public class CandidatiReadView extends AbstractView {
 		if (request != null) {
 			CandidatiDTO candidati = (CandidatiDTO) request.get("candidati");
 			System.out.println(candidati);
-			MainDispatcher.getInstance().callView("candidati", null);
+			MainDispatcher.getInstance().callView("Candidati", null);
 		}
 	}
 	@Override
 	public void showOptions() {
-		System.out.println("Inserisci l'ID dell'utente:");
+		System.out.println("Inserisci l'ID del Candidato:");
 		idCandidati = Integer.parseInt(getInput());
 	}
 
@@ -37,7 +37,7 @@ public class CandidatiReadView extends AbstractView {
 		request = new Request();
 		request.put(CandidatiDAO.CONST.ID_CANDIDATI, idCandidati);
 		request.put("mode", mode);
-		MainDispatcher.getInstance().callAction("candidati", "doControl", request);
+		MainDispatcher.getInstance().callAction("Candidati", "doControl", request);
 	}
 
 

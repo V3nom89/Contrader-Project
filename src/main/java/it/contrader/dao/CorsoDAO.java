@@ -3,6 +3,7 @@ package it.contrader.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import it.contrader.main.ConnectionSingleton;
 import it.contrader.model.Corso;
 
@@ -83,40 +84,39 @@ public class CorsoDAO {
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return false;
 			
 		}
 
 	}
 
-	public Corso read(int idCorso) {
+	public Corso read(int idcorso) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 
 
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1, idCorso);
+			preparedStatement.setInt(1, idcorso);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			int idCorso1, idCandidato, idIterSelettivo, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff;
-			String argomentoCorso, dataInizio = null;
+			//int idCorso1, idCandidato, idIterSelettivo, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff;
+			//String argomentoCorso, dataInizio = null;
 
-			idCorso1 = resultSet.getInt("idCorso1");
-			idCandidato = resultSet.getInt("idCandidato");
-			idIterSelettivo = resultSet.getInt("idIterSelettivo");
-			valutazioneComunicazioni = resultSet.getInt("valutazioneComunicazioni");
-			valutazioneIntuitivita = resultSet.getInt("valutazioneIntuitivita");
-			valutazioneAttitudine = resultSet.getInt("valutazioneAttitudine");
-			valutazioneTeamWork = resultSet.getInt("valutazioneTeamWork");
-			oreTotali = resultSet.getInt("oreTotali");
-			idStaff = resultSet.getInt("idStaff");
-			argomentoCorso = resultSet.getString("argomentoCorso");
-			argomentoCorso = resultSet.getString("dataInizio");
-
+			int idCorso = resultSet.getInt(CONST.ID_CORSO);
+			int idCandidato = resultSet.getInt(CONST.ID_CANDIDATO);
+			int idIterSelettivo = resultSet.getInt(CONST.ID_ITERSELETTIVO);
+			String argomentoCorso = resultSet.getString(CONST.ARGOMENTO_CORSO);
+			int valutazioneComunicazioni = resultSet.getInt(CONST.VALUTAZIONE_COMUNICAZIONI);
+			int valutazioneIntuitivita = resultSet.getInt(CONST.VALUTAZIONE_INTUITIVITA);
+			int valutazioneAttitudine = resultSet.getInt(CONST.VALUTAZIONE_ATTITUDINE);
+			int valutazioneTeamWork = resultSet.getInt(CONST.VALUTAZIONE_TEAMWORK);
+			int oreTotali = resultSet.getInt(CONST.ORETOTALI);
+			int idStaff = resultSet.getInt(CONST.ID_STAFF);
+			String dataInizio = resultSet.getString(CONST.DATA_INIZIO);
 						
-			Corso corso = new Corso(idCorso1,idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
-			corso.setIdCorso(resultSet.getInt("idCorso"));
+			Corso corso = new Corso(idCorso,idCandidato, idIterSelettivo, argomentoCorso, valutazioneComunicazioni, valutazioneIntuitivita, valutazioneAttitudine, valutazioneTeamWork, oreTotali, idStaff, dataInizio);
+			corso.setIdCorso(resultSet.getInt(idCorso));
 			
 			return corso;
 		} catch (SQLException e) {
@@ -182,18 +182,18 @@ public class CorsoDAO {
 
 				
 				// Update the corso
-				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setInt(1, corsoToUpdate.getIdCorso());
-				preparedStatement.setInt(2, corsoToUpdate.getIdCandidato());
-				preparedStatement.setInt(3, corsoToUpdate.getIdIterSelettivo());
-				preparedStatement.setString(4, corsoToUpdate.getArgomentoCorso());
-				preparedStatement.setInt(5, corsoToUpdate.getValutazioneComunicazioni());
-				preparedStatement.setInt(6, corsoToUpdate.getValutazioneIntuitivita());
-				preparedStatement.setInt(7, corsoToUpdate.getValutazioneAttitudine());
-				preparedStatement.setInt(8, corsoToUpdate.getValutazioneTeamWork());
-				preparedStatement.setInt(9, corsoToUpdate.getOreTotali());
-				preparedStatement.setInt(10, corsoToUpdate.getIdStaff());
-				preparedStatement.setString(11, corsoToUpdate.getDataInizio());
+				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);			
+				preparedStatement.setInt(1, corsoToUpdate.getIdCandidato());
+				preparedStatement.setInt(2, corsoToUpdate.getIdIterSelettivo());
+				preparedStatement.setString(3, corsoToUpdate.getArgomentoCorso());
+				preparedStatement.setInt(4, corsoToUpdate.getValutazioneComunicazioni());
+				preparedStatement.setInt(5, corsoToUpdate.getValutazioneIntuitivita());
+				preparedStatement.setInt(6, corsoToUpdate.getValutazioneAttitudine());
+				preparedStatement.setInt(7, corsoToUpdate.getValutazioneTeamWork());
+				preparedStatement.setInt(8, corsoToUpdate.getOreTotali());
+				preparedStatement.setInt(9, corsoToUpdate.getIdStaff());
+				preparedStatement.setString(10, corsoToUpdate.getDataInizio());
+				preparedStatement.setInt(11, corsoToUpdate.getIdCorso());
 
 			
 				
@@ -204,6 +204,7 @@ public class CorsoDAO {
 					return false;
 
 			} catch (SQLException e) {
+				e.printStackTrace();
 				return false;
 			}
 		}

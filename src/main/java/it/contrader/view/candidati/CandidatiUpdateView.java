@@ -13,7 +13,7 @@ public class CandidatiUpdateView  extends AbstractView {
 	private String cognome;
 	private String email;
 	private String luogoProvenienza;
-	private int numero_telefono;
+	private int numeroTelefono;
 	private String titoloStudio;
 	private String titoloLaurea;
 	private String dataCandidatura;
@@ -43,38 +43,39 @@ public class CandidatiUpdateView  extends AbstractView {
 	@Override
 	public void showOptions() {
 		try {
-			System.out.println("Inserisci idCandidati dell'utente:");
-			idCandidati = getInt();
-			System.out.println("Inserisci idStaff dell'utente:");
+
+			System.out.println("Inserisci l'id del membro dello staff che segue il Candidato:");
 			idStaff = getInt();
-			System.out.println("Inserisci nome dell'utente:");
+			System.out.println("Inserisci il nome del Candidato:");
 			nome = getInput();
-			System.out.println("Inserisci cognome dell'utente:");
+			System.out.println("Inserisci il cognome del Candidato:");
 			cognome = getInput();
-			System.out.println("Inserisci email dell'utente:");
+			System.out.println("Inserisci l'email del Candidato:");
 			email = getInput();
-			System.out.println("Inserisci luogo provenienza dell'utente:");
+			System.out.println("Inserisci il luogo di provenienza del Candidato:");
 			luogoProvenienza = getInput();
-			System.out.println("Inserisci numero di telefono dell'utente:");
-			numero_telefono = getInt();
-			System.out.println("Inserisci titoloStudio dell'utente:");
+			System.out.println("Inserisci il numero di telefono del Candidato:");
+			numeroTelefono = getInt();
+			System.out.println("Inserisci il titolo di studio del Candidato:");
 			titoloStudio = getInput();
-			System.out.println("Inserisci titoloLaurea dell'utente:");
+			System.out.println("Inserisci il titolo di laurea del Candidato:");
 			titoloLaurea = getInput();
-			System.out.println("Inserisci dataCandidatura dell'utente:");
+			System.out.println("Inserisci la data di candidatura del Candidato:");
 			dataCandidatura = getInput();
-			System.out.println("Inserisci rangeCandidatura dell'utente:");
+			System.out.println("Inserisci il range della data di Candidatura del Candidato:");
 			rangeCandidatura = getInput();
 			System.out.println("Ha gia' fatto il colloquio conoscitivo ?");
 			colloquioConoscitivo = getBoolean();
-			System.out.println("Inserisci la modalita' di candidatura dell'utente:");
+			System.out.println("Inserisci la modalita' di candidatura del Candidato:");
 			candidatiTramite = getInput();
 			System.out.println("Inserisci se l'utente e' idoneo:");
 			idoneita = getBoolean();
-			System.out.println("Inserisci codice fiscale dell'utente:");
+			System.out.println("Inserisci il codice fiscale del Candidato:");
 			codiceFiscale = getInput();
-			System.out.println("Inserisci usertype dell'utente:");
+			System.out.println("Inserisci l'usertype del Candidato:");
 			userType = getInput();
+			System.out.println("Inserisci l'id del Candidato che intendi aggiornare:");
+			idCandidati = getInt();
 		
 		} catch (Exception e) {
 
@@ -94,7 +95,7 @@ public class CandidatiUpdateView  extends AbstractView {
 		request.put(CandidatiDAO.CONST.COGNOME, cognome);
 		request.put(CandidatiDAO.CONST.EMAIL, email);
 		request.put(CandidatiDAO.CONST.PROVENIENZA, luogoProvenienza);
-		request.put(CandidatiDAO.CONST.TELEFONO, numero_telefono);
+		request.put(CandidatiDAO.CONST.TELEFONO, numeroTelefono);
 		request.put(CandidatiDAO.CONST.TITOLO_STUDIO, titoloStudio);
 		request.put(CandidatiDAO.CONST.TITOLO_LAUREA, titoloLaurea);
 		request.put(CandidatiDAO.CONST.DATA_CANDIDATURA, dataCandidatura);

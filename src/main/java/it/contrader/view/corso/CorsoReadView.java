@@ -1,96 +1,58 @@
 package it.contrader.view.corso;
 
 import it.contrader.controller.Request;
-import it.contrader.dao.CorsoDAO;
+
+import it.contrader.dto.CorsoDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.AbstractView;
+import it.contrader.dao.CorsoDAO;
 
-public class CorsoInsertView extends AbstractView{
-
-	private Request request;
+public class CorsoReadView extends AbstractView{
 	
 	private int idCorso;
-	private int idCandidato;
-	private int idIterSelettivo;
-	private String argomentoCorso;
-	private int valutazioneComunicazioni;
-	private int valutazioneIntuitivita;
-	private int valutazioneAttitudine;
-	private int valutazioneTeamWork;
-	private int oreTotali;
-	private int idStaff;
-	private String dataInizio;
+	private Request request;
+	private final String mode = "READ";
 
-	private final String mode = "INSERT";
-
-	public CorsoInsertView() {
+	public CorsoReadView() {
 	}
-	
+
 	/**
-	 * Se la request non Ã¨ nulla (ovvero se si arriva dalla mode INSERT del controller) mostra
-	 * l'esito dell'operazione
+	 * Se la request è null (ovvero quando arriva dal controller con mode GETCHOICE e choice L 
+	 * il metodo è vuoto.
+	 * 
+	 * Altrimenti se arriva con uno user nella request (ovvero quando arriva
+	 * dal controller con mode READ) mostra lo user. In questo caso torna alla UserView senza eseguire
+	 * gli altri due metodi
 	 */
 	@Override
 	public void showResults(Request request) {
-		if (request!=null) {
-			System.out.println("Inserimento andato a buon fine.\n");
+		if (request != null) {
+			CorsoDTO corso = (CorsoDTO) request.get("corso");
+			System.out.println(corso);
 			MainDispatcher.getInstance().callView("Corso", null);
 		}
 	}
 
+	
 	/**
-	 * Chiede all'utente di inserire gli attributi dell'utente da inserire
+	 * chiede all'utente di inserire l'id dell'utente da leggere
 	 */
 	@Override
 	public void showOptions() {
-			System.out.println("Inserisci l'id del Corso:");
-			idCorso = getInt();
-			System.out.println("Inserisci l'id del Candidato:");
-			idCandidato = getInt();
-			System.out.println("Inserisci l'id dell'Iter Selettivo:");
-			idIterSelettivo = getInt();
-			System.out.println("Inserisci l'argomentoCorso del corso:");
-			argomentoCorso = getInput();
-			System.out.println("Inserisci la valutazione delle Comunicazioni dell'utente:");
-			valutazioneComunicazioni = getInt();
-			System.out.println("Inserisci la valutazione dell'Intuitivita dell'utente:");
-			valutazioneIntuitivita = getInt();
-			System.out.println("Inserisci la valutazione dell'Attitudine dell'utente:");
-			valutazioneAttitudine = getInt();
-			System.out.println("Inserisci la valutazione del TeamWork dell'utente:");
-			valutazioneTeamWork = getInt();
-			System.out.println("Inserisci le ore Totali del corso:");
-			oreTotali = getInt();
-			System.out.println("Inserisci l'id dello Staff che segue il corso:");
-			idStaff = getInt();
-			System.out.println("Inserisci la data dell'Inizio del corso:");
-			dataInizio= getInput();
+		System.out.println("Inserisci l'ID del corso:");
+		idCorso = Integer.parseInt(getInput());
 	}
 
 	/**
-	 * Impacchetta la request con i dati inseriti nel metodo showOption()
+	 * impacchetta una request con l'id dell'utente da leggere e la manda al controller tramite il Dispatcher
 	 */
 	@Override
 	public void submit() {
 		request = new Request();
-		
-		
-		request.put(CorsoDAO.CONST.ID_STAFF, idCorso);
-		request.put(CorsoDAO.CONST.ID_CANDIDATO, idCandidato);
-		request.put(CorsoDAO.CONST.ID_ITERSELETTIVO, idIterSelettivo);
-		request.put(CorsoDAO.CONST.ARGOMENTO_CORSO, argomentoCorso);
-		request.put(CorsoDAO.CONST.VALUTAZIONE_COMUNICAZIONI, valutazioneComunicazioni);
-		request.put(CorsoDAO.CONST.VALUTAZIONE_INTUITIVITA, valutazioneIntuitivita);
-		request.put(CorsoDAO.CONST.VALUTAZIONE_ATTITUDINE, valutazioneAttitudine);
-		request.put(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK, valutazioneTeamWork);
-		request.put(CorsoDAO.CONST.ORETOTALI, oreTotali);
-		request.put(CorsoDAO.CONST.ID_STAFF, idStaff);
-		request.put(CorsoDAO.CONST.DATA_INIZIO, dataInizio);
-
-
+		request.put(CorsoDAO.CONST.ID_CORSO, idCorso);
 		request.put("mode", mode);
-		
 		MainDispatcher.getInstance().callAction("Corso", "doControl", request);
 	}
+
 
 }

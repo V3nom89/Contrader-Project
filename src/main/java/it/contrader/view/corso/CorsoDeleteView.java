@@ -31,7 +31,7 @@ public class CorsoDeleteView extends AbstractView{
 	 */
 	@Override
 	public void showOptions() {
-			System.out.println("Inserisci id del corso:");
+			System.out.println("Inserisci id del corso da cancellare:");
 			idCorso = Integer.parseInt(getInput());
 
 	}

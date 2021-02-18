@@ -11,21 +11,21 @@ public class CandidatiConverter {
 		 * Crea un oggetto di tipo UserDTO e lo riempie con i campi del parametro user di tipo User.
 		 * Notare l'uso del metodo get() per ottenere il valore dell'attributo-
 		 */
-		public CandidatiDTO toDTO(Candidati c) {
-			CandidatiDTO  candidatiDto = new CandidatiDTO(c.getIdStaff(), c.getNome(),c.getCognome(),c.getEmail(),c.getLuogoProvenienza(), c.getNumeroTelefono(),
-					c.getTitoloStudio(), c.getTitoloLaurea(),c.getDataCandidatura(), c.getRangeCandidatura(), c.getColloquioConoscitivo(),
-					c.getCandidatiTramite(),c.getIdoneita(),c.getCodiceFiscale(),c.getUserType());
-			return candidatiDto;
+		public CandidatiDTO toDTO(Candidati candidati) {
+			CandidatiDTO  candidatiDTO = new CandidatiDTO(candidati.getIdCandidati(), candidati.getIdStaff(), candidati.getNome(),candidati.getCognome(),candidati.getEmail(),candidati.getLuogoProvenienza(), candidati.getNumeroTelefono(),
+					candidati.getTitoloStudio(), candidati.getTitoloLaurea(),candidati.getDataCandidatura(), candidati.getRangeCandidatura(), candidati.isColloquioConoscitivo(),
+					candidati.getCandidatiTramite(),candidati.isIdoneita(),candidati.getCodiceFiscale(),candidati.getUserType());
+			return candidatiDTO;
 		}
 
 		/**
 		 * Crea un oggetto di tipo User e lo riempie con i campi del parametro user di tipo UserDTO.
 		 * Notare l'uso del metodo get() per ottenere il valore dell'attributo-
 		 */
-		public Candidati toEntity(CandidatiDTO c) {
-			Candidati candidati = new Candidati(c.getIdStaff(), c.getNome(),c.getCognome(),c.getEmail(),c.getLuogoProvenienza(), c.getNumeroTelefono(),
-					c.getTitoloStudio(), c.getTitoloLaurea(),c.getDataCandidatura(), c.getRangeCandidatura(), c.getColloquioConoscitivo(),
-					c.getCandidatiTramite(),c.getIdoneita(),c.getCodiceFiscale(),c.getUserType());
+		public Candidati toEntity(CandidatiDTO candidatiDTO) {
+			Candidati candidati = new Candidati(candidatiDTO.getIdCandidati(),candidatiDTO.getIdStaff(), candidatiDTO.getNome(),candidatiDTO.getCognome(),candidatiDTO.getEmail(),candidatiDTO.getLuogoProvenienza(), candidatiDTO.getNumeroTelefono(),
+					candidatiDTO.getTitoloStudio(), candidatiDTO.getTitoloLaurea(),candidatiDTO.getDataCandidatura(), candidatiDTO.getRangeCandidatura(), candidatiDTO.isColloquioConoscitivo(),
+					candidatiDTO.getCandidatiTramite(),candidatiDTO.isIdoneita(),candidatiDTO.getCodiceFiscale(),candidatiDTO.getUserType());
 			return candidati;
 		}
 		

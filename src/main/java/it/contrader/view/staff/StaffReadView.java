@@ -39,7 +39,7 @@ public class StaffReadView extends AbstractView{
 	 */
 	@Override
 	public void showOptions() {
-		System.out.println("Inserisci l'ID del menbre di staff:");
+		System.out.println("Inserisci l'ID del membro dello staff:");
 		idStaff = Integer.parseInt(getInput());
 	}
 

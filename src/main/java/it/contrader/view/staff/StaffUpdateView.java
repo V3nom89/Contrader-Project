@@ -42,28 +42,27 @@ public class StaffUpdateView extends AbstractView{
 	 */
 	@Override
 	public void showOptions() {
-		try {
-			System.out.println("Inserisci idStaff dell'utente:");
-			idStaff = getInt();
-			System.out.println("Inserisci nome del membro dello staff che ha seguito il corso:");
+		try {		
+			System.out.println("Inserisci nome del membro dello staff:");
 			nome= getInput();
-			System.out.println("Inserisci cognome del membro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci cognome del membro dello staff:");
 			cognome = getInput();
-			System.out.println("Inserisci l'email del menbro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci l'email del menbro dello staff:");
 			email= getInput();
-			System.out.println("Inserisci la posizione  del membro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci la posizione  del membro dello staff:");
 			posizione = getInput();
-			System.out.println("Inserisci numero di telefono del membro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci il numero di telefono del membro dello staff:");
 			numeroTelefono = getInt();
-			System.out.println("Inserisci dataAssunzione del membro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci la data di assunzione del membro dello staff:");
 			dataAssunzione = getInput();
-			System.out.println("Inserisci sede del membro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci la sede del membro dello staff:");
 			sede = getInput();
-			System.out.println("Inserisci oreSettimanali del membro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci le ore settimanali del membro dello staff:");
 			oreSettimanali = getInt();
-			System.out.println("Inserisci codiceFiscale del membro dello staff che ha seguito il corso:");
+			System.out.println("Inserisci il codice fiscale del membro dello staff:");
 			codiceFiscale = getInput();
-			
+			System.out.println("Inserisci l'id del membro dello staff da modificare:");
+			idStaff = getInt();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

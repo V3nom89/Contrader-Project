@@ -67,6 +67,7 @@ public class IterSelettivoController implements Controller{
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
 			try {
+			idIterSelettivo = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_ITER_SELETTIVO).toString());
 			idCandidato = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_CANDIDATO).toString());
 			idStaff = Integer.parseInt(request.get(IterSelettivoDAO.CONST.ID_STAFF).toString());
 			punteggioTotaleScritto = Integer.parseInt(request.get(IterSelettivoDAO.CONST.PUNTEGGIO_TOTALE_SCRITTO).toString());

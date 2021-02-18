@@ -18,12 +18,12 @@ public class CandidatiDeleteView  extends AbstractView{
 	public void showResults(Request request) {
 		if (request!=null) {
 			System.out.println("Cancellazione andata a buon fine.\n");
-			MainDispatcher.getInstance().callView("Candidato", null);
+			MainDispatcher.getInstance().callView("Candidati", null);
 		}
 	}
 	@Override
 	public void showOptions() {
-			System.out.println("Inserisci id dell'utente:");
+			System.out.println("Inserisci l'id del Candidato da cancellare:");
 			idCandidati = Integer.parseInt(getInput());
 
 	}

@@ -32,7 +32,7 @@ public class StaffDeleteView extends AbstractView {
 	 */
 	@Override
 	public void showOptions() {
-			System.out.println("Inserisci id dell'utente:");
+			System.out.println("Inserisci id del membro dello staff:");
 			idStaff = Integer.parseInt(getInput());
 
 	}

@@ -33,9 +33,9 @@ public class CorsoService {
 	}
 
 
-	public CorsoDTO read(int idcorso) {
+	public CorsoDTO read(int idCorso) {
 		// Ottiene un'entitÃ  e la restituisce convertendola in DTO
-		return corsoConverter.toDTO(corsoDAO.read(idcorso));
+		return corsoConverter.toDTO(corsoDAO.read(idCorso));
 	}
 
 
@@ -51,9 +51,9 @@ public class CorsoService {
 	}
 
 
-	public boolean delete(int id) {
+	public boolean delete(int idCorso) {
 		// Questo mtodo chiama direttamente il DAO
-		return corsoDAO.delete(id);
+		return corsoDAO.delete(idCorso);
 	}
 	
 

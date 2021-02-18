@@ -20,65 +20,60 @@ public class Candidati {
 	private String userType;
 	
 	
-	public Candidati() {
+	public Candidati( ) {
 		
 	}
-	public Candidati(int id_C,int id_S,String name,String cog,String Email,String luogo,int numero,String titolo_s,String titolo_l,String data, 
-			String range,boolean collo_cono,String candidati,boolean idonei,String codice, String Type ) {
 		
-		idCandidati=id_C;
-		idStaff=id_S;
-		nome=name;
-		cognome=cog;
-		email=Email;
-		luogoProvenienza=luogo;
-		numeroTelefono=numero;
-		titoloStudio=titolo_s;
-		titoloLaurea=titolo_l;
-		dataCandidatura=data;
-		rangeCandidatura= range;
-		colloquioConoscitivo= collo_cono;
-		candidatiTramite=candidati;
-		idoneita=idonei;
-		codiceFiscale=codice;
-		userType = Type;
+	public Candidati(int idCandidati,int idStaff,String nome,String cognome,String email,String luogoProvenienza,int numeroTelefono,String titoloStudio,String titoloLaurea,String dataCandidatura, String rangeCandidatura,boolean colloquioConoscitivo,String candidatiTramite,boolean idoneita,String codiceFiscale, String userType ) {
 		
-	}
-	
-	public Candidati(int id_S,String name,String cog,String Email,String luogo,int numero,String titolo_s,String titolo_l,String data, 
-			String range,boolean collo_cono,String candidati,boolean idonei,String codice, String Type ) {
-		
-		idStaff=id_S;
-		nome=name;
-		cognome=cog;
-		email=Email;
-		luogoProvenienza=luogo;
-		numeroTelefono=numero;
-		titoloStudio=titolo_s;
-		titoloLaurea=titolo_l;
-		dataCandidatura=data;
-		rangeCandidatura= range;
-		colloquioConoscitivo= collo_cono;
-		candidatiTramite=candidati;
-		idoneita=idonei;
-		codiceFiscale=codice;
-		userType = Type;
+		this.setIdCandidati(idCandidati);
+		this.setIdStaff(idStaff);
+		this.setNome(nome);
+		this.setCognome(cognome);
+		this.setEmail(email);
+		this.setLuogoProvenienza(luogoProvenienza);
+		this.setNumeroTelefono(numeroTelefono);
+		this.setTitoloStudio(titoloStudio);
+		this.setTitoloLaurea(titoloLaurea);
+		this.setDataCandidatura(dataCandidatura);
+		this.setRangeCandidatura(rangeCandidatura);
+		this.setColloquioConoscitivo (colloquioConoscitivo);
+		this.setCandidatiTramite(candidatiTramite);
+		this.setIdoneita(idoneita);
+		this.setCodiceFiscale(codiceFiscale);
+		this.setUserType  (userType);
 		
 	}
 	
-	public String getUserType() {
-		return userType;
+	public Candidati(int idStaff,String nome,String cognome,String email,String luogoProvenienza,int numeroTelefono,String titoloStudio,String titoloLaurea,String dataCandidatura, String rangeCandidatura,boolean colloquioConoscitivo,String candidatiTramite,boolean idoneita,String codiceFiscale, String userType ) {
+		
+		this.setIdStaff(idStaff);
+		this.setNome(nome);
+		this.setCognome(cognome);
+		this.setEmail(email);
+		this.setLuogoProvenienza(luogoProvenienza);
+		this.setNumeroTelefono(numeroTelefono);
+		this.setTitoloStudio(titoloStudio);
+		this.setTitoloLaurea(titoloLaurea);
+		this.setDataCandidatura(dataCandidatura);
+		this.setRangeCandidatura(rangeCandidatura);
+		this.setColloquioConoscitivo (colloquioConoscitivo);
+		this.setCandidatiTramite(candidatiTramite);
+		this.setIdoneita(idoneita);
+		this.setCodiceFiscale(codiceFiscale);
+		this.setUserType  (userType);
+		
 	}
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-	public void setIdCandidati(int idCandidati) {
-		this.idCandidati=idCandidati;
-	}
+	
+	
+
 	
 	public int getIdCandidati() {
 		return idCandidati;
-		
+	}
+
+	public void setIdCandidati(int idCandidati) {
+		this.idCandidati = idCandidati;
 	}
 
 	public int getIdStaff() {
@@ -192,45 +187,16 @@ public class Candidati {
 	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
 	}
-	public boolean getIdoneita() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public boolean getColloquioConoscitivo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	public String getUsertype() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((candidatiTramite == null) ? 0 : candidatiTramite.hashCode());
-		result = prime * result + ((codiceFiscale == null) ? 0 : codiceFiscale.hashCode());
-		result = prime * result + ((cognome == null) ? 0 : cognome.hashCode());
-		result = prime * result + (colloquioConoscitivo ? 1231 : 1237);
-		result = prime * result + ((dataCandidatura == null) ? 0 : dataCandidatura.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + idCandidati;
-		result = prime * result + idStaff;
-		result = prime * result + (idoneita ? 1231 : 1237);
-		result = prime * result + ((luogoProvenienza == null) ? 0 : luogoProvenienza.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + numeroTelefono;
-		result = prime * result + ((rangeCandidatura == null) ? 0 : rangeCandidatura.hashCode());
-		result = prime * result + ((titoloLaurea == null) ? 0 : titoloLaurea.hashCode());
-		result = prime * result + ((titoloStudio == null) ? 0 : titoloStudio.hashCode());
-		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
-		return result;
-	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -44,28 +44,31 @@ public class CorsoUpdateView extends AbstractView{
 	@Override
 	public void showOptions() {
 		try {
-			System.out.println("Inserisci l'id del Corso:");
-			idCorso = getInt();
+			
 			System.out.println("Inserisci l'id del Candidato:");
 			idCandidato = getInt();
-			System.out.println("Inserisci l'id dell'Iter Selettivo:");
+			System.out.println("Inserisci l'id dell'Iter Selettivo precedente al corso:");
 			idIterSelettivo = getInt();
-			System.out.println("Inserisci l'argomentoCorso del corso:");
+			System.out.println("Inserisci l'argomento del corso:");
 			argomentoCorso = getInput();
-			System.out.println("Inserisci la valutazione delle Comunicazioni dell'utente:");
+			System.out.println("Inserisci la valutazione delle Comunicazioni del Candidato:");
 			valutazioneComunicazioni = getInt();
-			System.out.println("Inserisci la valutazione dell'Intuitivita dell'utente:");
+			System.out.println("Inserisci la valutazione dell'Intuitivita del Candidato:");
 			valutazioneIntuitivita = getInt();
-			System.out.println("Inserisci la valutazione dell'Attitudine dell'utente:");
+			System.out.println("Inserisci la valutazione dell'Attitudine del Candidato:");
 			valutazioneAttitudine = getInt();
-			System.out.println("Inserisci la valutazione del TeamWork dell'utente:");
+			System.out.println("Inserisci la valutazione del TeamWork del Candidato:");
 			valutazioneTeamWork = getInt();
 			System.out.println("Inserisci le ore Totali del corso:");
 			oreTotali = getInt();
 			System.out.println("Inserisci l'id dello Staff che segue il corso:");
 			idStaff = getInt();
-			
+			System.out.println("Inserisci la data di inizio del corso");
+			dataInizio = getInput();
+			System.out.println("Inserisci l'id del Corso da modificare:");
+			idCorso = getInt();
 		} catch (Exception e) {
+			e.printStackTrace();
 
 		}
 	}

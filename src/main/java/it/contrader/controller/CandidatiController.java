@@ -38,13 +38,13 @@ public class CandidatiController implements Controller {
 
 		// Definisce i campi della classe (serviranno sempre, tanto vale definirli una
 		// sola volta)
-		int idCandidati;
+		int idCandidati = 0;
 		int idStaff;
 		String nome;
 		String cognome;
 		String email;
 		String luogoProvenienza;
-		int numero_telefono;
+		int numeroTelefono;
 		String titoloStudio;
 		String titoloLaurea;
 		String dataCandidatura;
@@ -53,7 +53,7 @@ public class CandidatiController implements Controller {
 		String candidatiTramite;
 		boolean idoneita;
 		String codiceFiscale;
-		String usertype;
+		String userType;
 		switch (mode) {
 
 		// Arriva qui dalla UserReadView. Invoca il Service con il parametro id e invia
@@ -65,7 +65,7 @@ public class CandidatiController implements Controller {
 				request.put("candidati", candidatiDTO);
 				MainDispatcher.getInstance().callView(sub_package + "CandidatiRead", request);
 			} catch (Exception e) {
-				System.err.println("Errore durante la lettura dei candicati");
+				System.err.println("Errore durante la lettura dei candidati");
 				e.printStackTrace();
 			}
 			break;
@@ -74,27 +74,28 @@ public class CandidatiController implements Controller {
 		// service per inserire uno user con questi parametri
 		case "INSERT":
 			try {
+				idCandidati = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_CANDIDATI).toString());
 				idStaff = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_STAFF).toString());
 				nome = request.get(CandidatiDAO.CONST.NOME).toString();
 				cognome = request.get(CandidatiDAO.CONST.COGNOME).toString();
 				email = request.get(CandidatiDAO.CONST.EMAIL).toString();
 				luogoProvenienza = request.get(CandidatiDAO.CONST.PROVENIENZA).toString();
-				numero_telefono = Integer.parseInt(request.get(CandidatiDAO.CONST.TELEFONO).toString());
+				numeroTelefono = Integer.parseInt(request.get(CandidatiDAO.CONST.TELEFONO).toString());
 				titoloStudio = request.get(CandidatiDAO.CONST.TITOLO_STUDIO).toString();
-				titoloLaurea = request.get(CandidatiDAO.CONST.TITOLO_LAUREA).toString();
-	
+				titoloLaurea = request.get(CandidatiDAO.CONST.TITOLO_LAUREA).toString();	
 				dataCandidatura = request.get(CandidatiDAO.CONST.DATA_CANDIDATURA).toString();
 				rangeCandidatura = request.get(CandidatiDAO.CONST.RANGE_CANDIDATURA).toString();
 				colloquioConoscitivo = Boolean.parseBoolean(request.get(CandidatiDAO.CONST.COLLOQUIO_CONOSCITIVO).toString());
 				candidatiTramite = request.get(CandidatiDAO.CONST.CANDIDATI_TRAMITE).toString();
-				codiceFiscale = request.get(CandidatiDAO.CONST.CODICE_FISCALE).toString();
-				usertype = request.get(CandidatiDAO.CONST.USER_TYPE).toString();
 				idoneita = Boolean.parseBoolean(request.get(CandidatiDAO.CONST.USER_TYPE).toString());
+				codiceFiscale = request.get(CandidatiDAO.CONST.CODICE_FISCALE).toString();
+				userType = request.get(CandidatiDAO.CONST.USER_TYPE).toString();
+				
 	
 				// costruisce l'oggetto user da inserire
-				CandidatiDTO candidatitoinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
-						numero_telefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
-						colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, usertype);
+				CandidatiDTO candidatitoinsert = new CandidatiDTO(idCandidati, idStaff, nome, cognome, email, luogoProvenienza,
+						numeroTelefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
+						colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, userType);
 				// invoca il service
 				candidatiService.insert(candidatitoinsert);
 				request = new Request();
@@ -111,7 +112,7 @@ public class CandidatiController implements Controller {
 		// passa al Service
 		case "DELETE":
 			try {
-				idCandidati = Integer.parseInt(request.get(CandidatiDAO.CONST.ID_CANDIDATI).toString());
+				idCandidati = Integer.parseInt(request.get("idCandidati").toString());
 				// Qui chiama il service
 				candidatiService.delete(idCandidati);
 				request = new Request();
@@ -132,7 +133,7 @@ public class CandidatiController implements Controller {
 				cognome = request.get(CandidatiDAO.CONST.COGNOME).toString();
 				email = request.get(CandidatiDAO.CONST.EMAIL).toString();
 				luogoProvenienza = request.get(CandidatiDAO.CONST.PROVENIENZA).toString();
-				numero_telefono = Integer.parseInt(request.get(CandidatiDAO.CONST.TELEFONO).toString());
+				numeroTelefono = Integer.parseInt(request.get(CandidatiDAO.CONST.TELEFONO).toString());
 				titoloStudio = request.get(CandidatiDAO.CONST.TITOLO_STUDIO).toString();
 				titoloLaurea = request.get(CandidatiDAO.CONST.TITOLO_LAUREA).toString();
 				dataCandidatura = request.get(CandidatiDAO.CONST.DATA_CANDIDATURA).toString();
@@ -141,12 +142,13 @@ public class CandidatiController implements Controller {
 				candidatiTramite = request.get(CandidatiDAO.CONST.CANDIDATI_TRAMITE).toString();
 				idoneita = Boolean.parseBoolean(request.get(CandidatiDAO.CONST.IDONEITA).toString());
 				codiceFiscale = request.get(CandidatiDAO.CONST.CODICE_FISCALE).toString();
-				usertype = request.get(CandidatiDAO.CONST.USER_TYPE).toString();
-				CandidatiDTO candidatiinsert = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
-						numero_telefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
-						colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, usertype);
-				candidatiinsert.setIdCandidati(idCandidati);
-				candidatiService.update(candidatiinsert);
+				userType = request.get(CandidatiDAO.CONST.USER_TYPE).toString();
+				
+				CandidatiDTO candidatiToUpdate = new CandidatiDTO(idStaff, nome, cognome, email, luogoProvenienza,
+						numeroTelefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura,
+						colloquioConoscitivo, candidatiTramite, idoneita, codiceFiscale, userType);
+				candidatiToUpdate.setIdCandidati(idCandidati);
+				candidatiService.update(candidatiToUpdate);
 				request = new Request();
 				request.put("mode", "mode");
 				MainDispatcher.getInstance().callView(sub_package + "CandidatiUpdate", request);

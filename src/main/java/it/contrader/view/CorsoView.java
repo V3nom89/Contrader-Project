@@ -21,7 +21,7 @@ public class CorsoView extends AbstractView{
 	public void showResults(Request request) {
 		if (request != null) {
 			System.out.println("\n------------------------------------------------------------------------------------ Corso ----------------------------------------------------------------------------------------------------------------------------------------------------\n");
-			System.out.println("Id Corso\tId Iter Selettivo\t Argomento Corso\t Valutazione Comunicazioni\t Valutazione Intuitivita\t Valutazione Attitudine\t Valutazione Team Work\t Ore Totali\t Id Candidato\t Id Staff\t Data Inizio");
+			System.out.println("Id Corso\tId Candidato\tId Iter Selettivo\t Argomento Corso\t Valutazione Comunicazioni\t Valutazione Intuitivita\t Valutazione Attitudine\t Valutazione Team Work\t Ore Totali\t Id Staff\t Data Inizio");
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 			
 			@SuppressWarnings("unchecked")

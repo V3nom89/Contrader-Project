@@ -76,6 +76,7 @@ public class StaffController implements Controller {
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
 			try {
+				idStaff= Integer.parseInt(request.get(StaffDAO.CONST.ID_STAFF).toString());
 				nome= request.get(StaffDAO.CONST.NOME).toString();
 				cognome= request.get(StaffDAO.CONST.COGNOME).toString();
 				email = request.get(StaffDAO.CONST.EMAIL).toString();

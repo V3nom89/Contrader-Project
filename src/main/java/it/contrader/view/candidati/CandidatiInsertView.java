@@ -44,36 +44,37 @@ public class CandidatiInsertView extends AbstractView {
 	 */
 	@Override
 	public void showOptions() {
-		
-		System.out.println("Inserisci idStaff dell'utente:");
+		System.out.println("Inserisci l'id del Candidato:");
+		idCandidati = getInt();
+		System.out.println("Inserisci l'id del membro dello staff che segue il Candidato:");
 		idStaff = getInt();
-		System.out.println("Inserisci nome dell'utente:");
+		System.out.println("Inserisci il nome del Candidato:");
 		nome = getInput();
-		System.out.println("Inserisci cognome dell'utente:");
+		System.out.println("Inserisci il cognome del Candidato:");
 		cognome = getInput();
-		System.out.println("Inserisci email dell'utente:");
+		System.out.println("Inserisci l'email del Candidato:");
 		email = getInput();
-		System.out.println("Inserisci luogo provenienza dell'utente:");
+		System.out.println("Inserisci il luogo di provenienza del Candidato:");
 		luogoProvenienza = getInput();
-		System.out.println("Inserisci numero di telefono dell'utente:");
+		System.out.println("Inserisci il numero di telefono del Candidato:");
 		numeroTelefono = getInt();
-		System.out.println("Inserisci titoloStudio dell'utente:");
+		System.out.println("Inserisci il titolo di studio del Candidato:");
 		titoloStudio = getInput();
-		System.out.println("Inserisci titoloLaurea dell'utente:");
+		System.out.println("Inserisci il titolo di Laurea del Candidato (opzionale):");
 		titoloLaurea = getInput();
-		System.out.println("Inserisci dataCandidatura dell'utente:");
+		System.out.println("Inserisci la data della candidatura del Candidato:");
 		dataCandidatura = getInput();
-		System.out.println("Inserisci rangeCandidatura dell'utente:");
+		System.out.println("Inserisci il range della data di candidatura del Candidato (opzionale):");
 		rangeCandidatura = getInput();
 		System.out.println("Ha gia' fatto il colloquio conoscitivo ?");
 		colloquioConoscitivo = getBoolean();
-		System.out.println("Inserisci la modalita' di candidatura dell'utente:");
+		System.out.println("Inserisci la modalita' di candidatura del Candidato:");
 		candidatiTramite = getInput();
-		System.out.println("Inserisci se l'utente e' idoneo:");
+		System.out.println("Inserisci se il Candidato e' idoneo:");
 		idoneita = getBoolean();
-		System.out.println("Inserisci codice fiscale dell'utente:");
+		System.out.println("Inserisci codice fiscale del Candidato:");
 		codiceFiscale = getInput();
-		System.out.println("Inserisci usertype dell'utente:");
+		System.out.println("Inserisci l'usertype del Candidato:");
 		userType = getInput();
 		
 	}

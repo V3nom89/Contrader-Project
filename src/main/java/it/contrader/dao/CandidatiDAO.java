@@ -33,7 +33,7 @@ public class CandidatiDAO {
 	}
 
 	private final String QUERY_ALL = "SELECT * FROM candidati";
-	private final String QUERY_CREATE = "INSERT INTO candidati (idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,  idoneita, codiceFiscale, userType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final String QUERY_CREATE = "INSERT INTO candidati (idCandidati, idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono, titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo, candidatiTramite,  idoneita, codiceFiscale, userType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM candidati WHERE idCandidati=?";
 	private final String QUERY_UPDATE = "UPDATE candidati SET idStaff = ?, nome = ?, cognome = ?, email = ?, luogoProvenienza = ?, numeroTelefono = ?, titoloStudio = ?, titoloLaurea = ?, dataCandidatura = ?, rangeCandidatura = ?, colloquioConoscitivo = ?, candidatiTramite = ?, idoneita = ?, codiceFiscale = ?, userType = ?  WHERE idCandidati=?";
 	private final String QUERY_DELETE = "DELETE FROM candidati WHERE idCandidati=?";
@@ -82,21 +82,22 @@ public class CandidatiDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_CREATE);
-			preparedStatement.setInt(1, c.getIdStaff());
-			preparedStatement.setString(2, c.getNome());
-			preparedStatement.setString(3, c.getCognome());
-			preparedStatement.setString(4, c.getEmail());
-			preparedStatement.setString(5, c.getLuogoProvenienza());
-			preparedStatement.setInt(6, c.getNumeroTelefono());
-			preparedStatement.setString(7, c.getTitoloStudio());
-			preparedStatement.setString(8, c.getTitoloLaurea());
-			preparedStatement.setString(9, c.getDataCandidatura());
-			preparedStatement.setString(10, c.getRangeCandidatura());
-			preparedStatement.setBoolean(11, c.getColloquioConoscitivo());
-			preparedStatement.setString(12, c.getCandidatiTramite());
-			preparedStatement.setBoolean(13, c.getIdoneita());
-			preparedStatement.setString(14, c.getCodiceFiscale());
-			preparedStatement.setString(15, c.getUserType());
+			preparedStatement.setInt(1, c.getIdCandidati());
+			preparedStatement.setInt(2, c.getIdStaff());
+			preparedStatement.setString(3, c.getNome());
+			preparedStatement.setString(4, c.getCognome());
+			preparedStatement.setString(5, c.getEmail());
+			preparedStatement.setString(6, c.getLuogoProvenienza());
+			preparedStatement.setInt(7, c.getNumeroTelefono());
+			preparedStatement.setString(8, c.getTitoloStudio());
+			preparedStatement.setString(9, c.getTitoloLaurea());
+			preparedStatement.setString(10, c.getDataCandidatura());
+			preparedStatement.setString(11, c.getRangeCandidatura());
+			preparedStatement.setBoolean(12, c.isColloquioConoscitivo());
+			preparedStatement.setString(13, c.getCandidatiTramite());
+			preparedStatement.setBoolean(14, c.isIdoneita());
+			preparedStatement.setString(15, c.getCodiceFiscale());
+			preparedStatement.setString(16, c.getUserType());
 
 			preparedStatement.execute();
 			return true;
@@ -107,33 +108,33 @@ public class CandidatiDAO {
 
 	}
 
-	public Candidati read(int userId) {
+	public Candidati read(int idcandidati) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_READ);
-			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(1, idcandidati);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 
-			int idCandidati = resultSet.getInt("idCandidati");
-			int idStaff = resultSet.getInt("idStaff");
-			String nome = resultSet.getString("nome");
-			String cognome = resultSet.getString("cognome");
-			String email = resultSet.getString("email");
-			String luogoProvenienza = resultSet.getString("luogoProvenienza");
-			int numeroTelefono = resultSet.getInt("numeroTelefono");
-			String titoloStudio = resultSet.getString("titoloStudio");
-			String titoloLaurea = resultSet.getString("titoloLaurea");
-			String dataCandidatura = resultSet.getString("dataCandidatura");
-			String rangeCandidatura = resultSet.getString("rangeCandidatura");
-			boolean colloquioConoscitivo = resultSet.getBoolean("colloquioConoscitivo");
-			String candidatiTramite = resultSet.getString("candidatiTramite");
-			boolean idoneita = resultSet.getBoolean("idoneita");
-			String codiceFiscale = resultSet.getString("codiceFiscale");
-			String userType = resultSet.getString("userType");
+			int idCandidati = resultSet.getInt(CONST.ID_CANDIDATI);
+			int idStaff = resultSet.getInt(CONST.ID_STAFF);
+			String nome = resultSet.getString(CONST.NOME);
+			String cognome = resultSet.getString(CONST.COGNOME);
+			String email = resultSet.getString(CONST.EMAIL);
+			String luogoProvenienza = resultSet.getString(CONST.PROVENIENZA);
+			int numeroTelefono = resultSet.getInt(CONST.TELEFONO);
+			String titoloStudio = resultSet.getString(CONST.TITOLO_STUDIO);
+			String titoloLaurea = resultSet.getString(CONST.TITOLO_LAUREA);
+			String dataCandidatura = resultSet.getString(CONST.DATA_CANDIDATURA);
+			String rangeCandidatura = resultSet.getString(CONST.RANGE_CANDIDATURA);
+			boolean colloquioConoscitivo = resultSet.getBoolean(CONST.COLLOQUIO_CONOSCITIVO);
+			String candidatiTramite = resultSet.getString(CONST.CANDIDATI_TRAMITE);
+			boolean idoneita = resultSet.getBoolean(CONST.IDONEITA);
+			String codiceFiscale = resultSet.getString(CONST.CODICE_FISCALE);
+			String userType = resultSet.getString(CONST.USER_TYPE);
 
-			Candidati candidati = new Candidati(idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono,
+			Candidati candidati = new Candidati(idCandidati, idStaff, nome, cognome, email, luogoProvenienza, numeroTelefono,
 					titoloStudio, titoloLaurea, dataCandidatura, rangeCandidatura, colloquioConoscitivo,
 					candidatiTramite, idoneita, codiceFiscale, userType);
 			candidati.setIdCandidati(idCandidati);
@@ -146,90 +147,96 @@ public class CandidatiDAO {
 
 	}
 
-	public boolean update(Candidati c) {
+	public boolean update(Candidati candidatiToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present
-		if (c.getIdCandidati() == 0)
+		if (candidatiToUpdate.getIdCandidati() == 0)
 			return false;
 
-		Candidati candidatileggi = read(c.getIdCandidati());
-		if (!candidatileggi.equals(c)) {
+		Candidati candidatiRead = read(candidatiToUpdate.getIdCandidati());
+		if (!candidatiRead.equals(candidatiToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				if (c.getIdStaff() == 0) {
-					c.setIdStaff(candidatileggi.getIdStaff());
+				if (candidatiToUpdate.getIdCandidati() == 0) {
+					candidatiToUpdate.setIdCandidati(candidatiRead.getIdCandidati());
+				}
+				
+				if (candidatiToUpdate.getIdStaff() == 0) {
+					candidatiToUpdate.setIdStaff(candidatiRead.getIdStaff());
 				}
 
-				if (c.getNome() == null || c.getNome().equals("")) {
-					c.setNome(candidatileggi.getNome());
+				if (candidatiToUpdate.getNome() == null || candidatiToUpdate.getNome().equals("")) {
+					candidatiToUpdate.setNome(candidatiRead.getNome());
 				}
 
-				if (c.getCognome() == null || c.getCognome().equals("")) {
-					c.setCognome(candidatileggi.getCognome());
+				if (candidatiToUpdate.getCognome() == null || candidatiToUpdate.getCognome().equals("")) {
+					candidatiToUpdate.setCognome(candidatiRead.getCognome());
 				}
-				if (c.getEmail() == null || c.getEmail().equals("")) {
-					c.setEmail(candidatileggi.getEmail());
-				}
-
-				if (c.getLuogoProvenienza() == null || c.getLuogoProvenienza().equals("")) {
-					c.setLuogoProvenienza(candidatileggi.getLuogoProvenienza());
+				if (candidatiToUpdate.getEmail() == null || candidatiToUpdate.getEmail().equals("")) {
+					candidatiToUpdate.setEmail(candidatiRead.getEmail());
 				}
 
-				if (c.getNumeroTelefono() == 0) {
-					c.setNumeroTelefono(candidatileggi.getNumeroTelefono());
-				}
-				if (c.getTitoloStudio() == null || c.getTitoloStudio().equals("")) {
-					c.setTitoloStudio(candidatileggi.getTitoloStudio());
+				if (candidatiToUpdate.getLuogoProvenienza() == null || candidatiToUpdate.getLuogoProvenienza().equals("")) {
+					candidatiToUpdate.setLuogoProvenienza(candidatiRead.getLuogoProvenienza());
 				}
 
-				if (c.getTitoloLaurea() == null || c.getTitoloLaurea().equals("")) {
-					c.setTitoloLaurea(candidatileggi.getTitoloLaurea());
+				if (candidatiToUpdate.getNumeroTelefono() == 0) {
+					candidatiToUpdate.setNumeroTelefono(candidatiRead.getNumeroTelefono());
+				}
+				if (candidatiToUpdate.getTitoloStudio() == null || candidatiToUpdate.getTitoloStudio().equals("")) {
+					candidatiToUpdate.setTitoloStudio(candidatiRead.getTitoloStudio());
 				}
 
-				if (c.getDataCandidatura() == null || c.getDataCandidatura().equals("")) {
-					c.setDataCandidatura(candidatileggi.getDataCandidatura());
-				}
-				if (c.getRangeCandidatura() == null || c.getRangeCandidatura().equals("")) {
-					c.setRangeCandidatura(candidatileggi.getRangeCandidatura());
+				if (candidatiToUpdate.getTitoloLaurea() == null || candidatiToUpdate.getTitoloLaurea().equals("")) {
+					candidatiToUpdate.setTitoloLaurea(candidatiRead.getTitoloLaurea());
 				}
 
-				if (c.getCandidatiTramite() == null || c.getCandidatiTramite().equals("")) {
-					c.setCandidatiTramite(candidatileggi.getCandidatiTramite());
+				if (candidatiToUpdate.getDataCandidatura() == null || candidatiToUpdate.getDataCandidatura().equals("")) {
+					candidatiToUpdate.setDataCandidatura(candidatiRead.getDataCandidatura());
+				}
+				if (candidatiToUpdate.getRangeCandidatura() == null || candidatiToUpdate.getRangeCandidatura().equals("")) {
+					candidatiToUpdate.setRangeCandidatura(candidatiRead.getRangeCandidatura());
 				}
 
-				if (c.getColloquioConoscitivo() == false) {
-					c.setColloquioConoscitivo(candidatileggi.getColloquioConoscitivo());
+				if (candidatiToUpdate.isColloquioConoscitivo() == false) {
+					candidatiToUpdate.setColloquioConoscitivo(candidatiRead.isColloquioConoscitivo());
 				}
-				if (c.getIdoneita() == false) {
-					c.setIdoneita(candidatileggi.getIdoneita());
-				}
-
-				if (c.getCodiceFiscale() == null || c.getCodiceFiscale().equals("")) {
-					c.setCodiceFiscale(candidatileggi.getCodiceFiscale());
+				if (candidatiToUpdate.getCandidatiTramite() == null || candidatiToUpdate.getCandidatiTramite().equals("")) {
+					candidatiToUpdate.setCandidatiTramite(candidatiRead.getCandidatiTramite());
 				}
 
-				if (c.getUserType() == null || c.getUsertype().equals("")) {
-					c.setUserType(candidatileggi.getUserType());
+				
+				if (candidatiToUpdate.isIdoneita() == false) {
+					candidatiToUpdate.setIdoneita(candidatiRead.isIdoneita());
+				}
+
+				if (candidatiToUpdate.getCodiceFiscale() == null || candidatiToUpdate.getCodiceFiscale().equals("")) {
+					candidatiToUpdate.setCodiceFiscale(candidatiRead.getCodiceFiscale());
+				}
+
+				if (candidatiToUpdate.getUserType() == null || candidatiToUpdate.getUserType().equals("")) {
+					candidatiToUpdate.setUserType(candidatiRead.getUserType());
 				}
 
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setInt(1, c.getIdStaff());
-				preparedStatement.setString(2, c.getNome());
-				preparedStatement.setString(3, c.getCognome());
-				preparedStatement.setString(4, c.getEmail());
-				preparedStatement.setString(5, c.getLuogoProvenienza());
-				preparedStatement.setInt(6, c.getNumeroTelefono());
-				preparedStatement.setString(7, c.getTitoloStudio());
-				preparedStatement.setString(8, c.getTitoloLaurea());
-				preparedStatement.setString(9, c.getDataCandidatura());
-				preparedStatement.setString(10, c.getRangeCandidatura());
-				preparedStatement.setString(11, c.getCandidatiTramite());
-				preparedStatement.setBoolean(12, c.getColloquioConoscitivo());
-				preparedStatement.setBoolean(13, c.getIdoneita());
-				preparedStatement.setString(14, c.getCodiceFiscale());
-				preparedStatement.setString(15, c.getUserType());
+				preparedStatement.setInt(1, candidatiToUpdate.getIdStaff());
+				preparedStatement.setString(2, candidatiToUpdate.getNome());
+				preparedStatement.setString(3, candidatiToUpdate.getCognome());
+				preparedStatement.setString(4, candidatiToUpdate.getEmail());
+				preparedStatement.setString(5, candidatiToUpdate.getLuogoProvenienza());
+				preparedStatement.setInt(6, candidatiToUpdate.getNumeroTelefono());
+				preparedStatement.setString(7, candidatiToUpdate.getTitoloStudio());
+				preparedStatement.setString(8, candidatiToUpdate.getTitoloLaurea());
+				preparedStatement.setString(9, candidatiToUpdate.getDataCandidatura());
+				preparedStatement.setString(10, candidatiToUpdate.getRangeCandidatura());
+				preparedStatement.setBoolean(11, candidatiToUpdate.isColloquioConoscitivo());
+				preparedStatement.setString(12, candidatiToUpdate.getCandidatiTramite());
+				preparedStatement.setBoolean(13, candidatiToUpdate.isIdoneita());
+				preparedStatement.setString(14, candidatiToUpdate.getCodiceFiscale());
+				preparedStatement.setString(15, candidatiToUpdate.getUserType());
+				preparedStatement.setInt(16, candidatiToUpdate.getIdCandidati());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
@@ -246,11 +253,11 @@ public class CandidatiDAO {
 
 	}
 
-	public boolean delete(int id) {
+	public boolean delete(int idCandidati) {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, idCandidati);
 			int n = preparedStatement.executeUpdate();
 			if (n != 0)
 				return true;

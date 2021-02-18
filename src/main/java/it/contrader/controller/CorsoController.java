@@ -47,9 +47,9 @@ public class CorsoController implements Controller {
 		String choice = (String) request.get("choice");
 
 		//Definisce i campi della classe (serviranno sempre, tanto vale definirli una sola volta)
-		 int idCorso=0;
+		 int idCorso = 0 ;
 		 int idCandidato;
-		 int idIterSelettivo = 0;
+		 int idIterSelettivo ;
 	     String argomentoCorso;
 		 int valutazioneComunicazioni;
 		 int valutazioneIntuitivita;
@@ -65,11 +65,11 @@ public class CorsoController implements Controller {
 		case "READ":
 			try {
 				idCorso = Integer.parseInt(request.get(CorsoDAO.CONST.ID_CORSO).toString());
-				CorsoDTO corsoDto = corsoService.read(idCorso);
-				request.put("corso", corsoDto);
+				CorsoDTO corsoDTO = corsoService.read(idCorso);
+				request.put("corso", corsoDTO);
 				MainDispatcher.getInstance().callView(sub_package + "CorsoRead", request);
 			} catch (Exception e) {
-				System.err.println("Errore nella lettura del membro dello Corso con id <" + idCorso + ">");
+				System.err.println("Errore nella lettura del Corso");
 				e.printStackTrace();
 			}
 			break;
@@ -77,21 +77,16 @@ public class CorsoController implements Controller {
 		// Arriva qui dalla UserInsertView. Estrae i parametri da inserire e chiama il service per inserire uno user con questi parametri
 		case "INSERT":
 			try {
-				idCandidato= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CANDIDATO).toString());
-				
-				idIterSelettivo= Integer.parseInt(request.get(CorsoDAO.CONST.ID_ITERSELETTIVO).toString());
-				
-				argomentoCorso= request.get(CorsoDAO.CONST.ARGOMENTO_CORSO).toString();
-				
+				idCorso= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CORSO).toString());
+				idCandidato= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CANDIDATO).toString());				
+				idIterSelettivo= Integer.parseInt(request.get(CorsoDAO.CONST.ID_ITERSELETTIVO).toString());				
+				argomentoCorso= request.get(CorsoDAO.CONST.ARGOMENTO_CORSO).toString();				
 				valutazioneComunicazioni= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_COMUNICAZIONI).toString());
 				valutazioneIntuitivita= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_INTUITIVITA).toString());
 				valutazioneAttitudine= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_ATTITUDINE).toString());
-			    valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());
-				
-				oreTotali= Integer.parseInt(request.get(CorsoDAO.CONST.ORETOTALI).toString());
-				
-				idStaff= Integer.parseInt(request.get(CorsoDAO.CONST.ID_STAFF).toString());
-				
+			    valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());				
+				oreTotali= Integer.parseInt(request.get(CorsoDAO.CONST.ORETOTALI).toString());				
+				idStaff= Integer.parseInt(request.get(CorsoDAO.CONST.ID_STAFF).toString());				
 				dataInizio= request.get(CorsoDAO.CONST.DATA_INIZIO).toString();
 				
 				//costruisce l'oggetto user da inserire
@@ -120,35 +115,31 @@ public class CorsoController implements Controller {
 		
 		// Arriva qui dalla UserUpdateView
 		case "UPDATE":
-			idCorso= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CORSO).toString());
-			
-			idCandidato= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CANDIDATO).toString());
-			
+			try {
+			idCorso= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CORSO).toString());			
+			idCandidato= Integer.parseInt(request.get(CorsoDAO.CONST.ID_CANDIDATO).toString());			
 			idIterSelettivo= Integer.parseInt(request.get(CorsoDAO.CONST.ID_ITERSELETTIVO).toString());
-			argomentoCorso= request.get(CorsoDAO.CONST.ARGOMENTO_CORSO).toString();
-			
+			argomentoCorso= request.get(CorsoDAO.CONST.ARGOMENTO_CORSO).toString();			
 			valutazioneComunicazioni= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_COMUNICAZIONI).toString());
 			valutazioneIntuitivita= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_INTUITIVITA).toString());
 			valutazioneAttitudine= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_ATTITUDINE).toString());
-		    valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());
-			
-			oreTotali= Integer.parseInt(request.get(CorsoDAO.CONST.ORETOTALI).toString());
-			
-			idStaff= Integer.parseInt(request.get(CorsoDAO.CONST.ID_STAFF).toString());
-			
+		    valutazioneTeamWork= Integer.parseInt(request.get(CorsoDAO.CONST.VALUTAZIONE_TEAMWORK).toString());			
+			oreTotali= Integer.parseInt(request.get(CorsoDAO.CONST.ORETOTALI).toString());			
+			idStaff= Integer.parseInt(request.get(CorsoDAO.CONST.ID_STAFF).toString());			
 			dataInizio= request.get(CorsoDAO.CONST.DATA_INIZIO).toString();
 			
 			//costruisce l'oggetto user da inserire
-			CorsoDTO corsotoupdate = new CorsoDTO(idCorso,idCandidato,idIterSelettivo,argomentoCorso,valutazioneComunicazioni,valutazioneIntuitivita,valutazioneAttitudine,valutazioneTeamWork,oreTotali,idStaff,dataInizio);
-			corsotoupdate.setIdCorso(idCorso);
-                        corsoService.update(corsotoupdate);
+			CorsoDTO corsoToUpdate = new CorsoDTO(idCandidato,idIterSelettivo,argomentoCorso,valutazioneComunicazioni,valutazioneIntuitivita,valutazioneAttitudine,valutazioneTeamWork,oreTotali,idStaff,dataInizio);
+			corsoToUpdate.setIdCorso(idCorso);
+            corsoService.update(corsoToUpdate);
                         //invoca il service
-			
-			
-
 			request = new Request();
 			request.put("mode", "mode");
 			MainDispatcher.getInstance().callView(sub_package + "CorsoUpdate", request);
+			} catch (Exception e) {
+				System.err.println("Errore nell'aggiornamento del corso");
+				e.printStackTrace();
+			}
 			break;
 			
 		//Arriva qui dalla UserView Invoca il Service e invia alla UserView il risultato da mostrare 
