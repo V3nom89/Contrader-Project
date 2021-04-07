@@ -107,7 +107,7 @@ DROP TABLE IF EXISTS `corso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
  CREATE TABLE `corso` (
-  `idCorso` INT NOT NULL AUTO_INCREMENT,   // ho Aggiunto auto-increment
+  `idCorso` INT NOT NULL AUTO_INCREMENT,
   `idCandidato` INT NOT NULL,
   `idIterSelettivo` INT NOT NULL,
   `argomentoCorso` VARCHAR(45) NOT NULL,
